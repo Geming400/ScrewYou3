@@ -5,7 +5,7 @@ import re
 import argparse
 import os
 import time
-from typing import Final
+from typing import Final, Self
 
 HOOK_MACRO: Final[str] = "SCREWYOU3_HOOK"
 INIT_MACRO: Final[str] = "SCREWYOU3_HOOK_INIT"
@@ -20,6 +20,34 @@ parser.add_argument("-o", "--output", default="./src/",
                     help="The location of the output")
 parser.add_argument("-i", "--ignore", default="",
                     help="A list of classes to ignore. Each elements is separated by a semi-colon")
+
+class Param:
+    name: str
+    typeName: str
+    isPointer: bool
+    isReference: bool
+    
+    def __init__(self, name: str, typeName: str, isPointer: bool, isReference: bool) -> None:
+        self.name = name
+        self.typeName = typeName
+        self.isPointer = isPointer
+        self.isReference = isReference
+        
+    @classmethod
+    def fromRaw(cls, rawStr: str) -> Self:
+        rawStr = rawStr[:rawStr.find("=")].strip()
+        # const char* str;
+        
+        isPointer = "*" in rawStr
+        isReference = "&" in rawStr
+        
+        name = ""
+        typeName = ""
+        
+        inst = cls.__new__(cls)
+        inst.__init__(name, typeName, isPointer, isReference)
+        return inst
+        
 
 class CPPFunction:
     name: str
@@ -168,7 +196,7 @@ if __name__ == "__main__":
     toIgnore: list[str] = args.ignore.lower().split(";")
     
     def path(file: str):
-        return os.path.normpath(args.output + "\\generated\\" + file) # pyright: ignore[reportAttributeAccessIssue]
+        return os.path.normpath(args.output + "\\generated\\" + file)
 
     currentClass: str = ""
     isValidForAndroid: bool = False
@@ -264,14 +292,14 @@ constexpr std::vector<std::string> getClasses() {
 // Can't wait for someone to destroy `PlayerObject`'s as their first destroyed init :3
 #include <Geode/Geode.hpp>
 #include <Geode/ui/GeodeUI.hpp>
-#include "../ScrewYou2Manager.hpp"
+#include "../ScrewYou3Manager.hpp"
 
 using namespace geode::prelude;
 
 // Cursed macros but whatever, this isn't supposed to be the most readable thing after all
 
 #define SCREWYOU2_MENULAYER_CUSTOM_INIT(className, ...) { \\
-        if (ScrewYou2Manager::get()->isKilled(CLASS_NAME) && Mod::get()->getSettingValue<bool>("enabled")) return true; \\
+        if (ScrewYou3Manager::get()->isKilled(CLASS_NAME) && Mod::get()->getSettingValue<bool>("enabled")) return true; \\
         if (!className::init(__VA_ARGS__)) return false; \\
         if (Mod::get()->getSavedValue<bool>("first-time-loading", true)) { \\
             log::info("Showing popup"); \\
@@ -288,12 +316,12 @@ using namespace geode::prelude;
     } \\
 };
 
-#define SCREWYOU2_HOOK(className, ...) \\
+#define SCREWYOU3_HOOK(className, ...) \\
 class $modify(Screwd##className, className) { \\
-    bool init(__VA_ARGS__) // `SCREWYOU2_HOOK_INIT()` macro goes here
+    bool init(__VA_ARGS__) // `SCREWYOU3_HOOK_INIT()` macro goes here
 
-#define SCREWYOU2_HOOK_INIT(className, ...) { \\
-        if (ScrewYou2Manager::get()->isKilled(CLASS_NAME) && Mod::get()->getSettingValue<bool>("enabled")) return true;\\
+#define SCREWYOU3_HOOK_INIT(className, ...) { \\
+        if (ScrewYou3Manager::get()->isKilled(CLASS_NAME) && Mod::get()->getSettingValue<bool>("enabled")) return true;\\
         if (!className::init(__VA_ARGS__)) return false; \\
         return true; \\
     } \\
