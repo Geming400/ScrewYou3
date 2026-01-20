@@ -13,7 +13,8 @@
 	"description": "Screw you 2, but better",
 	"settings": {
 		"behavior-title": {
-			"type": "title"
+			"type": "title",
+			"name": "Mod's behavior"
 		},
 		"enabled": {
 			"name": "Enabled",
@@ -33,6 +34,54 @@
 			},
 			"min": 1,
 			"max": 50
+		},
+		"can-be-nullptr": {
+			"name": "Can be nullptr",
+			"description": "If the return value is allowed to be a value with no value",
+			"type": "bool",
+			"default": true,
+			"enable-if": "enabled"
+		},
+		"nullptr-chance": {
+			"name": "Nullptr chance",
+			"description": "The chance for the value to be nullptr",
+			"type": "int",
+			"default": 50,
+			"enable-if": "enabled",
+			"min": 0,
+			"max": 100
+		},
+
+		"gibberish-data-title": {
+			"type": "title",
+			"name": "Mod's behavior (gibberish data)"
+		},
+		"gibberish-data-chance": {
+			"name": "Gibberish data chance",
+			"description": "The chance for gibberish data to be sent instead. If this doesn't execute the base function will not get executed",
+			"type": "int",
+			"default": 50,
+			"enable-if": "enabled",
+			"min": 0,
+			"max": 100
+		},
+		"gibberish-data-numerical-min": {
+			"name": "Gibberish data min (numerical)",
+			"description": "The minimum value when a numerical value is encountered to send",
+			"type": "float",
+			"default": -100.0
+		},
+		"gibberish-data-numerical-max": {
+			"name": "Gibberish data max (numerical)",
+			"description": "The maximum value when a numerical value is encountered to send",
+			"type": "float",
+			"default": 100.0
+		},
+		"gibberish-data-string-lenght": {
+			"name": "Gibberish data lenght (string)",
+			"description": "The lenght of the string (filled with random characters) to send",
+			"type": "int",
+			"default": 5
 		}
 	}
 }
