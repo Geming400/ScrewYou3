@@ -61,4 +61,15 @@ namespace modUtils {
 
         return res;
     }
+    inline const char* getRandomCharSequence_c(const size_t lenght) {
+        std::string res;
+        res.reserve(lenght);
+
+        for (char i = 0; i < lenght; i++) {
+            res += i;
+        }
+
+        const char* str = res.c_str();
+        return str;
+    }
 }
