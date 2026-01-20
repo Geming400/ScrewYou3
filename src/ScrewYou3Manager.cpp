@@ -6,9 +6,7 @@
 using namespace geode::prelude;
 
 ScrewYou3Manager* ScrewYou3Manager::get() {
-    static ScrewYou3Manager* inst;
-    if (inst) return inst;
-    inst = new ScrewYou3Manager();
+    static ScrewYou3Manager* inst = new ScrewYou3Manager();
     return inst;
 }
 
