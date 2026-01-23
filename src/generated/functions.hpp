@@ -4,7 +4,8 @@
 
 using ScrewYouFuncsT = std::map<std::string, std::vector<std::string>>;
 
-constexpr void addToMap(ScrewYouFuncsT& map, std::string clazz, std::string func) {
+template<typename K, typename V>
+constexpr void addToMap(std::map<K, V>& map, std::string clazz, std::string func) {
     if (map.contains(clazz)) {
         map.at(clazz).push_back(func);
 	} else {
