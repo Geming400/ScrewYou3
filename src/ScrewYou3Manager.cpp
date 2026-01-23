@@ -1,9 +1,14 @@
 #include "ScrewYou3Manager.hpp"
+#include "Geode/loader/Log.hpp"
 #include "utils.hpp"
 
 #include <Geode/Geode.hpp>
 
 using namespace geode::prelude;
+
+std::string getFuncFromPath(std::string funcPath) {
+    return utils::string::split(funcPath, "::")[1];
+}
 
 ScrewYou3Manager* ScrewYou3Manager::get() {
     static ScrewYou3Manager* inst = new ScrewYou3Manager();
@@ -17,23 +22,31 @@ ScrewYouFuncsT ScrewYou3Manager::getSurvivingFuncs() {
 
 bool ScrewYou3Manager::isKilled(std::string funcPath) {
     for (auto& [clazz, funcs] : m_survivingClasses) {
-        if (ranges::contains(funcs, funcPath)) return false;
+        if (ranges::contains(funcs, getFuncFromPath(funcPath))) {
+            log::debug("Checking if {} (func '{}') is killed: false", funcPath, getFuncFromPath(funcPath));
+            return false;
+        }
     }
 
+    log::debug("Checking if {} (func {}) is killed: true", funcPath, getFuncFromPath(funcPath));
     return true;
 }
 bool ScrewYou3Manager::isKilled(std::string clazz, std::string funcName) {
-    return !ranges::contains(m_survivingClasses.at(clazz), funcName);
+    bool res = !ranges::contains(m_survivingClasses.at(clazz), funcName);
+
+    log::debug("Checking if {}::{} is killed: {}", clazz, funcName, res);
+    return res;
 }
 
-void ScrewYou3Manager::killClass(std::string funcName) {
+void ScrewYou3Manager::killClass(std::string funcPath) {
     for (auto& [clazz, funcs] : m_survivingClasses) {
-        if (ranges::contains(funcs, funcName))
-            ranges::remove(funcs, funcName);
-    }
+        if (ranges::contains(funcs, funcPath)) {
+            ranges::remove(funcs, getFuncFromPath(funcPath));
+            log::debug("Killed {}", funcPath);
 
-    
-    log::info("Killed {}", funcName);
+            break;
+        }
+    }
 }
 
 void ScrewYou3Manager::killClass(std::string clazz, std::string funcName) {
