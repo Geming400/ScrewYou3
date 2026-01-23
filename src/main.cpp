@@ -8,8 +8,6 @@ class $modify(PlayerObjectButBetter, PlayerObject) {
     void playerDestroyed(bool p0) {
         PlayerObject::playerDestroyed(p0);
 
-        // Testing this amazing mod
-        // ScrewYou3Manager::get()->killClass("MenuLayer");
         for (size_t i = 0; i < Mod::get()->getSettingValue<int64_t>("intensity"); i++) {
             ScrewYou3Manager::get()->killRandomClass();
         }
