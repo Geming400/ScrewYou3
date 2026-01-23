@@ -1,15 +1,15 @@
 // Generated using 'generate.py'
-// Can't wait for someone to destroy `PlayerObject`'s as their first destroyed init :3
 #include <Geode/Geode.hpp>
 #include <Geode/ui/GeodeUI.hpp>
 #include "../ScrewYou3Manager.hpp"
+#include "../utils.hpp"
 
 using namespace geode::prelude;
 
 // Cursed macros but whatever, this isn't supposed to be the most readable thing after all
 
-#define SCREWYOU2_MENULAYER_CUSTOM_INIT(className, ...) { \
-        if (ScrewYou3Manager::get()->isKilled(CLASS_NAME) && Mod::get()->getSettingValue<bool>("enabled")) return true; \
+#define SCREWYOU3_MENULAYER_CUSTOM_INIT(className, ...) { \
+        if (ScrewYou3Manager::get()->isKilled(className::CLASS_NAME) && Mod::get()->getSettingValue<bool>("enabled")) return true; \
         if (!className::init(__VA_ARGS__)) return false; \
         if (Mod::get()->getSavedValue<bool>("first-time-loading", true)) { \
             log::info("Showing popup"); \
@@ -26,15 +26,24 @@ using namespace geode::prelude;
     } \
 };
 
-#define SCREWYOU3_HOOK(className, ...) \
-class $modify(Screwd##className, className) { \
-    bool init(__VA_ARGS__) // `SCREWYOU3_HOOK_INIT()` macro goes here
-
-#define SCREWYOU3_HOOK_INIT(className, ...) { \
-        if (ScrewYou3Manager::get()->isKilled(CLASS_NAME) && Mod::get()->getSettingValue<bool>("enabled")) return true;\
-        if (!className::init(__VA_ARGS__)) return false; \
-        return true; \
+#define SCREWYOU3_HOOK_BEGIN(className) class $modify(Screwd##className, className) {
+// I'm putting the min value for an int32 for the hook priority
+// I'm terribly sorry but I had no choice
+// (It's for the funnies :33)
+#define SCREWYOU3_HOOK_END() \
+    static void onModify(auto& self) { \
+        if (!self.setHookPriority(-2147483648)) { \
+            geode::log::warn("hi"); \
+        } \
     } \
+};
+
+#define SCREWYOU3_HOOK(funcSignature) funcSignature {
+#define SCREWYOU3_HOOK_IMPL(className, funcName, ...) \
+    if (ScrewYou3Manager::get()->isKilled(fmt::format("{}::{}", className::CLASS_NAME, #funcName)) && Mod::get()->getSettingValue<bool>("enabled")) \
+        return className##_##funcName##_override(); \
+    else \
+        return className::funcName(__VA_ARGS__); \
 };
 
 // Hooking classes
@@ -43,1858 +52,4421 @@ class $modify(Screwd##className, className) { \
 // to change a thing either way
 
 #include <Geode/modify/AccountLoginLayer.hpp>
-SCREWYOU3_HOOK(AccountLoginLayer, gd::string p0)
-SCREWYOU3_HOOK_INIT(AccountLoginLayer, p0)
+bool AccountLoginLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(AccountLoginLayer)
+SCREWYOU3_HOOK(bool init(gd::string username))
+SCREWYOU3_HOOK_IMPL(AccountLoginLayer, init, username)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/AccountRegisterLayer.hpp>
-SCREWYOU3_HOOK(AccountRegisterLayer, )
-SCREWYOU3_HOOK_INIT(AccountRegisterLayer)
+bool AccountRegisterLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(AccountRegisterLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(AccountRegisterLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/AchievementBar.hpp>
-SCREWYOU3_HOOK(AchievementBar, char const* title, char const* desc, char const* icon, bool quest)
-SCREWYOU3_HOOK_INIT(AchievementBar, title, desc, icon, quest)
+bool AchievementBar_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(AchievementBar)
+SCREWYOU3_HOOK(bool init(char const* title, char const* desc, char const* icon, bool quest))
+SCREWYOU3_HOOK_IMPL(AchievementBar, init, title, desc, icon, quest)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/AchievementManager.hpp>
-SCREWYOU3_HOOK(AchievementManager, )
-SCREWYOU3_HOOK_INIT(AchievementManager)
+bool AchievementManager_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(AchievementManager)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(AchievementManager, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/AchievementNotifier.hpp>
-SCREWYOU3_HOOK(AchievementNotifier, )
-SCREWYOU3_HOOK_INIT(AchievementNotifier)
+bool AchievementNotifier_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(AchievementNotifier)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(AchievementNotifier, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/AnimatedGameObject.hpp>
-SCREWYOU3_HOOK(AnimatedGameObject, int p0)
-SCREWYOU3_HOOK_INIT(AnimatedGameObject, p0)
+bool AnimatedGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(AnimatedGameObject)
+SCREWYOU3_HOOK(bool init(int id))
+SCREWYOU3_HOOK_IMPL(AnimatedGameObject, init, id)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ArtistCell.hpp>
-SCREWYOU3_HOOK(ArtistCell, )
-SCREWYOU3_HOOK_INIT(ArtistCell)
+bool ArtistCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ArtistCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(ArtistCell, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/AudioAssetsBrowser.hpp>
-SCREWYOU3_HOOK(AudioAssetsBrowser, gd::vector<int>& songIds, gd::vector<int>& sfxIds)
-SCREWYOU3_HOOK_INIT(AudioAssetsBrowser, songIds, sfxIds)
+bool AudioAssetsBrowser_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(AudioAssetsBrowser)
+SCREWYOU3_HOOK(bool init(gd::vector<int>& songIds, gd::vector<int>& sfxIds))
+SCREWYOU3_HOOK_IMPL(AudioAssetsBrowser, init, songIds, sfxIds)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID
 #include <Geode/modify/AudioEffectsLayer.hpp>
-SCREWYOU3_HOOK(AudioEffectsLayer, gd::string p0)
-SCREWYOU3_HOOK_INIT(AudioEffectsLayer, p0)
-#endif
+bool AudioEffectsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(AudioEffectsLayer)
+SCREWYOU3_HOOK(bool init(gd::string audioString))
+SCREWYOU3_HOOK_IMPL(AudioEffectsLayer, init, audioString)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/AudioLineGuideGameObject.hpp>
-SCREWYOU3_HOOK(AudioLineGuideGameObject, )
-SCREWYOU3_HOOK_INIT(AudioLineGuideGameObject)
+bool AudioLineGuideGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(AudioLineGuideGameObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(AudioLineGuideGameObject, init, )
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/BonusDropdown.hpp>
-SCREWYOU3_HOOK(BonusDropdown, gd::string p0, int p1)
-SCREWYOU3_HOOK_INIT(BonusDropdown, p0, p1)
+bool BonusDropdown_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(BonusDropdown)
+SCREWYOU3_HOOK(bool init(gd::string text, int price))
+SCREWYOU3_HOOK_IMPL(BonusDropdown, init, text, price)
+SCREWYOU3_HOOK_END()
 #endif
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/BoomListLayer.hpp>
-SCREWYOU3_HOOK(BoomListLayer, BoomListView* p0, char const* p1)
-SCREWYOU3_HOOK_INIT(BoomListLayer, p0, p1)
+bool BoomListLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(BoomListLayer)
+SCREWYOU3_HOOK(bool init(BoomListView* listView, char const* title))
+SCREWYOU3_HOOK_IMPL(BoomListLayer, init, listView, title)
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/BoomListView.hpp>
-SCREWYOU3_HOOK(BoomListView, cocos2d::CCArray* p0, TableViewCellDelegate* p1, float p2, float p3, int p4, BoomListType p5, float p6)
-SCREWYOU3_HOOK_INIT(BoomListView, p0, p1, p2, p3, p4, p5, p6)
+bool BoomListView_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(BoomListView)
+SCREWYOU3_HOOK(bool init(cocos2d::CCArray* entries, TableViewCellDelegate* delegate, float height, float width, int page, BoomListType type, float y))
+SCREWYOU3_HOOK_IMPL(BoomListView, init, entries, delegate, height, width, page, type, y)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/BoomScrollLayer.hpp>
-SCREWYOU3_HOOK(BoomScrollLayer, cocos2d::CCArray* p0, int p1, bool p2, cocos2d::CCArray* p3, DynamicScrollDelegate* p4)
-SCREWYOU3_HOOK_INIT(BoomScrollLayer, p0, p1, p2, p3, p4)
+bool BoomScrollLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(BoomScrollLayer)
+SCREWYOU3_HOOK(bool init(cocos2d::CCArray* pages, int offset, bool looped, cocos2d::CCArray* dynamicObjects, DynamicScrollDelegate* delegate))
+SCREWYOU3_HOOK_IMPL(BoomScrollLayer, init, pages, offset, looped, dynamicObjects, delegate)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/BrowseSmartKeyLayer.hpp>
-SCREWYOU3_HOOK(BrowseSmartKeyLayer, GJSmartTemplate* p0, gd::string p1)
-SCREWYOU3_HOOK_INIT(BrowseSmartKeyLayer, p0, p1)
-#endif
+bool BrowseSmartKeyLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(BrowseSmartKeyLayer)
+SCREWYOU3_HOOK(bool init(GJSmartTemplate* smartTemplate, gd::string prefabKey))
+SCREWYOU3_HOOK_IMPL(BrowseSmartKeyLayer, init, smartTemplate, prefabKey)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/BrowseSmartTemplateLayer.hpp>
-SCREWYOU3_HOOK(BrowseSmartTemplateLayer, GJSmartTemplate* p0, SmartBrowseFilter p1)
-SCREWYOU3_HOOK_INIT(BrowseSmartTemplateLayer, p0, p1)
-#endif
+bool BrowseSmartTemplateLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(BrowseSmartTemplateLayer)
+SCREWYOU3_HOOK(bool init(GJSmartTemplate* smartTemplate, SmartBrowseFilter browseFilter))
+SCREWYOU3_HOOK_IMPL(BrowseSmartTemplateLayer, init, smartTemplate, browseFilter)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/ButtonSprite.hpp>
-SCREWYOU3_HOOK(ButtonSprite, cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG)
-SCREWYOU3_HOOK_INIT(ButtonSprite, topSprite, width, unused, height, scale, absolute, bgSprite, noScaleSpriteForBG)
-#endif
+bool ButtonSprite_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ButtonSprite)
+SCREWYOU3_HOOK(bool init(cocos2d::CCSprite* topSprite, int width, int minWidth, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG))
+SCREWYOU3_HOOK_IMPL(ButtonSprite, init, topSprite, width, minWidth, height, scale, absolute, bgSprite, noScaleSpriteForBG)
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/CCAlertCircle.hpp>
-SCREWYOU3_HOOK(CCAlertCircle, )
-SCREWYOU3_HOOK_INIT(CCAlertCircle)
+bool CCAlertCircle_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CCAlertCircle)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(CCAlertCircle, init, )
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/CCBlockLayer.hpp>
-SCREWYOU3_HOOK(CCBlockLayer, )
-SCREWYOU3_HOOK_INIT(CCBlockLayer)
+bool CCBlockLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CCBlockLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(CCBlockLayer, init, )
+SCREWYOU3_HOOK_END()
+
+
+#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
+#include <Geode/modify/CCCircleAlert.hpp>
+bool CCCircleAlert_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CCCircleAlert)
+SCREWYOU3_HOOK(bool init(float duration, float startRadius, float endRadius))
+SCREWYOU3_HOOK_IMPL(CCCircleAlert, init, duration, startRadius, endRadius)
+SCREWYOU3_HOOK_END()
+#endif
 
 #include <Geode/modify/CCCircleWave.hpp>
-SCREWYOU3_HOOK(CCCircleWave, float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut)
-SCREWYOU3_HOOK_INIT(CCCircleWave, startRadius, endRadius, duration, fadeIn, easeOut)
+bool CCCircleWave_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CCCircleWave)
+SCREWYOU3_HOOK(bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut))
+SCREWYOU3_HOOK_IMPL(CCCircleWave, init, startRadius, endRadius, duration, fadeIn, easeOut)
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/CCCountdown.hpp>
-SCREWYOU3_HOOK(CCCountdown, )
-SCREWYOU3_HOOK_INIT(CCCountdown)
+bool CCCountdown_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CCCountdown)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(CCCountdown, init, )
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/CCMenuItemSpriteExtra.hpp>
-SCREWYOU3_HOOK(CCMenuItemSpriteExtra, cocos2d::CCNode* sprite, cocos2d::CCNode* disabledSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback)
-SCREWYOU3_HOOK_INIT(CCMenuItemSpriteExtra, sprite, disabledSprite, target, callback)
+bool CCMenuItemSpriteExtra_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CCMenuItemSpriteExtra)
+SCREWYOU3_HOOK(bool init(cocos2d::CCNode* sprite, cocos2d::CCNode* selectedSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback))
+SCREWYOU3_HOOK_IMPL(CCMenuItemSpriteExtra, init, sprite, selectedSprite, target, callback)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CCNodeContainer.hpp>
-SCREWYOU3_HOOK(CCNodeContainer, )
-SCREWYOU3_HOOK_INIT(CCNodeContainer)
+bool CCNodeContainer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CCNodeContainer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(CCNodeContainer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CCTextInputNode.hpp>
-SCREWYOU3_HOOK(CCTextInputNode, float p0, float p1, char const* p2, char const* p3, int p4, char const* p5)
-SCREWYOU3_HOOK_INIT(CCTextInputNode, p0, p1, p2, p3, p4, p5)
+bool CCTextInputNode_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CCTextInputNode)
+SCREWYOU3_HOOK(bool init(float width, float height, char const* placeholder, char const* textFont, int fontSize, char const* labelFont))
+SCREWYOU3_HOOK_IMPL(CCTextInputNode, init, width, height, placeholder, textFont, fontSize, labelFont)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ChallengeNode.hpp>
-SCREWYOU3_HOOK(ChallengeNode, GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew)
-SCREWYOU3_HOOK_INIT(ChallengeNode, challengeItem, challengesPage, isNew)
+bool ChallengeNode_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ChallengeNode)
+SCREWYOU3_HOOK(bool init(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew))
+SCREWYOU3_HOOK_IMPL(ChallengeNode, init, challengeItem, challengesPage, isNew)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ChallengesPage.hpp>
-SCREWYOU3_HOOK(ChallengesPage, )
-SCREWYOU3_HOOK_INIT(ChallengesPage)
+bool ChallengesPage_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ChallengesPage)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(ChallengesPage, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CharacterColorPage.hpp>
-SCREWYOU3_HOOK(CharacterColorPage, )
-SCREWYOU3_HOOK_INIT(CharacterColorPage)
+bool CharacterColorPage_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CharacterColorPage)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(CharacterColorPage, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CheckpointGameObject.hpp>
-SCREWYOU3_HOOK(CheckpointGameObject, )
-SCREWYOU3_HOOK_INIT(CheckpointGameObject)
+bool CheckpointGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CheckpointGameObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(CheckpointGameObject, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CheckpointObject.hpp>
-SCREWYOU3_HOOK(CheckpointObject, )
-SCREWYOU3_HOOK_INIT(CheckpointObject)
+bool CheckpointObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CheckpointObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(CheckpointObject, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CollisionBlockPopup.hpp>
-SCREWYOU3_HOOK(CollisionBlockPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(CollisionBlockPopup, p0, p1)
+bool CollisionBlockPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CollisionBlockPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(CollisionBlockPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ColorActionSprite.hpp>
-SCREWYOU3_HOOK(ColorActionSprite, )
-SCREWYOU3_HOOK_INIT(ColorActionSprite)
+bool ColorActionSprite_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ColorActionSprite)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(ColorActionSprite, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ColorChannelSprite.hpp>
-SCREWYOU3_HOOK(ColorChannelSprite, )
-SCREWYOU3_HOOK_INIT(ColorChannelSprite)
+bool ColorChannelSprite_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(ColorChannelSprite)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(ColorChannelSprite, init, )
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/ColorSelectLiveOverlay.hpp>
-SCREWYOU3_HOOK(ColorSelectLiveOverlay, ColorAction* p0, ColorAction* p1, EffectGameObject* p2)
-SCREWYOU3_HOOK_INIT(ColorSelectLiveOverlay, p0, p1, p2)
-#endif
+bool ColorSelectLiveOverlay_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ColorSelectLiveOverlay)
+SCREWYOU3_HOOK(bool init(ColorAction* baseAction, ColorAction* detailAction, EffectGameObject* object))
+SCREWYOU3_HOOK_IMPL(ColorSelectLiveOverlay, init, baseAction, detailAction, object)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ColorSelectPopup.hpp>
-SCREWYOU3_HOOK(ColorSelectPopup, EffectGameObject* p0, cocos2d::CCArray* p1, ColorAction* p2)
-SCREWYOU3_HOOK_INIT(ColorSelectPopup, p0, p1, p2)
+bool ColorSelectPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ColorSelectPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects, ColorAction* action))
+SCREWYOU3_HOOK_IMPL(ColorSelectPopup, init, object, objects, action)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CommentCell.hpp>
-SCREWYOU3_HOOK(CommentCell, )
-SCREWYOU3_HOOK_INIT(CommentCell)
+bool CommentCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CommentCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(CommentCell, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CommunityCreditsPage.hpp>
-SCREWYOU3_HOOK(CommunityCreditsPage, )
-SCREWYOU3_HOOK_INIT(CommunityCreditsPage)
+bool CommunityCreditsPage_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CommunityCreditsPage)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(CommunityCreditsPage, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ConfigureHSVWidget.hpp>
-SCREWYOU3_HOOK(ConfigureHSVWidget, cocos2d::ccHSVValue hsv, bool unused, bool addInputs)
-SCREWYOU3_HOOK_INIT(ConfigureHSVWidget, hsv, unused, addInputs)
+bool ConfigureHSVWidget_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(ConfigureHSVWidget)
+SCREWYOU3_HOOK(bool init(cocos2d::ccHSVValue hsv, bool noBackground, bool addInputs))
+SCREWYOU3_HOOK_IMPL(ConfigureHSVWidget, init, hsv, noBackground, addInputs)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/ConfigureValuePopup.hpp>
-SCREWYOU3_HOOK(ConfigureValuePopup, ConfigureValuePopupDelegate* p0, float p1, float p2, float p3, gd::string p4, gd::string p5)
-SCREWYOU3_HOOK_INIT(ConfigureValuePopup, p0, p1, p2, p3, p4, p5)
-#endif
+bool ConfigureValuePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(ConfigureValuePopup)
+SCREWYOU3_HOOK(bool init(ConfigureValuePopupDelegate* delegate, float value, float minimum, float maximum, gd::string title, gd::string description))
+SCREWYOU3_HOOK_IMPL(ConfigureValuePopup, init, delegate, value, minimum, maximum, title, description)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/CreateGuidelinesLayer.hpp>
-SCREWYOU3_HOOK(CreateGuidelinesLayer, CustomSongDelegate* p0, AudioGuidelinesType p1)
-SCREWYOU3_HOOK_INIT(CreateGuidelinesLayer, p0, p1)
-#endif
+bool CreateGuidelinesLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CreateGuidelinesLayer)
+SCREWYOU3_HOOK(bool init(CustomSongDelegate* delegate, AudioGuidelinesType type))
+SCREWYOU3_HOOK_IMPL(CreateGuidelinesLayer, init, delegate, type)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CreateParticlePopup.hpp>
-SCREWYOU3_HOOK(CreateParticlePopup, ParticleGameObject* p0, cocos2d::CCArray* p1, gd::string p2)
-SCREWYOU3_HOOK_INIT(CreateParticlePopup, p0, p1, p2)
+bool CreateParticlePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CreateParticlePopup)
+SCREWYOU3_HOOK(bool init(ParticleGameObject* object, cocos2d::CCArray* objects, gd::string str))
+SCREWYOU3_HOOK_IMPL(CreateParticlePopup, init, object, objects, str)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CreatorLayer.hpp>
-SCREWYOU3_HOOK(CreatorLayer, )
-SCREWYOU3_HOOK_INIT(CreatorLayer)
+bool CreatorLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CreatorLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(CreatorLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CurrencyRewardLayer.hpp>
-SCREWYOU3_HOOK(CurrencyRewardLayer, int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType rewardType, float p10, float time)
-SCREWYOU3_HOOK_INIT(CurrencyRewardLayer, orbs, stars, moons, diamonds, demonKey, keyCount, shardType, shardsCount, position, rewardType, p10, time)
+bool CurrencyRewardLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(CurrencyRewardLayer)
+SCREWYOU3_HOOK(bool init(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType rewardType, float yOffset, float time))
+SCREWYOU3_HOOK_IMPL(CurrencyRewardLayer, init, orbs, stars, moons, diamonds, demonKey, keyCount, shardType, shardsCount, position, rewardType, yOffset, time)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/CurrencySprite.hpp>
-SCREWYOU3_HOOK(CurrencySprite, CurrencySpriteType p0, bool p1)
-SCREWYOU3_HOOK_INIT(CurrencySprite, p0, p1)
-#endif
+bool CurrencySprite_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CurrencySprite)
+SCREWYOU3_HOOK(bool init(CurrencySpriteType type, bool burst))
+SCREWYOU3_HOOK_IMPL(CurrencySprite, init, type, burst)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CustomizeObjectLayer.hpp>
-SCREWYOU3_HOOK(CustomizeObjectLayer, GameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(CustomizeObjectLayer, p0, p1)
+bool CustomizeObjectLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(CustomizeObjectLayer)
+SCREWYOU3_HOOK(bool init(GameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(CustomizeObjectLayer, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/CustomizeObjectSettingsPopup.hpp>
-SCREWYOU3_HOOK(CustomizeObjectSettingsPopup, GameObject* p0, cocos2d::CCArray* p1, CustomizeObjectLayer* p2)
-SCREWYOU3_HOOK_INIT(CustomizeObjectSettingsPopup, p0, p1, p2)
-#endif
+bool CustomizeObjectSettingsPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CustomizeObjectSettingsPopup)
+SCREWYOU3_HOOK(bool init(GameObject* object, cocos2d::CCArray* objects, CustomizeObjectLayer* layer))
+SCREWYOU3_HOOK_IMPL(CustomizeObjectSettingsPopup, init, object, objects, layer)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CustomSFXCell.hpp>
-SCREWYOU3_HOOK(CustomSFXCell, )
-SCREWYOU3_HOOK_INIT(CustomSFXCell)
+bool CustomSFXCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CustomSFXCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(CustomSFXCell, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CustomSFXWidget.hpp>
-SCREWYOU3_HOOK(CustomSFXWidget, SFXInfoObject* p0, CustomSFXDelegate* p1, bool p2, bool p3, bool p4, bool p5, bool p6)
-SCREWYOU3_HOOK_INIT(CustomSFXWidget, p0, p1, p2, p3, p4, p5, p6)
+bool CustomSFXWidget_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CustomSFXWidget)
+SCREWYOU3_HOOK(bool init(SFXInfoObject* object, CustomSFXDelegate* delegate, bool showDelete, bool showPlay, bool showDownload, bool noBackground, bool compactMode))
+SCREWYOU3_HOOK_IMPL(CustomSFXWidget, init, object, delegate, showDelete, showPlay, showDownload, noBackground, compactMode)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CustomSongCell.hpp>
-SCREWYOU3_HOOK(CustomSongCell, )
-SCREWYOU3_HOOK_INIT(CustomSongCell)
+bool CustomSongCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CustomSongCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(CustomSongCell, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CustomSongLayer.hpp>
-SCREWYOU3_HOOK(CustomSongLayer, CustomSongDelegate* p0)
-SCREWYOU3_HOOK_INIT(CustomSongLayer, p0)
+bool CustomSongLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CustomSongLayer)
+SCREWYOU3_HOOK(bool init(CustomSongDelegate* delegate))
+SCREWYOU3_HOOK_IMPL(CustomSongLayer, init, delegate)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/CustomSongWidget.hpp>
-SCREWYOU3_HOOK(CustomSongWidget, SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary, int unk)
-SCREWYOU3_HOOK_INIT(CustomSongWidget, songInfo, songDelegate, showSongSelect, showPlayMusic, showDownload, isRobtopSong, unkBool, isMusicLibrary, unk)
+bool CustomSongWidget_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(CustomSongWidget)
+SCREWYOU3_HOOK(bool init(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary, int unk))
+SCREWYOU3_HOOK_IMPL(CustomSongWidget, init, songInfo, songDelegate, showSongSelect, showPlayMusic, showDownload, isRobtopSong, unkBool, isMusicLibrary, unk)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/DailyLevelNode.hpp>
-SCREWYOU3_HOOK(DailyLevelNode, GJGameLevel* p0, DailyLevelPage* p1, bool p2)
-SCREWYOU3_HOOK_INIT(DailyLevelNode, p0, p1, p2)
+bool DailyLevelNode_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(DailyLevelNode)
+SCREWYOU3_HOOK(bool init(GJGameLevel* level, DailyLevelPage* page, bool isNew))
+SCREWYOU3_HOOK_IMPL(DailyLevelNode, init, level, page, isNew)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/DailyLevelPage.hpp>
-SCREWYOU3_HOOK(DailyLevelPage, GJTimedLevelType p0)
-SCREWYOU3_HOOK_INIT(DailyLevelPage, p0)
+bool DailyLevelPage_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(DailyLevelPage)
+SCREWYOU3_HOOK(bool init(GJTimedLevelType type))
+SCREWYOU3_HOOK_IMPL(DailyLevelPage, init, type)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/DemonFilterSelectLayer.hpp>
-SCREWYOU3_HOOK(DemonFilterSelectLayer, )
-SCREWYOU3_HOOK_INIT(DemonFilterSelectLayer)
+bool DemonFilterSelectLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(DemonFilterSelectLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(DemonFilterSelectLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/DemonInfoPopup.hpp>
-SCREWYOU3_HOOK(DemonInfoPopup, int easyClassic, int mediumClassic, int hardClassic, int insaneClassic, int extremeClassic, int easyPlatformer, int mediumPlatformer, int hardPlatformer, int insanePlatformer, int extremePlatformer, int weekly, int gauntlet)
-SCREWYOU3_HOOK_INIT(DemonInfoPopup, easyClassic, mediumClassic, hardClassic, insaneClassic, extremeClassic, easyPlatformer, mediumPlatformer, hardPlatformer, insanePlatformer, extremePlatformer, weekly, gauntlet)
+bool DemonInfoPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(DemonInfoPopup)
+SCREWYOU3_HOOK(bool init(int easyClassic, int mediumClassic, int hardClassic, int insaneClassic, int extremeClassic, int easyPlatformer, int mediumPlatformer, int hardPlatformer, int insanePlatformer, int extremePlatformer, int weekly, int gauntlet))
+SCREWYOU3_HOOK_IMPL(DemonInfoPopup, init, easyClassic, mediumClassic, hardClassic, insaneClassic, extremeClassic, easyPlatformer, mediumPlatformer, hardPlatformer, insanePlatformer, extremePlatformer, weekly, gauntlet)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/DialogLayer.hpp>
-SCREWYOU3_HOOK(DialogLayer, DialogObject* p0, cocos2d::CCArray* p1, int p2)
-SCREWYOU3_HOOK_INIT(DialogLayer, p0, p1, p2)
+bool DialogLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
-
-#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC || defined GEODE_IS_IOS
-#include <Geode/modify/DrawGridLayer.hpp>
-SCREWYOU3_HOOK(DrawGridLayer, cocos2d::CCNode* p0, LevelEditorLayer* p1)
-SCREWYOU3_HOOK_INIT(DrawGridLayer, p0, p1)
-#endif
+SCREWYOU3_HOOK_BEGIN(DialogLayer)
+SCREWYOU3_HOOK(bool init(DialogObject* object, cocos2d::CCArray* objects, int background))
+SCREWYOU3_HOOK_IMPL(DialogLayer, init, object, objects, background)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/DungeonBarsSprite.hpp>
-SCREWYOU3_HOOK(DungeonBarsSprite, )
-SCREWYOU3_HOOK_INIT(DungeonBarsSprite)
+bool DungeonBarsSprite_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(DungeonBarsSprite)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(DungeonBarsSprite, init, )
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
-#include <Geode/modify/EditButtonBar.hpp>
-SCREWYOU3_HOOK(EditButtonBar, cocos2d::CCArray* objects, cocos2d::CCPoint position, int tab, bool hasCreateItems, int columns, int rows)
-SCREWYOU3_HOOK_INIT(EditButtonBar, objects, position, tab, hasCreateItems, columns, rows)
-#endif
-
-
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/EditGameObjectPopup.hpp>
-SCREWYOU3_HOOK(EditGameObjectPopup, EffectGameObject* p0, cocos2d::CCArray* p1, bool p2)
-SCREWYOU3_HOOK_INIT(EditGameObjectPopup, p0, p1, p2)
-#endif
+bool EditGameObjectPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(EditGameObjectPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects, bool platformer))
+SCREWYOU3_HOOK_IMPL(EditGameObjectPopup, init, object, objects, platformer)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/EditLevelLayer.hpp>
-SCREWYOU3_HOOK(EditLevelLayer, GJGameLevel* p0)
-SCREWYOU3_HOOK_INIT(EditLevelLayer, p0)
+bool EditLevelLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(EditLevelLayer)
+SCREWYOU3_HOOK(bool init(GJGameLevel* level))
+SCREWYOU3_HOOK_IMPL(EditLevelLayer, init, level)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/EditorOptionsLayer.hpp>
-SCREWYOU3_HOOK(EditorOptionsLayer, )
-SCREWYOU3_HOOK_INIT(EditorOptionsLayer)
+bool EditorOptionsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(EditorOptionsLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(EditorOptionsLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/EditorPauseLayer.hpp>
-SCREWYOU3_HOOK(EditorPauseLayer, LevelEditorLayer* p0)
-SCREWYOU3_HOOK_INIT(EditorPauseLayer, p0)
+bool EditorPauseLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(EditorPauseLayer)
+SCREWYOU3_HOOK(bool init(LevelEditorLayer* layer))
+SCREWYOU3_HOOK_IMPL(EditorPauseLayer, init, layer)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/EditorUI.hpp>
-SCREWYOU3_HOOK(EditorUI, LevelEditorLayer* editorLayer)
-SCREWYOU3_HOOK_INIT(EditorUI, editorLayer)
+bool EditorUI_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(EditorUI)
+SCREWYOU3_HOOK(bool init(LevelEditorLayer* editorLayer))
+SCREWYOU3_HOOK_IMPL(EditorUI, init, editorLayer)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/EditTriggersPopup.hpp>
-SCREWYOU3_HOOK(EditTriggersPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(EditTriggersPopup, p0, p1)
+bool EditTriggersPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
-#include <Geode/modify/EffectGameObject.hpp>
-SCREWYOU3_HOOK(EffectGameObject, char const* p0)
-SCREWYOU3_HOOK_INIT(EffectGameObject, p0)
+SCREWYOU3_HOOK_BEGIN(EditTriggersPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(EditTriggersPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/EndPortalObject.hpp>
-SCREWYOU3_HOOK(EndPortalObject, )
-SCREWYOU3_HOOK_INIT(EndPortalObject)
+bool EndPortalObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(EndPortalObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(EndPortalObject, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/EndTriggerGameObject.hpp>
-SCREWYOU3_HOOK(EndTriggerGameObject, )
-SCREWYOU3_HOOK_INIT(EndTriggerGameObject)
+bool EndTriggerGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(EndTriggerGameObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(EndTriggerGameObject, init, )
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID
 #include <Geode/modify/EnhancedGameObject.hpp>
-SCREWYOU3_HOOK(EnhancedGameObject, char const* p0)
-SCREWYOU3_HOOK_INIT(EnhancedGameObject, p0)
-#endif
+bool EnhancedGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(EnhancedGameObject)
+SCREWYOU3_HOOK(bool init(char const* frame))
+SCREWYOU3_HOOK_IMPL(EnhancedGameObject, init, frame)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/EventLinkTrigger.hpp>
-SCREWYOU3_HOOK(EventLinkTrigger, )
-SCREWYOU3_HOOK_INIT(EventLinkTrigger)
+bool EventLinkTrigger_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(EventLinkTrigger)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(EventLinkTrigger, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ExplodeItemSprite.hpp>
-SCREWYOU3_HOOK(ExplodeItemSprite, )
-SCREWYOU3_HOOK_INIT(ExplodeItemSprite)
+bool ExplodeItemSprite_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ExplodeItemSprite)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(ExplodeItemSprite, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ExtendedLayer.hpp>
-SCREWYOU3_HOOK(ExtendedLayer, )
-SCREWYOU3_HOOK_INIT(ExtendedLayer)
+bool ExtendedLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ExtendedLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(ExtendedLayer, init, )
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/FileSaveManager.hpp>
-SCREWYOU3_HOOK(FileSaveManager, )
-SCREWYOU3_HOOK_INIT(FileSaveManager)
+bool FileSaveManager_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(FileSaveManager)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(FileSaveManager, init, )
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/FindObjectPopup.hpp>
-SCREWYOU3_HOOK(FindObjectPopup, )
-SCREWYOU3_HOOK_INIT(FindObjectPopup)
+bool FindObjectPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(FindObjectPopup)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(FindObjectPopup, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/FLAlertLayer.hpp>
-SCREWYOU3_HOOK(FLAlertLayer, int p0)
-SCREWYOU3_HOOK_INIT(FLAlertLayer, p0)
+bool FLAlertLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(FLAlertLayer)
+SCREWYOU3_HOOK(bool init(int opacity))
+SCREWYOU3_HOOK_IMPL(FLAlertLayer, init, opacity)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/FMODLevelVisualizer.hpp>
-SCREWYOU3_HOOK(FMODLevelVisualizer, )
-SCREWYOU3_HOOK_INIT(FMODLevelVisualizer)
+bool FMODLevelVisualizer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(FMODLevelVisualizer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(FMODLevelVisualizer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/FollowRewardPage.hpp>
-SCREWYOU3_HOOK(FollowRewardPage, )
-SCREWYOU3_HOOK_INIT(FollowRewardPage)
+bool FollowRewardPage_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(FollowRewardPage)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(FollowRewardPage, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/FRequestProfilePage.hpp>
-SCREWYOU3_HOOK(FRequestProfilePage, bool p0)
-SCREWYOU3_HOOK_INIT(FRequestProfilePage, p0)
+bool FRequestProfilePage_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(FRequestProfilePage)
+SCREWYOU3_HOOK(bool init(bool sent))
+SCREWYOU3_HOOK_IMPL(FRequestProfilePage, init, sent)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/FriendRequestPopup.hpp>
-SCREWYOU3_HOOK(FriendRequestPopup, GJFriendRequest* p0)
-SCREWYOU3_HOOK_INIT(FriendRequestPopup, p0)
+bool FriendRequestPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(FriendRequestPopup)
+SCREWYOU3_HOOK(bool init(GJFriendRequest* request))
+SCREWYOU3_HOOK_IMPL(FriendRequestPopup, init, request)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/FriendsProfilePage.hpp>
-SCREWYOU3_HOOK(FriendsProfilePage, UserListType type)
-SCREWYOU3_HOOK_INIT(FriendsProfilePage, type)
+bool FriendsProfilePage_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(FriendsProfilePage)
+SCREWYOU3_HOOK(bool init(UserListType type))
+SCREWYOU3_HOOK_IMPL(FriendsProfilePage, init, type)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GameCell.hpp>
-SCREWYOU3_HOOK(GameCell, )
-SCREWYOU3_HOOK_INIT(GameCell)
+bool GameCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
-#include <Geode/modify/GameLevelManager.hpp>
-SCREWYOU3_HOOK(GameLevelManager, )
-SCREWYOU3_HOOK_INIT(GameLevelManager)
+SCREWYOU3_HOOK_BEGIN(GameCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GameCell, init, )
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
-#include <Geode/modify/GameLevelOptionsLayer.hpp>
-SCREWYOU3_HOOK(GameLevelOptionsLayer, GJGameLevel* p0)
-SCREWYOU3_HOOK_INIT(GameLevelOptionsLayer, p0)
+#include <Geode/modify/GameEffectsManager.hpp>
+bool GameEffectsManager_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GameEffectsManager)
+SCREWYOU3_HOOK(bool init(PlayLayer* playLayer))
+SCREWYOU3_HOOK_IMPL(GameEffectsManager, init, playLayer)
+SCREWYOU3_HOOK_END()
 #endif
 
+#include <Geode/modify/GameLevelManager.hpp>
+bool GameLevelManager_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GameLevelManager)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GameLevelManager, init, )
+SCREWYOU3_HOOK_END()
+
 #include <Geode/modify/GameManager.hpp>
-SCREWYOU3_HOOK(GameManager, )
-SCREWYOU3_HOOK_INIT(GameManager)
+bool GameManager_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GameManager)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GameManager, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GameStatsManager.hpp>
-SCREWYOU3_HOOK(GameStatsManager, )
-SCREWYOU3_HOOK_INIT(GameStatsManager)
+bool GameStatsManager_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GameStatsManager)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GameStatsManager, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GauntletLayer.hpp>
-SCREWYOU3_HOOK(GauntletLayer, GauntletType p0)
-SCREWYOU3_HOOK_INIT(GauntletLayer, p0)
+bool GauntletLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GauntletLayer)
+SCREWYOU3_HOOK(bool init(GauntletType type))
+SCREWYOU3_HOOK_IMPL(GauntletLayer, init, type)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GauntletNode.hpp>
-SCREWYOU3_HOOK(GauntletNode, GJMapPack* p0)
-SCREWYOU3_HOOK_INIT(GauntletNode, p0)
+bool GauntletNode_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GauntletNode)
+SCREWYOU3_HOOK(bool init(GJMapPack* gauntlet))
+SCREWYOU3_HOOK_IMPL(GauntletNode, init, gauntlet)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GauntletSelectLayer.hpp>
-SCREWYOU3_HOOK(GauntletSelectLayer, int p0)
-SCREWYOU3_HOOK_INIT(GauntletSelectLayer, p0)
+bool GauntletSelectLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GauntletSelectLayer)
+SCREWYOU3_HOOK(bool init(int unused))
+SCREWYOU3_HOOK_IMPL(GauntletSelectLayer, init, unused)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GhostTrailEffect.hpp>
-SCREWYOU3_HOOK(GhostTrailEffect, )
-SCREWYOU3_HOOK_INIT(GhostTrailEffect)
+bool GhostTrailEffect_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GhostTrailEffect)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GhostTrailEffect, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJAccountManager.hpp>
-SCREWYOU3_HOOK(GJAccountManager, )
-SCREWYOU3_HOOK_INIT(GJAccountManager)
+bool GJAccountManager_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJAccountManager)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJAccountManager, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJAccountSettingsLayer.hpp>
-SCREWYOU3_HOOK(GJAccountSettingsLayer, int p0)
-SCREWYOU3_HOOK_INIT(GJAccountSettingsLayer, p0)
+bool GJAccountSettingsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJAccountSettingsLayer)
+SCREWYOU3_HOOK(bool init(int accountID))
+SCREWYOU3_HOOK_IMPL(GJAccountSettingsLayer, init, accountID)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJActionManager.hpp>
-SCREWYOU3_HOOK(GJActionManager, )
-SCREWYOU3_HOOK_INIT(GJActionManager)
+bool GJActionManager_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJActionManager)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJActionManager, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJBaseGameLayer.hpp>
-SCREWYOU3_HOOK(GJBaseGameLayer, )
-SCREWYOU3_HOOK_INIT(GJBaseGameLayer)
+bool GJBaseGameLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJBaseGameLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJBaseGameLayer, init, )
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/GJBigSprite.hpp>
-SCREWYOU3_HOOK(GJBigSprite, )
-SCREWYOU3_HOOK_INIT(GJBigSprite)
+bool GJBigSprite_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJBigSprite)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJBigSprite, init, )
+SCREWYOU3_HOOK_END()
 #endif
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/GJBigSpriteNode.hpp>
-SCREWYOU3_HOOK(GJBigSpriteNode, )
-SCREWYOU3_HOOK_INIT(GJBigSpriteNode)
+bool GJBigSpriteNode_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJBigSpriteNode)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJBigSpriteNode, init, )
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/GJColorSetupLayer.hpp>
-SCREWYOU3_HOOK(GJColorSetupLayer, LevelSettingsObject* p0)
-SCREWYOU3_HOOK_INIT(GJColorSetupLayer, p0)
+bool GJColorSetupLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJColorSetupLayer)
+SCREWYOU3_HOOK(bool init(LevelSettingsObject* object))
+SCREWYOU3_HOOK_IMPL(GJColorSetupLayer, init, object)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJComment.hpp>
-SCREWYOU3_HOOK(GJComment, )
-SCREWYOU3_HOOK_INIT(GJComment)
+bool GJComment_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJComment)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJComment, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJCommentListLayer.hpp>
-SCREWYOU3_HOOK(GJCommentListLayer, BoomListView* listView, char const* title, cocos2d::ccColor4B color, float width, float height, bool blueBorder)
-SCREWYOU3_HOOK_INIT(GJCommentListLayer, listView, title, color, width, height, blueBorder)
+bool GJCommentListLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
-
-#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
-#include <Geode/modify/GJDifficultySprite.hpp>
-SCREWYOU3_HOOK(GJDifficultySprite, int p0, GJDifficultyName p1)
-SCREWYOU3_HOOK_INIT(GJDifficultySprite, p0, p1)
-#endif
+SCREWYOU3_HOOK_BEGIN(GJCommentListLayer)
+SCREWYOU3_HOOK(bool init(BoomListView* listView, char const* title, cocos2d::ccColor4B color, float width, float height, bool blueBorder))
+SCREWYOU3_HOOK_IMPL(GJCommentListLayer, init, listView, title, color, width, height, blueBorder)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJDropDownLayer.hpp>
-SCREWYOU3_HOOK(GJDropDownLayer, char const* p0, float p1, bool p2)
-SCREWYOU3_HOOK_INIT(GJDropDownLayer, p0, p1, p2)
+bool GJDropDownLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJDropDownLayer)
+SCREWYOU3_HOOK(bool init(char const* title, float height, bool noBack))
+SCREWYOU3_HOOK_IMPL(GJDropDownLayer, init, title, height, noBack)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJEffectManager.hpp>
-SCREWYOU3_HOOK(GJEffectManager, )
-SCREWYOU3_HOOK_INIT(GJEffectManager)
+bool GJEffectManager_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJEffectManager)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJEffectManager, init, )
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/GJFlyGroundLayer.hpp>
-SCREWYOU3_HOOK(GJFlyGroundLayer, )
-SCREWYOU3_HOOK_INIT(GJFlyGroundLayer)
+bool GJFlyGroundLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJFlyGroundLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJFlyGroundLayer, init, )
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/GJFollowCommandLayer.hpp>
-SCREWYOU3_HOOK(GJFollowCommandLayer, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(GJFollowCommandLayer, p0, p1)
+bool GJFollowCommandLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJFollowCommandLayer)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(GJFollowCommandLayer, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJFriendRequest.hpp>
-SCREWYOU3_HOOK(GJFriendRequest, )
-SCREWYOU3_HOOK_INIT(GJFriendRequest)
+bool GJFriendRequest_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJFriendRequest)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJFriendRequest, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJGameLevel.hpp>
-SCREWYOU3_HOOK(GJGameLevel, )
-SCREWYOU3_HOOK_INIT(GJGameLevel)
+bool GJGameLevel_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
-
-#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC || defined GEODE_IS_IOS
-#include <Geode/modify/GJGameLoadingLayer.hpp>
-SCREWYOU3_HOOK(GJGameLoadingLayer, GJGameLevel* level, bool editor)
-SCREWYOU3_HOOK_INIT(GJGameLoadingLayer, level, editor)
-#endif
+SCREWYOU3_HOOK_BEGIN(GJGameLevel)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJGameLevel, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJGarageLayer.hpp>
-SCREWYOU3_HOOK(GJGarageLayer, )
-SCREWYOU3_HOOK_INIT(GJGarageLayer)
+bool GJGarageLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJGarageLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJGarageLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJGradientLayer.hpp>
-SCREWYOU3_HOOK(GJGradientLayer, )
-SCREWYOU3_HOOK_INIT(GJGradientLayer)
+bool GJGradientLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJGradientLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJGradientLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJGroundLayer.hpp>
-SCREWYOU3_HOOK(GJGroundLayer, int p0, int p1)
-SCREWYOU3_HOOK_INIT(GJGroundLayer, p0, p1)
+bool GJGroundLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJGroundLayer)
+SCREWYOU3_HOOK(bool init(int groundID, int lineType))
+SCREWYOU3_HOOK_IMPL(GJGroundLayer, init, groundID, lineType)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJItemIcon.hpp>
-SCREWYOU3_HOOK(GJItemIcon, UnlockType p0, int p1, cocos2d::ccColor3B p2, cocos2d::ccColor3B p3, bool p4, bool p5, bool p6, cocos2d::ccColor3B p7)
-SCREWYOU3_HOOK_INIT(GJItemIcon, p0, p1, p2, p3, p4, p5, p6, p7)
+bool GJItemIcon_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJItemIcon)
+SCREWYOU3_HOOK(bool init(UnlockType type, int id, cocos2d::ccColor3B color1, cocos2d::ccColor3B color2, bool dark, bool unused, bool noLabel, cocos2d::ccColor3B unlockColor))
+SCREWYOU3_HOOK_IMPL(GJItemIcon, init, type, id, color1, color2, dark, unused, noLabel, unlockColor)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJLevelList.hpp>
-SCREWYOU3_HOOK(GJLevelList, )
-SCREWYOU3_HOOK_INIT(GJLevelList)
+bool GJLevelList_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJLevelList)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJLevelList, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJLevelScoreCell.hpp>
-SCREWYOU3_HOOK(GJLevelScoreCell, )
-SCREWYOU3_HOOK_INIT(GJLevelScoreCell)
+bool GJLevelScoreCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJLevelScoreCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJLevelScoreCell, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJListLayer.hpp>
-SCREWYOU3_HOOK(GJListLayer, BoomListView* p0, char const* p1, cocos2d::ccColor4B p2, float p3, float p4, int p5)
-SCREWYOU3_HOOK_INIT(GJListLayer, p0, p1, p2, p3, p4, p5)
+bool GJListLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJListLayer)
+SCREWYOU3_HOOK(bool init(BoomListView* listView, char const* title, cocos2d::ccColor4B color, float width, float height, int type))
+SCREWYOU3_HOOK_IMPL(GJListLayer, init, listView, title, color, width, height, type)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJLocalLevelScoreCell.hpp>
-SCREWYOU3_HOOK(GJLocalLevelScoreCell, )
-SCREWYOU3_HOOK_INIT(GJLocalLevelScoreCell)
+bool GJLocalLevelScoreCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
-#include <Geode/modify/GJMapPack.hpp>
-SCREWYOU3_HOOK(GJMapPack, )
-SCREWYOU3_HOOK_INIT(GJMapPack)
-
-#include <Geode/modify/GJMessageCell.hpp>
-SCREWYOU3_HOOK(GJMessageCell, )
-SCREWYOU3_HOOK_INIT(GJMessageCell)
-
-
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID
-#include <Geode/modify/GJMessagePopup.hpp>
-SCREWYOU3_HOOK(GJMessagePopup, GJUserMessage* p0)
-SCREWYOU3_HOOK_INIT(GJMessagePopup, p0)
-#endif
-
-
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
-#include <Geode/modify/GJMGLayer.hpp>
-SCREWYOU3_HOOK(GJMGLayer, int p0)
-SCREWYOU3_HOOK_INIT(GJMGLayer, p0)
-#endif
-
-#include <Geode/modify/GJMultiplayerManager.hpp>
-SCREWYOU3_HOOK(GJMultiplayerManager, )
-SCREWYOU3_HOOK_INIT(GJMultiplayerManager)
-
-#include <Geode/modify/GJObjectDecoder.hpp>
-SCREWYOU3_HOOK(GJObjectDecoder, )
-SCREWYOU3_HOOK_INIT(GJObjectDecoder)
-
-
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
-#include <Geode/modify/GJOptionsLayer.hpp>
-SCREWYOU3_HOOK(GJOptionsLayer, int p0)
-SCREWYOU3_HOOK_INIT(GJOptionsLayer, p0)
-#endif
-
-
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
-#include <Geode/modify/GJPathPage.hpp>
-SCREWYOU3_HOOK(GJPathPage, int p0, GJPathsLayer* p1)
-SCREWYOU3_HOOK_INIT(GJPathPage, p0, p1)
-#endif
-
-
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
-#include <Geode/modify/GJPathRewardPopup.hpp>
-SCREWYOU3_HOOK(GJPathRewardPopup, int p0)
-SCREWYOU3_HOOK_INIT(GJPathRewardPopup, p0)
-#endif
-
-#include <Geode/modify/GJPathsLayer.hpp>
-SCREWYOU3_HOOK(GJPathsLayer, )
-SCREWYOU3_HOOK_INIT(GJPathsLayer)
+SCREWYOU3_HOOK_BEGIN(GJLocalLevelScoreCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJLocalLevelScoreCell, init, )
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
-#include <Geode/modify/GJPathSprite.hpp>
-SCREWYOU3_HOOK(GJPathSprite, int p0)
-SCREWYOU3_HOOK_INIT(GJPathSprite, p0)
+#include <Geode/modify/GJMapObject.hpp>
+bool GJMapObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJMapObject)
+SCREWYOU3_HOOK(bool init(cocos2d::CCNode* parent))
+SCREWYOU3_HOOK_IMPL(GJMapObject, init, parent)
+SCREWYOU3_HOOK_END()
 #endif
+
+#include <Geode/modify/GJMapPack.hpp>
+bool GJMapPack_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJMapPack)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJMapPack, init, )
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/GJMessageCell.hpp>
+bool GJMessageCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJMessageCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJMessageCell, init, )
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/GJMessagePopup.hpp>
+bool GJMessagePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJMessagePopup)
+SCREWYOU3_HOOK(bool init(GJUserMessage* message))
+SCREWYOU3_HOOK_IMPL(GJMessagePopup, init, message)
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/GJMGLayer.hpp>
+bool GJMGLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJMGLayer)
+SCREWYOU3_HOOK(bool init(int index))
+SCREWYOU3_HOOK_IMPL(GJMGLayer, init, index)
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/GJMultiplayerManager.hpp>
+bool GJMultiplayerManager_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJMultiplayerManager)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJMultiplayerManager, init, )
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/GJObjectDecoder.hpp>
+bool GJObjectDecoder_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJObjectDecoder)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJObjectDecoder, init, )
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/GJOptionsLayer.hpp>
+bool GJOptionsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJOptionsLayer)
+SCREWYOU3_HOOK(bool init(int background))
+SCREWYOU3_HOOK_IMPL(GJOptionsLayer, init, background)
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/GJPathPage.hpp>
+bool GJPathPage_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJPathPage)
+SCREWYOU3_HOOK(bool init(int path, GJPathsLayer* layer))
+SCREWYOU3_HOOK_IMPL(GJPathPage, init, path, layer)
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/GJPathRewardPopup.hpp>
+bool GJPathRewardPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJPathRewardPopup)
+SCREWYOU3_HOOK(bool init(int path))
+SCREWYOU3_HOOK_IMPL(GJPathRewardPopup, init, path)
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/GJPathsLayer.hpp>
+bool GJPathsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJPathsLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJPathsLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJPFollowCommandLayer.hpp>
-SCREWYOU3_HOOK(GJPFollowCommandLayer, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(GJPFollowCommandLayer, p0, p1)
+bool GJPFollowCommandLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJPFollowCommandLayer)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(GJPFollowCommandLayer, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJPromoPopup.hpp>
-SCREWYOU3_HOOK(GJPromoPopup, gd::string p0)
-SCREWYOU3_HOOK_INIT(GJPromoPopup, p0)
+bool GJPromoPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJPromoPopup)
+SCREWYOU3_HOOK(bool init(gd::string filename))
+SCREWYOU3_HOOK_IMPL(GJPromoPopup, init, filename)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJRequestCell.hpp>
-SCREWYOU3_HOOK(GJRequestCell, )
-SCREWYOU3_HOOK_INIT(GJRequestCell)
+bool GJRequestCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(GJRequestCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJRequestCell, init, )
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/GJRewardItem.hpp>
-SCREWYOU3_HOOK(GJRewardItem, int chestID, int timeRemaining, gd::string p2)
-SCREWYOU3_HOOK_INIT(GJRewardItem, chestID, timeRemaining, p2)
-#endif
+bool GJRewardItem_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJRewardItem)
+SCREWYOU3_HOOK(bool init(int chestID, int timeRemaining, gd::string rewardStr))
+SCREWYOU3_HOOK_IMPL(GJRewardItem, init, chestID, timeRemaining, rewardStr)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJRobotSprite.hpp>
-SCREWYOU3_HOOK(GJRobotSprite, int p0, gd::string p1)
-SCREWYOU3_HOOK_INIT(GJRobotSprite, p0, p1)
+bool GJRobotSprite_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJRobotSprite)
+SCREWYOU3_HOOK(bool init(int frame, gd::string animName))
+SCREWYOU3_HOOK_IMPL(GJRobotSprite, init, frame, animName)
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/GJRotateCommandLayer.hpp>
-SCREWYOU3_HOOK(GJRotateCommandLayer, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(GJRotateCommandLayer, p0, p1)
+bool GJRotateCommandLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJRotateCommandLayer)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(GJRotateCommandLayer, init, object, objects)
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/GJRotationControl.hpp>
-SCREWYOU3_HOOK(GJRotationControl, )
-SCREWYOU3_HOOK_INIT(GJRotationControl)
+bool GJRotationControl_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJRotationControl)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJRotationControl, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJScaleControl.hpp>
-SCREWYOU3_HOOK(GJScaleControl, )
-SCREWYOU3_HOOK_INIT(GJScaleControl)
+bool GJScaleControl_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJScaleControl)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJScaleControl, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJScoreCell.hpp>
-SCREWYOU3_HOOK(GJScoreCell, )
-SCREWYOU3_HOOK_INIT(GJScoreCell)
+bool GJScoreCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJScoreCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJScoreCell, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJShopLayer.hpp>
-SCREWYOU3_HOOK(GJShopLayer, ShopType p0)
-SCREWYOU3_HOOK_INIT(GJShopLayer, p0)
+bool GJShopLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJShopLayer)
+SCREWYOU3_HOOK(bool init(ShopType type))
+SCREWYOU3_HOOK_IMPL(GJShopLayer, init, type)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJSmartBlockPreviewSprite.hpp>
-SCREWYOU3_HOOK(GJSmartBlockPreviewSprite, )
-SCREWYOU3_HOOK_INIT(GJSmartBlockPreviewSprite)
+bool GJSmartBlockPreviewSprite_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJSmartBlockPreviewSprite)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJSmartBlockPreviewSprite, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJSongBrowser.hpp>
-SCREWYOU3_HOOK(GJSongBrowser, )
-SCREWYOU3_HOOK_INIT(GJSongBrowser)
+bool GJSongBrowser_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJSongBrowser)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJSongBrowser, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJSpecialColorSelect.hpp>
-SCREWYOU3_HOOK(GJSpecialColorSelect, int p0, GJSpecialColorSelectDelegate* p1, ColorSelectType p2)
-SCREWYOU3_HOOK_INIT(GJSpecialColorSelect, p0, p1, p2)
+bool GJSpecialColorSelect_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJSpecialColorSelect)
+SCREWYOU3_HOOK(bool init(int id, GJSpecialColorSelectDelegate* delegate, ColorSelectType type))
+SCREWYOU3_HOOK_IMPL(GJSpecialColorSelect, init, id, delegate, type)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJTransformControl.hpp>
-SCREWYOU3_HOOK(GJTransformControl, )
-SCREWYOU3_HOOK_INIT(GJTransformControl)
+bool GJTransformControl_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(GJTransformControl)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJTransformControl, init, )
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/GJUINode.hpp>
-SCREWYOU3_HOOK(GJUINode, UIButtonConfig& p0)
-SCREWYOU3_HOOK_INIT(GJUINode, p0)
-#endif
+bool GJUINode_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJUINode)
+SCREWYOU3_HOOK(bool init(UIButtonConfig& config))
+SCREWYOU3_HOOK_IMPL(GJUINode, init, config)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJUserCell.hpp>
-SCREWYOU3_HOOK(GJUserCell, )
-SCREWYOU3_HOOK_INIT(GJUserCell)
+bool GJUserCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJUserCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJUserCell, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJUserMessage.hpp>
-SCREWYOU3_HOOK(GJUserMessage, )
-SCREWYOU3_HOOK_INIT(GJUserMessage)
+bool GJUserMessage_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJUserMessage)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJUserMessage, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GJUserScore.hpp>
-SCREWYOU3_HOOK(GJUserScore, )
-SCREWYOU3_HOOK_INIT(GJUserScore)
+bool GJUserScore_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJUserScore)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GJUserScore, init, )
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/GJWorldNode.hpp>
-SCREWYOU3_HOOK(GJWorldNode, int p0, WorldSelectLayer* p1)
-SCREWYOU3_HOOK_INIT(GJWorldNode, p0, p1)
+bool GJWorldNode_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJWorldNode)
+SCREWYOU3_HOOK(bool init(int type, WorldSelectLayer* layer))
+SCREWYOU3_HOOK_IMPL(GJWorldNode, init, type, layer)
+SCREWYOU3_HOOK_END()
 #endif
 
-
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/GJWriteMessagePopup.hpp>
-SCREWYOU3_HOOK(GJWriteMessagePopup, int p0, int p1)
-SCREWYOU3_HOOK_INIT(GJWriteMessagePopup, p0, p1)
-#endif
+bool GJWriteMessagePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GJWriteMessagePopup)
+SCREWYOU3_HOOK(bool init(int accountID, int messageID))
+SCREWYOU3_HOOK_IMPL(GJWriteMessagePopup, init, accountID, messageID)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GManager.hpp>
-SCREWYOU3_HOOK(GManager, )
-SCREWYOU3_HOOK_INIT(GManager)
+bool GManager_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GManager)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GManager, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GradientTriggerObject.hpp>
-SCREWYOU3_HOOK(GradientTriggerObject, )
-SCREWYOU3_HOOK_INIT(GradientTriggerObject)
+bool GradientTriggerObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GradientTriggerObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GradientTriggerObject, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/GravityEffectSprite.hpp>
-SCREWYOU3_HOOK(GravityEffectSprite, )
-SCREWYOU3_HOOK_INIT(GravityEffectSprite)
+bool GravityEffectSprite_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(GravityEffectSprite)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(GravityEffectSprite, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/HardStreak.hpp>
-SCREWYOU3_HOOK(HardStreak, )
-SCREWYOU3_HOOK_INIT(HardStreak)
+bool HardStreak_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(HardStreak)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(HardStreak, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/HSVLiveOverlay.hpp>
-SCREWYOU3_HOOK(HSVLiveOverlay, GameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(HSVLiveOverlay, p0, p1)
+bool HSVLiveOverlay_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(HSVLiveOverlay)
+SCREWYOU3_HOOK(bool init(GameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(HSVLiveOverlay, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/HSVWidgetPopup.hpp>
-SCREWYOU3_HOOK(HSVWidgetPopup, cocos2d::ccHSVValue hsv, HSVWidgetDelegate* delegate, gd::string title)
-SCREWYOU3_HOOK_INIT(HSVWidgetPopup, hsv, delegate, title)
+bool HSVWidgetPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
-
-#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
-#include <Geode/modify/InfoAlertButton.hpp>
-SCREWYOU3_HOOK(InfoAlertButton, gd::string title, gd::string desc, float spriteScale)
-SCREWYOU3_HOOK_INIT(InfoAlertButton, title, desc, spriteScale)
-#endif
+SCREWYOU3_HOOK_BEGIN(HSVWidgetPopup)
+SCREWYOU3_HOOK(bool init(cocos2d::ccHSVValue hsv, HSVWidgetDelegate* delegate, gd::string title))
+SCREWYOU3_HOOK_IMPL(HSVWidgetPopup, init, hsv, delegate, title)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/InfoLayer.hpp>
-SCREWYOU3_HOOK(InfoLayer, GJGameLevel* p0, GJUserScore* p1, GJLevelList* p2)
-SCREWYOU3_HOOK_INIT(InfoLayer, p0, p1, p2)
+bool InfoLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(InfoLayer)
+SCREWYOU3_HOOK(bool init(GJGameLevel* level, GJUserScore* score, GJLevelList* list))
+SCREWYOU3_HOOK_IMPL(InfoLayer, init, level, score, list)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ItemInfoPopup.hpp>
-SCREWYOU3_HOOK(ItemInfoPopup, int p0, UnlockType p1)
-SCREWYOU3_HOOK_INIT(ItemInfoPopup, p0, p1)
+bool ItemInfoPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ItemInfoPopup)
+SCREWYOU3_HOOK(bool init(int id, UnlockType type))
+SCREWYOU3_HOOK_IMPL(ItemInfoPopup, init, id, type)
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/KeybindingsLayer.hpp>
-SCREWYOU3_HOOK(KeybindingsLayer, )
-SCREWYOU3_HOOK_INIT(KeybindingsLayer)
+bool KeybindingsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(KeybindingsLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(KeybindingsLayer, init, )
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/KeyframeAnimTriggerObject.hpp>
-SCREWYOU3_HOOK(KeyframeAnimTriggerObject, )
-SCREWYOU3_HOOK_INIT(KeyframeAnimTriggerObject)
+bool KeyframeAnimTriggerObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(KeyframeAnimTriggerObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(KeyframeAnimTriggerObject, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/KeyframeGameObject.hpp>
-SCREWYOU3_HOOK(KeyframeGameObject, )
-SCREWYOU3_HOOK_INIT(KeyframeGameObject)
+bool KeyframeGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(KeyframeGameObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(KeyframeGameObject, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LabelGameObject.hpp>
-SCREWYOU3_HOOK(LabelGameObject, )
-SCREWYOU3_HOOK_INIT(LabelGameObject)
+bool LabelGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LabelGameObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(LabelGameObject, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LeaderboardsLayer.hpp>
-SCREWYOU3_HOOK(LeaderboardsLayer, LeaderboardState p0)
-SCREWYOU3_HOOK_INIT(LeaderboardsLayer, p0)
+bool LeaderboardsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LeaderboardsLayer)
+SCREWYOU3_HOOK(bool init(LeaderboardState state))
+SCREWYOU3_HOOK_IMPL(LeaderboardsLayer, init, state)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LevelAreaInnerLayer.hpp>
-SCREWYOU3_HOOK(LevelAreaInnerLayer, bool returning)
-SCREWYOU3_HOOK_INIT(LevelAreaInnerLayer, returning)
+bool LevelAreaInnerLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LevelAreaInnerLayer)
+SCREWYOU3_HOOK(bool init(bool returning))
+SCREWYOU3_HOOK_IMPL(LevelAreaInnerLayer, init, returning)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LevelAreaLayer.hpp>
-SCREWYOU3_HOOK(LevelAreaLayer, )
-SCREWYOU3_HOOK_INIT(LevelAreaLayer)
+bool LevelAreaLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LevelAreaLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(LevelAreaLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LevelBrowserLayer.hpp>
-SCREWYOU3_HOOK(LevelBrowserLayer, GJSearchObject* p0)
-SCREWYOU3_HOOK_INIT(LevelBrowserLayer, p0)
+bool LevelBrowserLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LevelBrowserLayer)
+SCREWYOU3_HOOK(bool init(GJSearchObject* object))
+SCREWYOU3_HOOK_IMPL(LevelBrowserLayer, init, object)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LevelCell.hpp>
-SCREWYOU3_HOOK(LevelCell, )
-SCREWYOU3_HOOK_INIT(LevelCell)
+bool LevelCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LevelCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(LevelCell, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LevelEditorLayer.hpp>
-SCREWYOU3_HOOK(LevelEditorLayer, GJGameLevel* p0, bool p1)
-SCREWYOU3_HOOK_INIT(LevelEditorLayer, p0, p1)
+bool LevelEditorLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LevelEditorLayer)
+SCREWYOU3_HOOK(bool init(GJGameLevel* level, bool noUI))
+SCREWYOU3_HOOK_IMPL(LevelEditorLayer, init, level, noUI)
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/LevelFeatureLayer.hpp>
-SCREWYOU3_HOOK(LevelFeatureLayer, int p0)
-SCREWYOU3_HOOK_INIT(LevelFeatureLayer, p0)
+bool LevelFeatureLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LevelFeatureLayer)
+SCREWYOU3_HOOK(bool init(int levelID))
+SCREWYOU3_HOOK_IMPL(LevelFeatureLayer, init, levelID)
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/LevelInfoLayer.hpp>
-SCREWYOU3_HOOK(LevelInfoLayer, GJGameLevel* level, bool challenge)
-SCREWYOU3_HOOK_INIT(LevelInfoLayer, level, challenge)
+bool LevelInfoLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LevelInfoLayer)
+SCREWYOU3_HOOK(bool init(GJGameLevel* level, bool challenge))
+SCREWYOU3_HOOK_IMPL(LevelInfoLayer, init, level, challenge)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LevelLeaderboard.hpp>
-SCREWYOU3_HOOK(LevelLeaderboard, GJGameLevel* p0, LevelLeaderboardType p1, LevelLeaderboardMode p2)
-SCREWYOU3_HOOK_INIT(LevelLeaderboard, p0, p1, p2)
+bool LevelLeaderboard_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LevelLeaderboard)
+SCREWYOU3_HOOK(bool init(GJGameLevel* level, LevelLeaderboardType type, LevelLeaderboardMode mode))
+SCREWYOU3_HOOK_IMPL(LevelLeaderboard, init, level, type, mode)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LevelListLayer.hpp>
-SCREWYOU3_HOOK(LevelListLayer, GJLevelList* p0)
-SCREWYOU3_HOOK_INIT(LevelListLayer, p0)
+bool LevelListLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(LevelListLayer)
+SCREWYOU3_HOOK(bool init(GJLevelList* list))
+SCREWYOU3_HOOK_IMPL(LevelListLayer, init, list)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/LevelOptionsLayer.hpp>
-SCREWYOU3_HOOK(LevelOptionsLayer, LevelSettingsObject* p0)
-SCREWYOU3_HOOK_INIT(LevelOptionsLayer, p0)
-#endif
+bool LevelOptionsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
-
-#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
-#include <Geode/modify/LevelOptionsLayer2.hpp>
-SCREWYOU3_HOOK(LevelOptionsLayer2, LevelSettingsObject* p0)
-SCREWYOU3_HOOK_INIT(LevelOptionsLayer2, p0)
-#endif
+SCREWYOU3_HOOK_BEGIN(LevelOptionsLayer)
+SCREWYOU3_HOOK(bool init(LevelSettingsObject* object))
+SCREWYOU3_HOOK_IMPL(LevelOptionsLayer, init, object)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LevelPage.hpp>
-SCREWYOU3_HOOK(LevelPage, GJGameLevel* p0)
-SCREWYOU3_HOOK_INIT(LevelPage, p0)
+bool LevelPage_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LevelPage)
+SCREWYOU3_HOOK(bool init(GJGameLevel* level))
+SCREWYOU3_HOOK_IMPL(LevelPage, init, level)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LevelSearchLayer.hpp>
-SCREWYOU3_HOOK(LevelSearchLayer, int p0)
-SCREWYOU3_HOOK_INIT(LevelSearchLayer, p0)
+bool LevelSearchLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LevelSearchLayer)
+SCREWYOU3_HOOK(bool init(int type))
+SCREWYOU3_HOOK_IMPL(LevelSearchLayer, init, type)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LevelSelectLayer.hpp>
-SCREWYOU3_HOOK(LevelSelectLayer, int page)
-SCREWYOU3_HOOK_INIT(LevelSelectLayer, page)
+bool LevelSelectLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LevelSelectLayer)
+SCREWYOU3_HOOK(bool init(int page))
+SCREWYOU3_HOOK_IMPL(LevelSelectLayer, init, page)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LevelSettingsLayer.hpp>
-SCREWYOU3_HOOK(LevelSettingsLayer, LevelSettingsObject* p0, LevelEditorLayer* p1)
-SCREWYOU3_HOOK_INIT(LevelSettingsLayer, p0, p1)
+bool LevelSettingsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LevelSettingsLayer)
+SCREWYOU3_HOOK(bool init(LevelSettingsObject* object, LevelEditorLayer* layer))
+SCREWYOU3_HOOK_IMPL(LevelSettingsLayer, init, object, layer)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LevelSettingsObject.hpp>
-SCREWYOU3_HOOK(LevelSettingsObject, )
-SCREWYOU3_HOOK_INIT(LevelSettingsObject)
+bool LevelSettingsObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LevelSettingsObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(LevelSettingsObject, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LikeItemLayer.hpp>
-SCREWYOU3_HOOK(LikeItemLayer, LikeItemType p0, int p1, int p2)
-SCREWYOU3_HOOK_INIT(LikeItemLayer, p0, p1, p2)
+bool LikeItemLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(LikeItemLayer)
+SCREWYOU3_HOOK(bool init(LikeItemType type, int id, int parentID))
+SCREWYOU3_HOOK_IMPL(LikeItemLayer, init, type, id, parentID)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/ListButtonBar.hpp>
-SCREWYOU3_HOOK(ListButtonBar, cocos2d::CCArray* items, cocos2d::CCPoint position, int columns, int rows, float columnOffset, float rowOffset, float offset, float arrowOffset, int arrowType)
-SCREWYOU3_HOOK_INIT(ListButtonBar, items, position, columns, rows, columnOffset, rowOffset, offset, arrowOffset, arrowType)
-#endif
+bool ListButtonBar_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
-
-#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
-#include <Geode/modify/ListButtonPage.hpp>
-SCREWYOU3_HOOK(ListButtonPage, cocos2d::CCArray* items, cocos2d::CCPoint position, int columns, int rows, float columnOffset, float rowOffset, float offset)
-SCREWYOU3_HOOK_INIT(ListButtonPage, items, position, columns, rows, columnOffset, rowOffset, offset)
-#endif
+SCREWYOU3_HOOK_BEGIN(ListButtonBar)
+SCREWYOU3_HOOK(bool init(cocos2d::CCArray* items, cocos2d::CCPoint position, int columns, int rows, float columnOffset, float rowOffset, float offset, float arrowOffset, int arrowType))
+SCREWYOU3_HOOK_IMPL(ListButtonBar, init, items, position, columns, rows, columnOffset, rowOffset, offset, arrowOffset, arrowType)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LoadingCircle.hpp>
-SCREWYOU3_HOOK(LoadingCircle, )
-SCREWYOU3_HOOK_INIT(LoadingCircle)
+bool LoadingCircle_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LoadingCircle)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(LoadingCircle, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LoadingLayer.hpp>
-SCREWYOU3_HOOK(LoadingLayer, bool p0)
-SCREWYOU3_HOOK_INIT(LoadingLayer, p0)
+bool LoadingLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LoadingLayer)
+SCREWYOU3_HOOK(bool init(bool refresh))
+SCREWYOU3_HOOK_IMPL(LoadingLayer, init, refresh)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/LocalLevelManager.hpp>
-SCREWYOU3_HOOK(LocalLevelManager, )
-SCREWYOU3_HOOK_INIT(LocalLevelManager)
+bool LocalLevelManager_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(LocalLevelManager)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(LocalLevelManager, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/MapPackCell.hpp>
-SCREWYOU3_HOOK(MapPackCell, )
-SCREWYOU3_HOOK_INIT(MapPackCell)
+bool MapPackCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(MapPackCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(MapPackCell, init, )
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/MapSelectLayer.hpp>
-SCREWYOU3_HOOK(MapSelectLayer, )
-SCREWYOU3_HOOK_INIT(MapSelectLayer)
+bool MapSelectLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(MapSelectLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(MapSelectLayer, init, )
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/MenuGameLayer.hpp>
-SCREWYOU3_HOOK(MenuGameLayer, )
-SCREWYOU3_HOOK_INIT(MenuGameLayer)
+bool MenuGameLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(MenuGameLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(MenuGameLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/MenuLayer.hpp>
-SCREWYOU3_HOOK(MenuLayer, )
-SCREWYOU3_MENULAYER_CUSTOM_INIT(MenuLayer)
+bool MenuLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(MenuLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(MenuLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/MessagesProfilePage.hpp>
-SCREWYOU3_HOOK(MessagesProfilePage, bool p0)
-SCREWYOU3_HOOK_INIT(MessagesProfilePage, p0)
+bool MessagesProfilePage_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(MessagesProfilePage)
+SCREWYOU3_HOOK(bool init(bool sent))
+SCREWYOU3_HOOK_IMPL(MessagesProfilePage, init, sent)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/MoreOptionsLayer.hpp>
-SCREWYOU3_HOOK(MoreOptionsLayer, )
-SCREWYOU3_HOOK_INIT(MoreOptionsLayer)
+bool MoreOptionsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(MoreOptionsLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(MoreOptionsLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/MoreSearchLayer.hpp>
-SCREWYOU3_HOOK(MoreSearchLayer, )
-SCREWYOU3_HOOK_INIT(MoreSearchLayer)
+bool MoreSearchLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(MoreSearchLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(MoreSearchLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/MoreVideoOptionsLayer.hpp>
-SCREWYOU3_HOOK(MoreVideoOptionsLayer, )
-SCREWYOU3_HOOK_INIT(MoreVideoOptionsLayer)
+bool MoreVideoOptionsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(MoreVideoOptionsLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(MoreVideoOptionsLayer, init, )
+SCREWYOU3_HOOK_END()
+
+
+#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
+#include <Geode/modify/MPLobbyLayer.hpp>
+bool MPLobbyLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(MPLobbyLayer)
+SCREWYOU3_HOOK(bool init(int type))
+SCREWYOU3_HOOK_IMPL(MPLobbyLayer, init, type)
+SCREWYOU3_HOOK_END()
+#endif
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/MultiplayerLayer.hpp>
-SCREWYOU3_HOOK(MultiplayerLayer, )
-SCREWYOU3_HOOK_INIT(MultiplayerLayer)
+bool MultiplayerLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(MultiplayerLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(MultiplayerLayer, init, )
+SCREWYOU3_HOOK_END()
 #endif
 
-
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/MultiTriggerPopup.hpp>
-SCREWYOU3_HOOK(MultiTriggerPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(MultiTriggerPopup, p0, p1)
-#endif
+bool MultiTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(MultiTriggerPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(MultiTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/MusicBrowser.hpp>
-SCREWYOU3_HOOK(MusicBrowser, int p0, GJSongType p1)
-SCREWYOU3_HOOK_INIT(MusicBrowser, p0, p1)
-#endif
+bool MusicBrowser_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(MusicBrowser)
+SCREWYOU3_HOOK(bool init(int songID, GJSongType songType))
+SCREWYOU3_HOOK_IMPL(MusicBrowser, init, songID, songType)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/MusicDownloadManager.hpp>
-SCREWYOU3_HOOK(MusicDownloadManager, )
-SCREWYOU3_HOOK_INIT(MusicDownloadManager)
+bool MusicDownloadManager_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(MusicDownloadManager)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(MusicDownloadManager, init, )
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/NCSInfoLayer.hpp>
-SCREWYOU3_HOOK(NCSInfoLayer, CustomSongLayer* p0)
-SCREWYOU3_HOOK_INIT(NCSInfoLayer, p0)
-#endif
+bool NCSInfoLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(NCSInfoLayer)
+SCREWYOU3_HOOK(bool init(CustomSongLayer* layer))
+SCREWYOU3_HOOK_IMPL(NCSInfoLayer, init, layer)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/NewgroundsInfoLayer.hpp>
-SCREWYOU3_HOOK(NewgroundsInfoLayer, )
-SCREWYOU3_HOOK_INIT(NewgroundsInfoLayer)
+bool NewgroundsInfoLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(NewgroundsInfoLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(NewgroundsInfoLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/NumberInputLayer.hpp>
-SCREWYOU3_HOOK(NumberInputLayer, )
-SCREWYOU3_HOOK_INIT(NumberInputLayer)
+bool NumberInputLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
-
-#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
-#include <Geode/modify/OBB2D.hpp>
-SCREWYOU3_HOOK(OBB2D, cocos2d::CCPoint center, float width, float height, float rotationAngle)
-SCREWYOU3_HOOK_INIT(OBB2D, center, width, height, rotationAngle)
-#endif
+SCREWYOU3_HOOK_BEGIN(NumberInputLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(NumberInputLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ObjectControlGameObject.hpp>
-SCREWYOU3_HOOK(ObjectControlGameObject, )
-SCREWYOU3_HOOK_INIT(ObjectControlGameObject)
+bool ObjectControlGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ObjectControlGameObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(ObjectControlGameObject, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ObjectManager.hpp>
-SCREWYOU3_HOOK(ObjectManager, )
-SCREWYOU3_HOOK_INIT(ObjectManager)
+bool ObjectManager_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ObjectManager)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(ObjectManager, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ObjectToolbox.hpp>
-SCREWYOU3_HOOK(ObjectToolbox, )
-SCREWYOU3_HOOK_INIT(ObjectToolbox)
+bool ObjectToolbox_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ObjectToolbox)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(ObjectToolbox, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ParentalOptionsLayer.hpp>
-SCREWYOU3_HOOK(ParentalOptionsLayer, )
-SCREWYOU3_HOOK_INIT(ParentalOptionsLayer)
+bool ParentalOptionsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ParentalOptionsLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(ParentalOptionsLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ParticleGameObject.hpp>
-SCREWYOU3_HOOK(ParticleGameObject, )
-SCREWYOU3_HOOK_INIT(ParticleGameObject)
+bool ParticleGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ParticleGameObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(ParticleGameObject, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/PlayerCheckpoint.hpp>
-SCREWYOU3_HOOK(PlayerCheckpoint, )
-SCREWYOU3_HOOK_INIT(PlayerCheckpoint)
+bool PlayerCheckpoint_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(PlayerCheckpoint)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(PlayerCheckpoint, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/PlayerControlGameObject.hpp>
-SCREWYOU3_HOOK(PlayerControlGameObject, )
-SCREWYOU3_HOOK_INIT(PlayerControlGameObject)
+bool PlayerControlGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(PlayerControlGameObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(PlayerControlGameObject, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/PlayerFireBoostSprite.hpp>
-SCREWYOU3_HOOK(PlayerFireBoostSprite, )
-SCREWYOU3_HOOK_INIT(PlayerFireBoostSprite)
+bool PlayerFireBoostSprite_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(PlayerFireBoostSprite)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(PlayerFireBoostSprite, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/PlayerObject.hpp>
-SCREWYOU3_HOOK(PlayerObject, int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool playLayer)
-SCREWYOU3_HOOK_INIT(PlayerObject, player, ship, gameLayer, layer, playLayer)
+bool PlayerObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(PlayerObject)
+SCREWYOU3_HOOK(bool init(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool playLayer))
+SCREWYOU3_HOOK_IMPL(PlayerObject, init, player, ship, gameLayer, layer, playLayer)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/PlayLayer.hpp>
-SCREWYOU3_HOOK(PlayLayer, GJGameLevel* level, bool useReplay, bool dontCreateObjects)
-SCREWYOU3_HOOK_INIT(PlayLayer, level, useReplay, dontCreateObjects)
+bool PlayLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(PlayLayer)
+SCREWYOU3_HOOK(bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects))
+SCREWYOU3_HOOK_IMPL(PlayLayer, init, level, useReplay, dontCreateObjects)
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/PriceLabel.hpp>
-SCREWYOU3_HOOK(PriceLabel, int p0)
-SCREWYOU3_HOOK_INIT(PriceLabel, p0)
+bool PriceLabel_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(PriceLabel)
+SCREWYOU3_HOOK(bool init(int price))
+SCREWYOU3_HOOK_IMPL(PriceLabel, init, price)
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/ProfilePage.hpp>
-SCREWYOU3_HOOK(ProfilePage, int accountID, bool ownProfile)
-SCREWYOU3_HOOK_INIT(ProfilePage, accountID, ownProfile)
+bool ProfilePage_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
-#include <Geode/modify/PurchaseItemPopup.hpp>
-SCREWYOU3_HOOK(PurchaseItemPopup, GJStoreItem* p0)
-SCREWYOU3_HOOK_INIT(PurchaseItemPopup, p0)
-
-#include <Geode/modify/RandTriggerGameObject.hpp>
-SCREWYOU3_HOOK(RandTriggerGameObject, )
-SCREWYOU3_HOOK_INIT(RandTriggerGameObject)
-
-#include <Geode/modify/RateDemonLayer.hpp>
-SCREWYOU3_HOOK(RateDemonLayer, int p0)
-SCREWYOU3_HOOK_INIT(RateDemonLayer, p0)
-
-#include <Geode/modify/RateLevelLayer.hpp>
-SCREWYOU3_HOOK(RateLevelLayer, int p0)
-SCREWYOU3_HOOK_INIT(RateLevelLayer, p0)
-
-#include <Geode/modify/RateStarsLayer.hpp>
-SCREWYOU3_HOOK(RateStarsLayer, int p0, bool p1, bool p2)
-SCREWYOU3_HOOK_INIT(RateStarsLayer, p0, p1, p2)
-
-#include <Geode/modify/RewardsPage.hpp>
-SCREWYOU3_HOOK(RewardsPage, )
-SCREWYOU3_HOOK_INIT(RewardsPage)
-
-#include <Geode/modify/RewardUnlockLayer.hpp>
-SCREWYOU3_HOOK(RewardUnlockLayer, int p0, RewardsPage* p1)
-SCREWYOU3_HOOK_INIT(RewardUnlockLayer, p0, p1)
-
-#include <Geode/modify/RotateGameplayGameObject.hpp>
-SCREWYOU3_HOOK(RotateGameplayGameObject, )
-SCREWYOU3_HOOK_INIT(RotateGameplayGameObject)
-
-#include <Geode/modify/SearchButton.hpp>
-SCREWYOU3_HOOK(SearchButton, char const* p0, char const* p1, float p2, char const* p3)
-SCREWYOU3_HOOK_INIT(SearchButton, p0, p1, p2, p3)
+SCREWYOU3_HOOK_BEGIN(ProfilePage)
+SCREWYOU3_HOOK(bool init(int accountID, bool ownProfile))
+SCREWYOU3_HOOK_IMPL(ProfilePage, init, accountID, ownProfile)
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
-#include <Geode/modify/SearchSFXPopup.hpp>
-SCREWYOU3_HOOK(SearchSFXPopup, gd::string p0)
-SCREWYOU3_HOOK_INIT(SearchSFXPopup, p0)
+#include <Geode/modify/PromoInterstitial.hpp>
+bool PromoInterstitial_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(PromoInterstitial)
+SCREWYOU3_HOOK(bool init(bool fullVersion))
+SCREWYOU3_HOOK_IMPL(PromoInterstitial, init, fullVersion)
+SCREWYOU3_HOOK_END()
 #endif
+
+#include <Geode/modify/PurchaseItemPopup.hpp>
+bool PurchaseItemPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(PurchaseItemPopup)
+SCREWYOU3_HOOK(bool init(GJStoreItem* item))
+SCREWYOU3_HOOK_IMPL(PurchaseItemPopup, init, item)
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/RandTriggerGameObject.hpp>
+bool RandTriggerGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(RandTriggerGameObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(RandTriggerGameObject, init, )
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/RateDemonLayer.hpp>
+bool RateDemonLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(RateDemonLayer)
+SCREWYOU3_HOOK(bool init(int levelID))
+SCREWYOU3_HOOK_IMPL(RateDemonLayer, init, levelID)
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/RateLevelLayer.hpp>
+bool RateLevelLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(RateLevelLayer)
+SCREWYOU3_HOOK(bool init(int levelID))
+SCREWYOU3_HOOK_IMPL(RateLevelLayer, init, levelID)
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/RateStarsLayer.hpp>
+bool RateStarsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(RateStarsLayer)
+SCREWYOU3_HOOK(bool init(int levelID, bool platformer, bool moderator))
+SCREWYOU3_HOOK_IMPL(RateStarsLayer, init, levelID, platformer, moderator)
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/RewardsPage.hpp>
+bool RewardsPage_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(RewardsPage)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(RewardsPage, init, )
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/RewardUnlockLayer.hpp>
+bool RewardUnlockLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(RewardUnlockLayer)
+SCREWYOU3_HOOK(bool init(int type, RewardsPage* page))
+SCREWYOU3_HOOK_IMPL(RewardUnlockLayer, init, type, page)
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/RotateGameplayGameObject.hpp>
+bool RotateGameplayGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(RotateGameplayGameObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(RotateGameplayGameObject, init, )
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/SearchButton.hpp>
+bool SearchButton_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SearchButton)
+SCREWYOU3_HOOK(bool init(char const* background, char const* label, float scale, char const* icon))
+SCREWYOU3_HOOK_IMPL(SearchButton, init, background, label, scale, icon)
+SCREWYOU3_HOOK_END()
+
+#include <Geode/modify/SearchSFXPopup.hpp>
+bool SearchSFXPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SearchSFXPopup)
+SCREWYOU3_HOOK(bool init(gd::string query))
+SCREWYOU3_HOOK_IMPL(SearchSFXPopup, init, query)
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SecretGame01Layer.hpp>
-SCREWYOU3_HOOK(SecretGame01Layer, )
-SCREWYOU3_HOOK_INIT(SecretGame01Layer)
+bool SecretGame01Layer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SecretGame01Layer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(SecretGame01Layer, init, )
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/SecretLayer.hpp>
-SCREWYOU3_HOOK(SecretLayer, )
-SCREWYOU3_HOOK_INIT(SecretLayer)
+bool SecretLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SecretLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(SecretLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SecretLayer2.hpp>
-SCREWYOU3_HOOK(SecretLayer2, )
-SCREWYOU3_HOOK_INIT(SecretLayer2)
+bool SecretLayer2_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SecretLayer2)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(SecretLayer2, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SecretLayer3.hpp>
-SCREWYOU3_HOOK(SecretLayer3, )
-SCREWYOU3_HOOK_INIT(SecretLayer3)
+bool SecretLayer3_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SecretLayer3)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(SecretLayer3, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SecretLayer4.hpp>
-SCREWYOU3_HOOK(SecretLayer4, )
-SCREWYOU3_HOOK_INIT(SecretLayer4)
+bool SecretLayer4_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SecretLayer4)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(SecretLayer4, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SecretLayer5.hpp>
-SCREWYOU3_HOOK(SecretLayer5, )
-SCREWYOU3_HOOK_INIT(SecretLayer5)
+bool SecretLayer5_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SecretLayer5)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(SecretLayer5, init, )
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SecretLayer6.hpp>
-SCREWYOU3_HOOK(SecretLayer6, )
-SCREWYOU3_HOOK_INIT(SecretLayer6)
+bool SecretLayer6_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SecretLayer6)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(SecretLayer6, init, )
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/SecretNumberLayer.hpp>
-SCREWYOU3_HOOK(SecretNumberLayer, )
-SCREWYOU3_HOOK_INIT(SecretNumberLayer)
+bool SecretNumberLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SecretNumberLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(SecretNumberLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SecretRewardsLayer.hpp>
-SCREWYOU3_HOOK(SecretRewardsLayer, bool p0)
-SCREWYOU3_HOOK_INIT(SecretRewardsLayer, p0)
+bool SecretRewardsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SecretRewardsLayer)
+SCREWYOU3_HOOK(bool init(bool fromShop))
+SCREWYOU3_HOOK_IMPL(SecretRewardsLayer, init, fromShop)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SelectArtLayer.hpp>
-SCREWYOU3_HOOK(SelectArtLayer, SelectArtType p0, int p1)
-SCREWYOU3_HOOK_INIT(SelectArtLayer, p0, p1)
-#endif
+bool SelectArtLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SelectArtLayer)
+SCREWYOU3_HOOK(bool init(SelectArtType type, int index))
+SCREWYOU3_HOOK_IMPL(SelectArtLayer, init, type, index)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SelectEventLayer.hpp>
-SCREWYOU3_HOOK(SelectEventLayer, SetupEventLinkPopup* p0, gd::set<int>& p1)
-SCREWYOU3_HOOK_INIT(SelectEventLayer, p0, p1)
-#endif
+bool SelectEventLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SelectEventLayer)
+SCREWYOU3_HOOK(bool init(SetupEventLinkPopup* popup, gd::set<int>& eventIDs))
+SCREWYOU3_HOOK_IMPL(SelectEventLayer, init, popup, eventIDs)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SelectFontLayer.hpp>
-SCREWYOU3_HOOK(SelectFontLayer, LevelEditorLayer* p0)
-SCREWYOU3_HOOK_INIT(SelectFontLayer, p0)
+bool SelectFontLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SelectFontLayer)
+SCREWYOU3_HOOK(bool init(LevelEditorLayer* layer))
+SCREWYOU3_HOOK_IMPL(SelectFontLayer, init, layer)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SelectListIconLayer.hpp>
-SCREWYOU3_HOOK(SelectListIconLayer, int p0)
-SCREWYOU3_HOOK_INIT(SelectListIconLayer, p0)
-#endif
+bool SelectListIconLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SelectListIconLayer)
+SCREWYOU3_HOOK(bool init(int difficulty))
+SCREWYOU3_HOOK_IMPL(SelectListIconLayer, init, difficulty)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SelectPremadeLayer.hpp>
-SCREWYOU3_HOOK(SelectPremadeLayer, )
-SCREWYOU3_HOOK_INIT(SelectPremadeLayer)
+bool SelectPremadeLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SelectPremadeLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(SelectPremadeLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SelectSettingLayer.hpp>
-SCREWYOU3_HOOK(SelectSettingLayer, SelectSettingType p0, int p1)
-SCREWYOU3_HOOK_INIT(SelectSettingLayer, p0, p1)
+bool SelectSettingLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SelectSettingLayer)
+SCREWYOU3_HOOK(bool init(SelectSettingType type, int value))
+SCREWYOU3_HOOK_IMPL(SelectSettingLayer, init, type, value)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SelectSFXSortLayer.hpp>
-SCREWYOU3_HOOK(SelectSFXSortLayer, AudioSortType p0)
-SCREWYOU3_HOOK_INIT(SelectSFXSortLayer, p0)
-#endif
+bool SelectSFXSortLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SelectSFXSortLayer)
+SCREWYOU3_HOOK(bool init(AudioSortType sortType))
+SCREWYOU3_HOOK_IMPL(SelectSFXSortLayer, init, sortType)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SequenceTriggerGameObject.hpp>
-SCREWYOU3_HOOK(SequenceTriggerGameObject, )
-SCREWYOU3_HOOK_INIT(SequenceTriggerGameObject)
+bool SequenceTriggerGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SequenceTriggerGameObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(SequenceTriggerGameObject, init, )
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetColorIDPopup.hpp>
-SCREWYOU3_HOOK(SetColorIDPopup, int p0)
-SCREWYOU3_HOOK_INIT(SetColorIDPopup, p0)
-#endif
+bool SetColorIDPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetColorIDPopup)
+SCREWYOU3_HOOK(bool init(int id))
+SCREWYOU3_HOOK_IMPL(SetColorIDPopup, init, id)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetFolderPopup.hpp>
-SCREWYOU3_HOOK(SetFolderPopup, int value, bool isCreated, gd::string title)
-SCREWYOU3_HOOK_INIT(SetFolderPopup, value, isCreated, title)
-#endif
+bool SetFolderPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetFolderPopup)
+SCREWYOU3_HOOK(bool init(int value, bool isCreated, gd::string title))
+SCREWYOU3_HOOK_IMPL(SetFolderPopup, init, value, isCreated, title)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetGroupIDLayer.hpp>
-SCREWYOU3_HOOK(SetGroupIDLayer, GameObject* obj, cocos2d::CCArray* objs)
-SCREWYOU3_HOOK_INIT(SetGroupIDLayer, obj, objs)
+bool SetGroupIDLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetGroupIDLayer)
+SCREWYOU3_HOOK(bool init(GameObject* obj, cocos2d::CCArray* objs))
+SCREWYOU3_HOOK_IMPL(SetGroupIDLayer, init, obj, objs)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetIDPopup.hpp>
-SCREWYOU3_HOOK(SetIDPopup, int current, int begin, int end, gd::string title, gd::string button, bool p5, int p6, float p7, bool p8, bool p9)
-SCREWYOU3_HOOK_INIT(SetIDPopup, current, begin, end, title, button, p5, p6, p7, p8, p9)
+bool SetIDPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetIDPopup)
+SCREWYOU3_HOOK(bool init(int current, int begin, int end, gd::string title, gd::string button, bool resetButton, int defaultValue, float offset, bool numberInput, bool arrows))
+SCREWYOU3_HOOK_IMPL(SetIDPopup, init, current, begin, end, title, button, resetButton, defaultValue, offset, numberInput, arrows)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetItemIDLayer.hpp>
-SCREWYOU3_HOOK(SetItemIDLayer, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetItemIDLayer, p0, p1)
+bool SetItemIDLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetItemIDLayer)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetItemIDLayer, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetLevelOrderPopup.hpp>
-SCREWYOU3_HOOK(SetLevelOrderPopup, int levelID, int order, int amount)
-SCREWYOU3_HOOK_INIT(SetLevelOrderPopup, levelID, order, amount)
-#endif
+bool SetLevelOrderPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetLevelOrderPopup)
+SCREWYOU3_HOOK(bool init(int levelID, int order, int amount))
+SCREWYOU3_HOOK_IMPL(SetLevelOrderPopup, init, levelID, order, amount)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetTargetIDLayer.hpp>
-SCREWYOU3_HOOK(SetTargetIDLayer, EffectGameObject* p0, cocos2d::CCArray* p1, gd::string p2, gd::string p3, int p4, int p5, int p6)
-SCREWYOU3_HOOK_INIT(SetTargetIDLayer, p0, p1, p2, p3, p4, p5, p6)
-#endif
+bool SetTargetIDLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetTargetIDLayer)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects, gd::string title, gd::string label, int minimum, int maximum, int objectID))
+SCREWYOU3_HOOK_IMPL(SetTargetIDLayer, init, object, objects, title, label, minimum, maximum, objectID)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetTextPopup.hpp>
-SCREWYOU3_HOOK(SetTextPopup, gd::string p0, gd::string p1, int p2, gd::string p3, gd::string p4, bool p5, float p6)
-SCREWYOU3_HOOK_INIT(SetTextPopup, p0, p1, p2, p3, p4, p5, p6)
-#endif
+bool SetTextPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetTextPopup)
+SCREWYOU3_HOOK(bool init(gd::string value, gd::string placeholder, int maxLength, gd::string title, gd::string okBtnText, bool showResetBtn, float offset))
+SCREWYOU3_HOOK_IMPL(SetTextPopup, init, value, placeholder, maxLength, title, okBtnText, showResetBtn, offset)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupAdvFollowEditPhysicsPopup.hpp>
-SCREWYOU3_HOOK(SetupAdvFollowEditPhysicsPopup, AdvancedFollowEditObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupAdvFollowEditPhysicsPopup, p0, p1)
-#endif
+bool SetupAdvFollowEditPhysicsPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupAdvFollowEditPhysicsPopup)
+SCREWYOU3_HOOK(bool init(AdvancedFollowEditObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupAdvFollowEditPhysicsPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupAdvFollowPopup.hpp>
-SCREWYOU3_HOOK(SetupAdvFollowPopup, AdvancedFollowTriggerObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupAdvFollowPopup, p0, p1)
-#endif
+bool SetupAdvFollowPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupAdvFollowPopup)
+SCREWYOU3_HOOK(bool init(AdvancedFollowTriggerObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupAdvFollowPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupAdvFollowRetargetPopup.hpp>
-SCREWYOU3_HOOK(SetupAdvFollowRetargetPopup, AdvancedFollowEditObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupAdvFollowRetargetPopup, p0, p1)
-#endif
+bool SetupAdvFollowRetargetPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupAdvFollowRetargetPopup)
+SCREWYOU3_HOOK(bool init(AdvancedFollowEditObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupAdvFollowRetargetPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupAnimationPopup.hpp>
-SCREWYOU3_HOOK(SetupAnimationPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupAnimationPopup, p0, p1)
+bool SetupAnimationPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupAnimationPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupAnimationPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupAnimSettingsPopup.hpp>
-SCREWYOU3_HOOK(SetupAnimSettingsPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupAnimSettingsPopup, p0, p1)
-#endif
+bool SetupAnimSettingsPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupAnimSettingsPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupAnimSettingsPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupAreaAnimTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupAreaAnimTriggerPopup, EnterEffectObject* p0, cocos2d::CCArray* p1, int p2)
-SCREWYOU3_HOOK_INIT(SetupAreaAnimTriggerPopup, p0, p1, p2)
-#endif
+bool SetupAreaAnimTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupAreaAnimTriggerPopup)
+SCREWYOU3_HOOK(bool init(EnterEffectObject* object, cocos2d::CCArray* objects, int id))
+SCREWYOU3_HOOK_IMPL(SetupAreaAnimTriggerPopup, init, object, objects, id)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupAreaFadeTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupAreaFadeTriggerPopup, EnterEffectObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupAreaFadeTriggerPopup, p0, p1)
-#endif
+bool SetupAreaFadeTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupAreaFadeTriggerPopup)
+SCREWYOU3_HOOK(bool init(EnterEffectObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupAreaFadeTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupAreaMoveTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupAreaMoveTriggerPopup, EnterEffectObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupAreaMoveTriggerPopup, p0, p1)
+bool SetupAreaMoveTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupAreaMoveTriggerPopup)
+SCREWYOU3_HOOK(bool init(EnterEffectObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupAreaMoveTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupAreaRotateTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupAreaRotateTriggerPopup, EnterEffectObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupAreaRotateTriggerPopup, p0, p1)
-#endif
+bool SetupAreaRotateTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupAreaRotateTriggerPopup)
+SCREWYOU3_HOOK(bool init(EnterEffectObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupAreaRotateTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupAreaTintTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupAreaTintTriggerPopup, EnterEffectObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupAreaTintTriggerPopup, p0, p1)
-#endif
+bool SetupAreaTintTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupAreaTintTriggerPopup)
+SCREWYOU3_HOOK(bool init(EnterEffectObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupAreaTintTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupAreaTransformTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupAreaTransformTriggerPopup, EnterEffectObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupAreaTransformTriggerPopup, p0, p1)
-#endif
+bool SetupAreaTransformTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupAreaTransformTriggerPopup)
+SCREWYOU3_HOOK(bool init(EnterEffectObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupAreaTransformTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupAreaTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupAreaTriggerPopup, EnterEffectObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupAreaTriggerPopup, p0, p1)
-#endif
+bool SetupAreaTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupAreaTriggerPopup)
+SCREWYOU3_HOOK(bool init(EnterEffectObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupAreaTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupArtSwitchPopup.hpp>
-SCREWYOU3_HOOK(SetupArtSwitchPopup, ArtTriggerGameObject* p0, cocos2d::CCArray* p1, int p2)
-SCREWYOU3_HOOK_INIT(SetupArtSwitchPopup, p0, p1, p2)
-#endif
+bool SetupArtSwitchPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupArtSwitchPopup)
+SCREWYOU3_HOOK(bool init(ArtTriggerGameObject* object, cocos2d::CCArray* objects, int id))
+SCREWYOU3_HOOK_IMPL(SetupArtSwitchPopup, init, object, objects, id)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupAudioLineGuidePopup.hpp>
-SCREWYOU3_HOOK(SetupAudioLineGuidePopup, AudioLineGuideGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupAudioLineGuidePopup, p0, p1)
+bool SetupAudioLineGuidePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupAudioLineGuidePopup)
+SCREWYOU3_HOOK(bool init(AudioLineGuideGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupAudioLineGuidePopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupBGSpeedTrigger.hpp>
-SCREWYOU3_HOOK(SetupBGSpeedTrigger, EffectGameObject* p0, cocos2d::CCArray* p1, int p2)
-SCREWYOU3_HOOK_INIT(SetupBGSpeedTrigger, p0, p1, p2)
-#endif
+bool SetupBGSpeedTrigger_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupBGSpeedTrigger)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects, int id))
+SCREWYOU3_HOOK_IMPL(SetupBGSpeedTrigger, init, object, objects, id)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupCameraEdgePopup.hpp>
-SCREWYOU3_HOOK(SetupCameraEdgePopup, CameraTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupCameraEdgePopup, p0, p1)
+bool SetupCameraEdgePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupCameraEdgePopup)
+SCREWYOU3_HOOK(bool init(CameraTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupCameraEdgePopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupCameraGuidePopup.hpp>
-SCREWYOU3_HOOK(SetupCameraGuidePopup, CameraTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupCameraGuidePopup, p0, p1)
-#endif
+bool SetupCameraGuidePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupCameraGuidePopup)
+SCREWYOU3_HOOK(bool init(CameraTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupCameraGuidePopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupCameraModePopup.hpp>
-SCREWYOU3_HOOK(SetupCameraModePopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupCameraModePopup, p0, p1)
+bool SetupCameraModePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupCameraModePopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupCameraModePopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupCameraOffsetTrigger.hpp>
-SCREWYOU3_HOOK(SetupCameraOffsetTrigger, CameraTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupCameraOffsetTrigger, p0, p1)
+bool SetupCameraOffsetTrigger_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupCameraOffsetTrigger)
+SCREWYOU3_HOOK(bool init(CameraTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupCameraOffsetTrigger, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupCameraRotatePopup.hpp>
-SCREWYOU3_HOOK(SetupCameraRotatePopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupCameraRotatePopup, p0, p1)
+bool SetupCameraRotatePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupCameraRotatePopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupCameraRotatePopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 #endif
 
-
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupCameraRotatePopup2.hpp>
-SCREWYOU3_HOOK(SetupCameraRotatePopup2, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupCameraRotatePopup2, p0, p1)
-#endif
+bool SetupCameraRotatePopup2_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupCameraRotatePopup2)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupCameraRotatePopup2, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupCheckpointPopup.hpp>
-SCREWYOU3_HOOK(SetupCheckpointPopup, CheckpointGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupCheckpointPopup, p0, p1)
-#endif
+bool SetupCheckpointPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupCheckpointPopup)
+SCREWYOU3_HOOK(bool init(CheckpointGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupCheckpointPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupCoinLayer.hpp>
-SCREWYOU3_HOOK(SetupCoinLayer, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupCoinLayer, p0, p1)
+bool SetupCoinLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupCoinLayer)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupCoinLayer, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupCollisionStateTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupCollisionStateTriggerPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupCollisionStateTriggerPopup, p0, p1)
-#endif
+bool SetupCollisionStateTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupCollisionStateTriggerPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupCollisionStateTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupCollisionTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupCollisionTriggerPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupCollisionTriggerPopup, p0, p1)
+bool SetupCollisionTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupCollisionTriggerPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupCollisionTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupCountTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupCountTriggerPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupCountTriggerPopup, p0, p1)
+bool SetupCountTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupCountTriggerPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupCountTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupDashRingPopup.hpp>
-SCREWYOU3_HOOK(SetupDashRingPopup, DashRingObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupDashRingPopup, p0, p1)
-#endif
+bool SetupDashRingPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupDashRingPopup)
+SCREWYOU3_HOOK(bool init(DashRingObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupDashRingPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupEndPopup.hpp>
-SCREWYOU3_HOOK(SetupEndPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupEndPopup, p0, p1)
-#endif
+bool SetupEndPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupEndPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupEndPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupEnterEffectPopup.hpp>
-SCREWYOU3_HOOK(SetupEnterEffectPopup, EnterEffectObject* p0, cocos2d::CCArray* p1, int p2)
-SCREWYOU3_HOOK_INIT(SetupEnterEffectPopup, p0, p1, p2)
-#endif
+bool SetupEnterEffectPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupEnterEffectPopup)
+SCREWYOU3_HOOK(bool init(EnterEffectObject* object, cocos2d::CCArray* objects, int id))
+SCREWYOU3_HOOK_IMPL(SetupEnterEffectPopup, init, object, objects, id)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupEnterTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupEnterTriggerPopup, EnterEffectObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupEnterTriggerPopup, p0, p1)
-#endif
+bool SetupEnterTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupEnterTriggerPopup)
+SCREWYOU3_HOOK(bool init(EnterEffectObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupEnterTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupEventLinkPopup.hpp>
-SCREWYOU3_HOOK(SetupEventLinkPopup, EventLinkTrigger* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupEventLinkPopup, p0, p1)
+bool SetupEventLinkPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupEventLinkPopup)
+SCREWYOU3_HOOK(bool init(EventLinkTrigger* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupEventLinkPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupForceBlockPopup.hpp>
-SCREWYOU3_HOOK(SetupForceBlockPopup, ForceBlockGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupForceBlockPopup, p0, p1)
-#endif
+bool SetupForceBlockPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupForceBlockPopup)
+SCREWYOU3_HOOK(bool init(ForceBlockGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupForceBlockPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupGameplayOffsetPopup.hpp>
-SCREWYOU3_HOOK(SetupGameplayOffsetPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupGameplayOffsetPopup, p0, p1)
-#endif
+bool SetupGameplayOffsetPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupGameplayOffsetPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupGameplayOffsetPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupGradientPopup.hpp>
-SCREWYOU3_HOOK(SetupGradientPopup, GradientTriggerObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupGradientPopup, p0, p1)
+bool SetupGradientPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupGradientPopup)
+SCREWYOU3_HOOK(bool init(GradientTriggerObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupGradientPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupGravityModPopup.hpp>
-SCREWYOU3_HOOK(SetupGravityModPopup, EffectGameObject* p0, cocos2d::CCArray* p1, bool p2)
-SCREWYOU3_HOOK_INIT(SetupGravityModPopup, p0, p1, p2)
+bool SetupGravityModPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupGravityModPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects, bool gravityTrigger))
+SCREWYOU3_HOOK_IMPL(SetupGravityModPopup, init, object, objects, gravityTrigger)
+SCREWYOU3_HOOK_END()
 #endif
 
-
-#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupGravityTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupGravityTriggerPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupGravityTriggerPopup, p0, p1)
-#endif
+bool SetupGravityTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupGravityTriggerPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupGravityTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupInstantCollisionTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupInstantCollisionTriggerPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupInstantCollisionTriggerPopup, p0, p1)
+bool SetupInstantCollisionTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupInstantCollisionTriggerPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupInstantCollisionTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupInstantCountPopup.hpp>
-SCREWYOU3_HOOK(SetupInstantCountPopup, CountTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupInstantCountPopup, p0, p1)
+bool SetupInstantCountPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupInstantCountPopup)
+SCREWYOU3_HOOK(bool init(CountTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupInstantCountPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupInteractObjectPopup.hpp>
-SCREWYOU3_HOOK(SetupInteractObjectPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupInteractObjectPopup, p0, p1)
-#endif
+bool SetupInteractObjectPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupInteractObjectPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupInteractObjectPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupItemCompareTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupItemCompareTriggerPopup, ItemTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupItemCompareTriggerPopup, p0, p1)
+bool SetupItemCompareTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupItemCompareTriggerPopup)
+SCREWYOU3_HOOK(bool init(ItemTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupItemCompareTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupItemEditTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupItemEditTriggerPopup, ItemTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupItemEditTriggerPopup, p0, p1)
+bool SetupItemEditTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupItemEditTriggerPopup)
+SCREWYOU3_HOOK(bool init(ItemTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupItemEditTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupKeyframeAnimPopup.hpp>
-SCREWYOU3_HOOK(SetupKeyframeAnimPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupKeyframeAnimPopup, p0, p1)
-#endif
+bool SetupKeyframeAnimPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupKeyframeAnimPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupKeyframeAnimPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupKeyframePopup.hpp>
-SCREWYOU3_HOOK(SetupKeyframePopup, KeyframeGameObject* p0, cocos2d::CCArray* p1, LevelEditorLayer* p2)
-SCREWYOU3_HOOK_INIT(SetupKeyframePopup, p0, p1, p2)
-#endif
+bool SetupKeyframePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupKeyframePopup)
+SCREWYOU3_HOOK(bool init(KeyframeGameObject* object, cocos2d::CCArray* objects, LevelEditorLayer* layer))
+SCREWYOU3_HOOK_IMPL(SetupKeyframePopup, init, object, objects, layer)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupMGTrigger.hpp>
-SCREWYOU3_HOOK(SetupMGTrigger, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupMGTrigger, p0, p1)
-#endif
+bool SetupMGTrigger_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupMGTrigger)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupMGTrigger, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupMoveCommandPopup.hpp>
-SCREWYOU3_HOOK(SetupMoveCommandPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupMoveCommandPopup, p0, p1)
+bool SetupMoveCommandPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupMoveCommandPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupMoveCommandPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupObjectControlPopup.hpp>
-SCREWYOU3_HOOK(SetupObjectControlPopup, ObjectControlGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupObjectControlPopup, p0, p1)
-#endif
+bool SetupObjectControlPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupObjectControlPopup)
+SCREWYOU3_HOOK(bool init(ObjectControlGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupObjectControlPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupObjectOptions2Popup.hpp>
-SCREWYOU3_HOOK(SetupObjectOptions2Popup, GameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupObjectOptions2Popup, p0, p1)
-#endif
+bool SetupObjectOptions2Popup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupObjectOptions2Popup)
+SCREWYOU3_HOOK(bool init(GameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupObjectOptions2Popup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupObjectOptionsPopup.hpp>
-SCREWYOU3_HOOK(SetupObjectOptionsPopup, GameObject* p0, cocos2d::CCArray* p1, SetGroupIDLayer* p2)
-SCREWYOU3_HOOK_INIT(SetupObjectOptionsPopup, p0, p1, p2)
+bool SetupObjectOptionsPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupObjectOptionsPopup)
+SCREWYOU3_HOOK(bool init(GameObject* object, cocos2d::CCArray* objects, SetGroupIDLayer* layer))
+SCREWYOU3_HOOK_IMPL(SetupObjectOptionsPopup, init, object, objects, layer)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupObjectTogglePopup.hpp>
-SCREWYOU3_HOOK(SetupObjectTogglePopup, EffectGameObject* p0, cocos2d::CCArray* p1, bool p2)
-SCREWYOU3_HOOK_INIT(SetupObjectTogglePopup, p0, p1, p2)
+bool SetupObjectTogglePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupObjectTogglePopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects, bool platformer))
+SCREWYOU3_HOOK_IMPL(SetupObjectTogglePopup, init, object, objects, platformer)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupOpacityPopup.hpp>
-SCREWYOU3_HOOK(SetupOpacityPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupOpacityPopup, p0, p1)
+bool SetupOpacityPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupOpacityPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupOpacityPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupOptionsTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupOptionsTriggerPopup, GameOptionsTrigger* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupOptionsTriggerPopup, p0, p1)
+bool SetupOptionsTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupOptionsTriggerPopup)
+SCREWYOU3_HOOK(bool init(GameOptionsTrigger* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupOptionsTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupPersistentItemTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupPersistentItemTriggerPopup, ItemTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupPersistentItemTriggerPopup, p0, p1)
-#endif
+bool SetupPersistentItemTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupPersistentItemTriggerPopup)
+SCREWYOU3_HOOK(bool init(ItemTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupPersistentItemTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupPickupTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupPickupTriggerPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupPickupTriggerPopup, p0, p1)
+bool SetupPickupTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupPickupTriggerPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupPickupTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupPlatformerEndPopup.hpp>
-SCREWYOU3_HOOK(SetupPlatformerEndPopup, EndTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupPlatformerEndPopup, p0, p1)
-#endif
+bool SetupPlatformerEndPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupPlatformerEndPopup)
+SCREWYOU3_HOOK(bool init(EndTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupPlatformerEndPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupPlayerControlPopup.hpp>
-SCREWYOU3_HOOK(SetupPlayerControlPopup, PlayerControlGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupPlayerControlPopup, p0, p1)
-#endif
+bool SetupPlayerControlPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupPlayerControlPopup)
+SCREWYOU3_HOOK(bool init(PlayerControlGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupPlayerControlPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupPortalPopup.hpp>
-SCREWYOU3_HOOK(SetupPortalPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupPortalPopup, p0, p1)
+bool SetupPortalPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupPortalPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupPortalPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/SetupPulsePopup.hpp>
-SCREWYOU3_HOOK(SetupPulsePopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupPulsePopup, p0, p1)
+bool SetupPulsePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupPulsePopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupPulsePopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupRandAdvTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupRandAdvTriggerPopup, RandTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupRandAdvTriggerPopup, p0, p1)
+bool SetupRandAdvTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupRandAdvTriggerPopup)
+SCREWYOU3_HOOK(bool init(RandTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupRandAdvTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupRandTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupRandTriggerPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupRandTriggerPopup, p0, p1)
+bool SetupRandTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupRandTriggerPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupRandTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupResetTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupResetTriggerPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupResetTriggerPopup, p0, p1)
-#endif
+bool SetupResetTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupResetTriggerPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupResetTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupReverbPopup.hpp>
-SCREWYOU3_HOOK(SetupReverbPopup, SFXTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupReverbPopup, p0, p1)
-#endif
+bool SetupReverbPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupReverbPopup)
+SCREWYOU3_HOOK(bool init(SFXTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupReverbPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupRotateCommandPopup.hpp>
-SCREWYOU3_HOOK(SetupRotateCommandPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupRotateCommandPopup, p0, p1)
-#endif
+bool SetupRotateCommandPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupRotateCommandPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupRotateCommandPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupRotateGameplayPopup.hpp>
-SCREWYOU3_HOOK(SetupRotateGameplayPopup, RotateGameplayGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupRotateGameplayPopup, p0, p1)
-#endif
+bool SetupRotateGameplayPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupRotateGameplayPopup)
+SCREWYOU3_HOOK(bool init(RotateGameplayGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupRotateGameplayPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupRotatePopup.hpp>
-SCREWYOU3_HOOK(SetupRotatePopup, EnhancedGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupRotatePopup, p0, p1)
+bool SetupRotatePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupRotatePopup)
+SCREWYOU3_HOOK(bool init(EnhancedGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupRotatePopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupSequenceTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupSequenceTriggerPopup, SequenceTriggerGameObject* p0)
-SCREWYOU3_HOOK_INIT(SetupSequenceTriggerPopup, p0)
+bool SetupSequenceTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupSequenceTriggerPopup)
+SCREWYOU3_HOOK(bool init(SequenceTriggerGameObject* object))
+SCREWYOU3_HOOK_IMPL(SetupSequenceTriggerPopup, init, object)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupSFXEditPopup.hpp>
-SCREWYOU3_HOOK(SetupSFXEditPopup, SFXTriggerGameObject* p0, cocos2d::CCArray* p1, bool p2)
-SCREWYOU3_HOOK_INIT(SetupSFXEditPopup, p0, p1, p2)
-#endif
+bool SetupSFXEditPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupSFXEditPopup)
+SCREWYOU3_HOOK(bool init(SFXTriggerGameObject* object, cocos2d::CCArray* objects, bool songTrigger))
+SCREWYOU3_HOOK_IMPL(SetupSFXEditPopup, init, object, objects, songTrigger)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupSFXPopup.hpp>
-SCREWYOU3_HOOK(SetupSFXPopup, SFXTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupSFXPopup, p0, p1)
-#endif
+bool SetupSFXPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupSFXPopup)
+SCREWYOU3_HOOK(bool init(SFXTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupSFXPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID
 #include <Geode/modify/SetupShaderEffectPopup.hpp>
-SCREWYOU3_HOOK(SetupShaderEffectPopup, EffectGameObject* p0, cocos2d::CCArray* p1, int p2)
-SCREWYOU3_HOOK_INIT(SetupShaderEffectPopup, p0, p1, p2)
-#endif
+bool SetupShaderEffectPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupShaderEffectPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects, int id))
+SCREWYOU3_HOOK_IMPL(SetupShaderEffectPopup, init, object, objects, id)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupShakePopup.hpp>
-SCREWYOU3_HOOK(SetupShakePopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupShakePopup, p0, p1)
-#endif
+bool SetupShakePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupShakePopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupShakePopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupSmartBlockLayer.hpp>
-SCREWYOU3_HOOK(SetupSmartBlockLayer, SmartGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupSmartBlockLayer, p0, p1)
-#endif
+bool SetupSmartBlockLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupSmartBlockLayer)
+SCREWYOU3_HOOK(bool init(SmartGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupSmartBlockLayer, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupSmartTemplateLayer.hpp>
-SCREWYOU3_HOOK(SetupSmartTemplateLayer, GJSmartTemplate* p0)
-SCREWYOU3_HOOK_INIT(SetupSmartTemplateLayer, p0)
-#endif
+bool SetupSmartTemplateLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupSmartTemplateLayer)
+SCREWYOU3_HOOK(bool init(GJSmartTemplate* smartTemplate))
+SCREWYOU3_HOOK_IMPL(SetupSmartTemplateLayer, init, smartTemplate)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupSongTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupSongTriggerPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupSongTriggerPopup, p0, p1)
-#endif
+bool SetupSongTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupSongTriggerPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupSongTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupSpawnParticlePopup.hpp>
-SCREWYOU3_HOOK(SetupSpawnParticlePopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupSpawnParticlePopup, p0, p1)
-#endif
+bool SetupSpawnParticlePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupSpawnParticlePopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupSpawnParticlePopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupSpawnPopup.hpp>
-SCREWYOU3_HOOK(SetupSpawnPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupSpawnPopup, p0, p1)
+bool SetupSpawnPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupSpawnPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupSpawnPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupStaticCameraPopup.hpp>
-SCREWYOU3_HOOK(SetupStaticCameraPopup, CameraTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupStaticCameraPopup, p0, p1)
+bool SetupStaticCameraPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupStaticCameraPopup)
+SCREWYOU3_HOOK(bool init(CameraTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupStaticCameraPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupStopTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupStopTriggerPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupStopTriggerPopup, p0, p1)
-#endif
+bool SetupStopTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupStopTriggerPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupStopTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupTeleportPopup.hpp>
-SCREWYOU3_HOOK(SetupTeleportPopup, TeleportPortalObject* p0, cocos2d::CCArray* p1, int p2, bool p3)
-SCREWYOU3_HOOK_INIT(SetupTeleportPopup, p0, p1, p2, p3)
-#endif
+bool SetupTeleportPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupTeleportPopup)
+SCREWYOU3_HOOK(bool init(TeleportPortalObject* object, cocos2d::CCArray* objects, int id, bool platformer))
+SCREWYOU3_HOOK_IMPL(SetupTeleportPopup, init, object, objects, id, platformer)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupTimerControlTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupTimerControlTriggerPopup, TimerTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupTimerControlTriggerPopup, p0, p1)
-#endif
+bool SetupTimerControlTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupTimerControlTriggerPopup)
+SCREWYOU3_HOOK(bool init(TimerTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupTimerControlTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupTimerEventTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupTimerEventTriggerPopup, TimerTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupTimerEventTriggerPopup, p0, p1)
-#endif
+bool SetupTimerEventTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupTimerEventTriggerPopup)
+SCREWYOU3_HOOK(bool init(TimerTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupTimerEventTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupTimerTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupTimerTriggerPopup, TimerTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupTimerTriggerPopup, p0, p1)
-#endif
+bool SetupTimerTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupTimerTriggerPopup)
+SCREWYOU3_HOOK(bool init(TimerTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupTimerTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupTimeWarpPopup.hpp>
-SCREWYOU3_HOOK(SetupTimeWarpPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupTimeWarpPopup, p0, p1)
-#endif
+bool SetupTimeWarpPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupTimeWarpPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupTimeWarpPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupTouchTogglePopup.hpp>
-SCREWYOU3_HOOK(SetupTouchTogglePopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupTouchTogglePopup, p0, p1)
+bool SetupTouchTogglePopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SetupTouchTogglePopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupTouchTogglePopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SetupTransformPopup.hpp>
-SCREWYOU3_HOOK(SetupTransformPopup, TransformTriggerGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupTransformPopup, p0, p1)
-#endif
+bool SetupTransformPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupTransformPopup)
+SCREWYOU3_HOOK(bool init(TransformTriggerGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupTransformPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupTriggerPopup, EffectGameObject* trigger, cocos2d::CCArray* triggers, float width, float height, int background)
-SCREWYOU3_HOOK_INIT(SetupTriggerPopup, trigger, triggers, width, height, background)
+bool SetupTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupTriggerPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* trigger, cocos2d::CCArray* triggers, float width, float height, int background))
+SCREWYOU3_HOOK_IMPL(SetupTriggerPopup, init, trigger, triggers, width, height, background)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SetupZoomTriggerPopup.hpp>
-SCREWYOU3_HOOK(SetupZoomTriggerPopup, EffectGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(SetupZoomTriggerPopup, p0, p1)
+bool SetupZoomTriggerPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SetupZoomTriggerPopup)
+SCREWYOU3_HOOK(bool init(EffectGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(SetupZoomTriggerPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SFXBrowser.hpp>
-SCREWYOU3_HOOK(SFXBrowser, int p0)
-SCREWYOU3_HOOK_INIT(SFXBrowser, p0)
+bool SFXBrowser_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SFXBrowser)
+SCREWYOU3_HOOK(bool init(int id))
+SCREWYOU3_HOOK_IMPL(SFXBrowser, init, id)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ShaderLayer.hpp>
-SCREWYOU3_HOOK(ShaderLayer, )
-SCREWYOU3_HOOK_INIT(ShaderLayer)
+bool ShaderLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ShaderLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(ShaderLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ShardsPage.hpp>
-SCREWYOU3_HOOK(ShardsPage, )
-SCREWYOU3_HOOK_INIT(ShardsPage)
+bool ShardsPage_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ShardsPage)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(ShardsPage, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ShareCommentLayer.hpp>
-SCREWYOU3_HOOK(ShareCommentLayer, gd::string title, int charLimit, CommentType type, int ID, gd::string desc)
-SCREWYOU3_HOOK_INIT(ShareCommentLayer, title, charLimit, type, ID, desc)
+bool ShareCommentLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ShareCommentLayer)
+SCREWYOU3_HOOK(bool init(gd::string title, int charLimit, CommentType type, int ID, gd::string desc))
+SCREWYOU3_HOOK_IMPL(ShareCommentLayer, init, title, charLimit, type, ID, desc)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ShareLevelLayer.hpp>
-SCREWYOU3_HOOK(ShareLevelLayer, GJGameLevel* level)
-SCREWYOU3_HOOK_INIT(ShareLevelLayer, level)
+bool ShareLevelLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ShareLevelLayer)
+SCREWYOU3_HOOK(bool init(GJGameLevel* level))
+SCREWYOU3_HOOK_IMPL(ShareLevelLayer, init, level)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/ShareLevelSettingsLayer.hpp>
-SCREWYOU3_HOOK(ShareLevelSettingsLayer, GJGameLevel* p0)
-SCREWYOU3_HOOK_INIT(ShareLevelSettingsLayer, p0)
+bool ShareLevelSettingsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(ShareLevelSettingsLayer)
+SCREWYOU3_HOOK(bool init(GJGameLevel* level))
+SCREWYOU3_HOOK_IMPL(ShareLevelSettingsLayer, init, level)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/ShareListLayer.hpp>
-SCREWYOU3_HOOK(ShareListLayer, GJLevelList* p0)
-SCREWYOU3_HOOK_INIT(ShareListLayer, p0)
-#endif
+bool ShareListLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(ShareListLayer)
+SCREWYOU3_HOOK(bool init(GJLevelList* list))
+SCREWYOU3_HOOK_IMPL(ShareListLayer, init, list)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SimplePlayer.hpp>
-SCREWYOU3_HOOK(SimplePlayer, int p0)
-SCREWYOU3_HOOK_INIT(SimplePlayer, p0)
+bool SimplePlayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SimplePlayer)
+SCREWYOU3_HOOK(bool init(int id))
+SCREWYOU3_HOOK_IMPL(SimplePlayer, init, id)
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SlideInLayer.hpp>
-SCREWYOU3_HOOK(SlideInLayer, )
-SCREWYOU3_HOOK_INIT(SlideInLayer)
+bool SlideInLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SlideInLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(SlideInLayer, init, )
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/Slider.hpp>
-SCREWYOU3_HOOK(Slider, cocos2d::CCNode* p0, cocos2d::SEL_MenuHandler p1, char const* p2, char const* p3, char const* p4, char const* p5, float p6)
-SCREWYOU3_HOOK_INIT(Slider, p0, p1, p2, p3, p4, p5, p6)
+bool Slider_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(Slider)
+SCREWYOU3_HOOK(bool init(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, char const* bar, char const* groove, char const* thumb, char const* thumbSel, float scale))
+SCREWYOU3_HOOK_IMPL(Slider, init, target, handler, bar, groove, thumb, thumbSel, scale)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SmartTemplateCell.hpp>
-SCREWYOU3_HOOK(SmartTemplateCell, )
-SCREWYOU3_HOOK_INIT(SmartTemplateCell)
+bool SmartTemplateCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SmartTemplateCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(SmartTemplateCell, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SongCell.hpp>
-SCREWYOU3_HOOK(SongCell, )
-SCREWYOU3_HOOK_INIT(SongCell)
+bool SongCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SongCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(SongCell, init, )
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SongInfoLayer.hpp>
-SCREWYOU3_HOOK(SongInfoLayer, gd::string p0, gd::string p1, gd::string p2, gd::string p3, gd::string p4, gd::string p5, int p6, gd::string p7, int p8)
-SCREWYOU3_HOOK_INIT(SongInfoLayer, p0, p1, p2, p3, p4, p5, p6, p7, p8)
-#endif
+bool SongInfoLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SongInfoLayer)
+SCREWYOU3_HOOK(bool init(gd::string songName, gd::string artistName, gd::string songURL, gd::string newgroundsURL, gd::string youtubeURL, gd::string facebookURL, int songID, gd::string songTags, int nongType))
+SCREWYOU3_HOOK_IMPL(SongInfoLayer, init, songName, artistName, songURL, newgroundsURL, youtubeURL, facebookURL, songID, songTags, nongType)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_IOS
 #include <Geode/modify/SongInfoObject.hpp>
-SCREWYOU3_HOOK(SongInfoObject, int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int nongType, gd::string extraArtistIDs, bool isNew, int libraryOrder, int priority)
-SCREWYOU3_HOOK_INIT(SongInfoObject, songID, songName, artistName, artistID, filesize, youtubeVideo, youtubeChannel, url, nongType, extraArtistIDs, isNew, libraryOrder, priority)
-#endif
+bool SongInfoObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(SongInfoObject)
+SCREWYOU3_HOOK(bool init(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int nongType, gd::string extraArtistIDs, bool isNew, int libraryOrder, int priority))
+SCREWYOU3_HOOK_IMPL(SongInfoObject, init, songID, songName, artistName, artistID, filesize, youtubeVideo, youtubeChannel, url, nongType, extraArtistIDs, isNew, libraryOrder, priority)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/SongOptionsLayer.hpp>
-SCREWYOU3_HOOK(SongOptionsLayer, CustomSongDelegate* p0)
-SCREWYOU3_HOOK_INIT(SongOptionsLayer, p0)
-#endif
+bool SongOptionsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SongOptionsLayer)
+SCREWYOU3_HOOK(bool init(CustomSongDelegate* delegate))
+SCREWYOU3_HOOK_IMPL(SongOptionsLayer, init, delegate)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SongSelectNode.hpp>
-SCREWYOU3_HOOK(SongSelectNode, int p0, bool p1, LevelSettingsObject* p2, SongSelectType p3, cocos2d::CCPoint p4, cocos2d::CCNode* p5, cocos2d::CCMenu* p6, bool p7)
-SCREWYOU3_HOOK_INIT(SongSelectNode, p0, p1, p2, p3, p4, p5, p6, p7)
+bool SongSelectNode_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SongSelectNode)
+SCREWYOU3_HOOK(bool init(int id, bool customSong, LevelSettingsObject* settings, SongSelectType selectType, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCMenu* menu, bool noLabel))
+SCREWYOU3_HOOK_IMPL(SongSelectNode, init, id, customSong, settings, selectType, position, parent, menu, noLabel)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SpawnParticleGameObject.hpp>
-SCREWYOU3_HOOK(SpawnParticleGameObject, )
-SCREWYOU3_HOOK_INIT(SpawnParticleGameObject)
+bool SpawnParticleGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SpawnParticleGameObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(SpawnParticleGameObject, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/SpawnTriggerGameObject.hpp>
-SCREWYOU3_HOOK(SpawnTriggerGameObject, )
-SCREWYOU3_HOOK_INIT(SpawnTriggerGameObject)
+bool SpawnTriggerGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(SpawnTriggerGameObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(SpawnTriggerGameObject, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/StarInfoPopup.hpp>
-SCREWYOU3_HOOK(StarInfoPopup, int p0, int p1, int p2, int p3, int p4, int p5, int p6, int p7, int p8, bool p9)
-SCREWYOU3_HOOK_INIT(StarInfoPopup, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
+bool StarInfoPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(StarInfoPopup)
+SCREWYOU3_HOOK(bool init(int autos, int easies, int normals, int hards, int harders, int insanes, int dailies, int gauntlets, int maps, bool platformer))
+SCREWYOU3_HOOK_IMPL(StarInfoPopup, init, autos, easies, normals, hards, harders, insanes, dailies, gauntlets, maps, platformer)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/StartPosObject.hpp>
-SCREWYOU3_HOOK(StartPosObject, )
-SCREWYOU3_HOOK_INIT(StartPosObject)
+bool StartPosObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(StartPosObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(StartPosObject, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/TextAlertPopup.hpp>
-SCREWYOU3_HOOK(TextAlertPopup, gd::string text, float delay, float scale, int opacity, gd::string font)
-SCREWYOU3_HOOK_INIT(TextAlertPopup, text, delay, scale, opacity, font)
+bool TextAlertPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
-
-#if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
-#include <Geode/modify/TextArea.hpp>
-SCREWYOU3_HOOK(TextArea, gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor)
-SCREWYOU3_HOOK_INIT(TextArea, str, font, scale, width, anchor, lineHeight, disableColor)
-#endif
+SCREWYOU3_HOOK_BEGIN(TextAlertPopup)
+SCREWYOU3_HOOK(bool init(gd::string text, float delay, float scale, int opacity, gd::string font))
+SCREWYOU3_HOOK_IMPL(TextAlertPopup, init, text, delay, scale, opacity, font)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/TopArtistsLayer.hpp>
-SCREWYOU3_HOOK(TopArtistsLayer, )
-SCREWYOU3_HOOK_INIT(TopArtistsLayer)
+bool TopArtistsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(TopArtistsLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(TopArtistsLayer, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/TOSPopup.hpp>
-SCREWYOU3_HOOK(TOSPopup, )
-SCREWYOU3_HOOK_INIT(TOSPopup)
+bool TOSPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(TOSPopup)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(TOSPopup, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/TutorialLayer.hpp>
-SCREWYOU3_HOOK(TutorialLayer, )
-SCREWYOU3_HOOK_INIT(TutorialLayer)
+bool TutorialLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(TutorialLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(TutorialLayer, init, )
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/TutorialPopup.hpp>
-SCREWYOU3_HOOK(TutorialPopup, gd::string p0)
-SCREWYOU3_HOOK_INIT(TutorialPopup, p0)
+bool TutorialPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(TutorialPopup)
+SCREWYOU3_HOOK(bool init(gd::string frame))
+SCREWYOU3_HOOK_IMPL(TutorialPopup, init, frame)
+SCREWYOU3_HOOK_END()
 #endif
 
 #include <Geode/modify/UILayer.hpp>
-SCREWYOU3_HOOK(UILayer, GJBaseGameLayer* p0)
-SCREWYOU3_HOOK_INIT(UILayer, p0)
+bool UILayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(UILayer)
+SCREWYOU3_HOOK(bool init(GJBaseGameLayer* layer))
+SCREWYOU3_HOOK_IMPL(UILayer, init, layer)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/UIObjectSettingsPopup.hpp>
-SCREWYOU3_HOOK(UIObjectSettingsPopup, UISettingsGameObject* p0, cocos2d::CCArray* p1)
-SCREWYOU3_HOOK_INIT(UIObjectSettingsPopup, p0, p1)
-#endif
+bool UIObjectSettingsPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(UIObjectSettingsPopup)
+SCREWYOU3_HOOK(bool init(UISettingsGameObject* object, cocos2d::CCArray* objects))
+SCREWYOU3_HOOK_IMPL(UIObjectSettingsPopup, init, object, objects)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/UIOptionsLayer.hpp>
-SCREWYOU3_HOOK(UIOptionsLayer, bool p0)
-SCREWYOU3_HOOK_INIT(UIOptionsLayer, p0)
+bool UIOptionsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(UIOptionsLayer)
+SCREWYOU3_HOOK(bool init(bool dual))
+SCREWYOU3_HOOK_IMPL(UIOptionsLayer, init, dual)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/UIPOptionsLayer.hpp>
-SCREWYOU3_HOOK(UIPOptionsLayer, )
-SCREWYOU3_HOOK_INIT(UIPOptionsLayer)
+bool UIPOptionsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(UIPOptionsLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(UIPOptionsLayer, init, )
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/UISaveLoadLayer.hpp>
-SCREWYOU3_HOOK(UISaveLoadLayer, UIOptionsLayer* p0)
-SCREWYOU3_HOOK_INIT(UISaveLoadLayer, p0)
-#endif
+bool UISaveLoadLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(UISaveLoadLayer)
+SCREWYOU3_HOOK(bool init(UIOptionsLayer* layer))
+SCREWYOU3_HOOK_IMPL(UISaveLoadLayer, init, layer)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/UISettingsGameObject.hpp>
-SCREWYOU3_HOOK(UISettingsGameObject, )
-SCREWYOU3_HOOK_INIT(UISettingsGameObject)
+bool UISettingsGameObject_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(UISettingsGameObject)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(UISettingsGameObject, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/UpdateAccountSettingsPopup.hpp>
-SCREWYOU3_HOOK(UpdateAccountSettingsPopup, GJAccountSettingsLayer* p0, int p1, int p2, int p3, gd::string p4, gd::string p5, gd::string p6)
-SCREWYOU3_HOOK_INIT(UpdateAccountSettingsPopup, p0, p1, p2, p3, p4, p5, p6)
+bool UpdateAccountSettingsPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(UpdateAccountSettingsPopup)
+SCREWYOU3_HOOK(bool init(GJAccountSettingsLayer* settingsLayer, int messageStatus, int friendStatus, int commentStatus, gd::string youtubeURL, gd::string twitterURL, gd::string twitchURL))
+SCREWYOU3_HOOK_IMPL(UpdateAccountSettingsPopup, init, settingsLayer, messageStatus, friendStatus, commentStatus, youtubeURL, twitterURL, twitchURL)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/UploadActionPopup.hpp>
-SCREWYOU3_HOOK(UploadActionPopup, UploadPopupDelegate* delegate, gd::string str)
-SCREWYOU3_HOOK_INIT(UploadActionPopup, delegate, str)
+bool UploadActionPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(UploadActionPopup)
+SCREWYOU3_HOOK(bool init(UploadPopupDelegate* delegate, gd::string str))
+SCREWYOU3_HOOK_IMPL(UploadActionPopup, init, delegate, str)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/UploadListPopup.hpp>
-SCREWYOU3_HOOK(UploadListPopup, GJLevelList* p0)
-SCREWYOU3_HOOK_INIT(UploadListPopup, p0)
-#endif
+bool UploadListPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
 
+SCREWYOU3_HOOK_BEGIN(UploadListPopup)
+SCREWYOU3_HOOK(bool init(GJLevelList* list))
+SCREWYOU3_HOOK_IMPL(UploadListPopup, init, list)
+SCREWYOU3_HOOK_END()
 
-#if defined GEODE_IS_WINDOWS || defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/UploadPopup.hpp>
-SCREWYOU3_HOOK(UploadPopup, GJGameLevel* p0)
-SCREWYOU3_HOOK_INIT(UploadPopup, p0)
-#endif
+bool UploadPopup_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(UploadPopup)
+SCREWYOU3_HOOK(bool init(GJGameLevel* level))
+SCREWYOU3_HOOK_IMPL(UploadPopup, init, level)
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/URLCell.hpp>
-SCREWYOU3_HOOK(URLCell, )
-SCREWYOU3_HOOK_INIT(URLCell)
+bool URLCell_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(URLCell)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(URLCell, init, )
+SCREWYOU3_HOOK_END()
 
 #include <Geode/modify/VideoOptionsLayer.hpp>
-SCREWYOU3_HOOK(VideoOptionsLayer, )
-SCREWYOU3_HOOK_INIT(VideoOptionsLayer)
+bool VideoOptionsLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(VideoOptionsLayer)
+SCREWYOU3_HOOK(bool init())
+SCREWYOU3_HOOK_IMPL(VideoOptionsLayer, init, )
+SCREWYOU3_HOOK_END()
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/WorldLevelPage.hpp>
-SCREWYOU3_HOOK(WorldLevelPage, GJGameLevel* p0, GJWorldNode* p1)
-SCREWYOU3_HOOK_INIT(WorldLevelPage, p0, p1)
+bool WorldLevelPage_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(WorldLevelPage)
+SCREWYOU3_HOOK(bool init(GJGameLevel* level, GJWorldNode* node))
+SCREWYOU3_HOOK_IMPL(WorldLevelPage, init, level, node)
+SCREWYOU3_HOOK_END()
 #endif
 
 
 #if defined GEODE_IS_ANDROID || defined GEODE_IS_ARM_MAC
 #include <Geode/modify/WorldSelectLayer.hpp>
-SCREWYOU3_HOOK(WorldSelectLayer, int p0)
-SCREWYOU3_HOOK_INIT(WorldSelectLayer, p0)
+bool WorldSelectLayer_init_override() {
+if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+	return modUtils::chooseRandomNum(0, 1);
+return  bool();
+}
+
+SCREWYOU3_HOOK_BEGIN(WorldSelectLayer)
+SCREWYOU3_HOOK(bool init(int page))
+SCREWYOU3_HOOK_IMPL(WorldSelectLayer, init, page)
+SCREWYOU3_HOOK_END()
 #endif
 
