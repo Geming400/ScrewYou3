@@ -1,27 +1,62 @@
 """Used to generate everything in the './src/generated' folder
 """
 
+from enum import Enum
+from pathlib import Path
 import re
 import argparse
 import os
 import time
-from typing import Final, Self
-
-HOOK_MACRO: Final[str] = "SCREWYOU3_HOOK"
-INIT_MACRO: Final[str] = "SCREWYOU3_HOOK_INIT"
-MENULAYER_CUSTOM_INIT_MACRO: Final[str] = "SCREWYOU3_MENULAYER_CUSTOM_INIT"
+from typing import Final, Literal, Optional, Self, TypeAlias, cast, overload
+    
 
 parser = argparse.ArgumentParser(
     description='Used to generated "./src/generated/"'
 )
 
-parser.add_argument("geometrydash_broma_file")
+parser.add_argument("bindings_path", help="The path where the bindings for a game version is located. Those can be fetched from 'https://github.com/geode-sdk/bindings'")
 parser.add_argument("-o", "--output", default="./src/",
                     help="The location of the output")
-parser.add_argument("-i", "--ignore", default="",
-                    help="A list of classes to ignore. Each elements is separated by a semi-colon")
 
+
+class ScrewYou3Macro(str, Enum):
+    BEGIN = "SCREWYOU3_HOOK_BEGIN"
+    HOOK = "SCREWYOU3_HOOK"
+    FUNC_HOOK = "SCREWYOU3_HOOK_IMPL"
+    MENULAYER_INIT = "SCREWYOU3_MENULAYER_CUSTOM_INIT"
+    END = "SCREWYOU3_HOOK_END"
+    
 class Param:
+    NULLPTR_POINTER: Final[str] = "nullptr"
+    NULLPTR_REFERENCE: Final[str] = "*(int*)0)" # fire
+    NUMERIC_TYPES: Final[tuple[str, ...]] = (
+        "char", "signed char", "unsigned char",
+        "short", "unsigned short",
+        "int", "unsigned int",
+        "long", "unsigned long",
+        "long long", "unsigned long long",
+        "float", "double", "long double"
+
+        "int8_t", "uint8_t",
+        "int16_t", "uint16_t",
+        "int32_t", "uint32_t",
+        "int64_t", "uint64_t",
+
+        "int_least8_t", "uint_least8_t",
+        "int_least16_t", "uint_least16_t",
+        "int_least32_t", "uint_least32_t",
+        "int_least64_t", "uint_least64_t",
+
+        "int_fast8_t", "uint_fast8_t",
+        "int_fast16_t", "uint_fast16_t",
+        "int_fast32_t", "uint_fast32_t",
+        "int_fast64_t", "uint_fast64_t",
+
+        "intmax_t", "uintmax_t",
+        "intptr_t", "uintptr_t"
+    )
+    STRING_TYPES: Final[tuple[str, ...]] = ("std::string", "gd::string", "const char*")
+    
     name: str
     typeName: str
     isPointer: bool
@@ -32,32 +67,129 @@ class Param:
         self.typeName = typeName
         self.isPointer = isPointer
         self.isReference = isReference
+    
+    def isNumerical(self):
+        return any(x in self.typeName for x in Param.NUMERIC_TYPES)
+    
+    def isString(self):
+        return any(x in self.typeName for x in Param.STRING_TYPES)
+    
+    def isBoolean(self):
+        return self.typeName == "bool"
+    
+    def isTypeValid(self):
+        return self.isNumerical() or self.isString() or self.isBoolean()
+    
+    def typeNameAsVar(self):
+        return self.typeName.replace("*", "").replace("&", "")
+    
+    @overload
+    def getValueChanger(self, finalVarName: str):
+        """Returns a snippet of code to dynamically change the value
         
+        Params:
+            finalVarName: the name of the variable from which to set the new value
+
+        Returns:
+            a snippet of code to dynamically change the value
+        """
+        ...
+        
+    @overload
+    def getValueChanger(self):
+        """Returns a snippet of code to dynamically change the value as is it's being returned in a function
+
+        Returns:
+            a snippet of code to dynamically change the value
+        """
+        ...
+    
+    def getValueChanger(self, finalVarName: Optional[str] = None) -> str:
+        """Returns a snippet of code to dynamically change the value
+        
+        Params:
+            finalVarName: the name of the variable from which to set the new value
+
+        Returns:
+            a snippet of code to dynamically change the value
+        """
+        
+        prefix = "return" if finalVarName == None else finalVarName + " ="
+        res = ""
+        
+        baseNullptrCase = f"""
+if (Mod::get()->getSettingValue<bool>("can-be-nullptr") && modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("nullptr-chance")))
+    {prefix} {Param.NULLPTR_POINTER if self.isPointer else Param.NULLPTR_REFERENCE};
+"""
+
+        if self.isPointer or self.isReference:
+            res += baseNullptrCase
+        
+        if finalVarName: res += f"{self.typeName} {finalVarName};\n"
+        if self.isTypeValid():
+            res += 'if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))\n\t'
+            if self.isString():
+                # bad assumption but we'll assume that pointer strings are always 'const char*'s
+                randomCharsFunc = "getRandomCharSequence_c" if self.isPointer else "getRandomCharSequence"
+                res += f'{prefix} modUtils::{randomCharsFunc}(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));'
+            elif self.isNumerical() or self.isBoolean():
+                res += f'{prefix} modUtils::chooseRandomNum(0, 1);'
+                
+            res += f"\n{prefix} {"new" if self.isPointer or self.isReference else ""} {self.typeNameAsVar()}();" # let's just pray it has a default ctor
+                                                             # we'll see when the mod is building anyway
+        return res
+    
+    def __str__(self) -> str:
+        return f"{self.typeName} {self.name}"
+    
+    def __repr__(self) -> str:
+        return f"Param({str(self)}, isPointer = {self.isPointer}, isReference = {self.isReference})"
+    
     @classmethod
     def fromRaw(cls, rawStr: str) -> Self:
-        rawStr = rawStr[:rawStr.find("=")].strip()
-        # const char* str;
+        # removing everything after the equal sign
+        # (if there's one)
+        if "=" in rawStr:
+            rawStr = rawStr[:rawStr.find("=")].strip()
         
         isPointer = "*" in rawStr
         isReference = "&" in rawStr
         
-        name = ""
-        typeName = ""
+        withoutPointer = rawStr.replace("*", "").replace("&", "")
+        name = withoutPointer.split(" ")[-1]
+        # getting everything except the last word
+        typeName = " ".join(rawStr.split(" ")[:-1]).strip()
         
         inst = cls.__new__(cls)
         inst.__init__(name, typeName, isPointer, isReference)
         return inst
+    
+    @classmethod
+    def fromRaws(cls, raws: list[str]) -> list[Self]:
+        res: list[Self] = []
         
+        for raw in raws:
+            res.append(cls.fromRaw(raw))
+        
+        return res
 
 class CPPFunction:
-    name: str
-    params: str
-    platforms: set[str]
+    Platform: TypeAlias = Literal["win", "imac", "m1", "ios", "android"]
     
-    def __init__(self, name: str, params: str, platforms: set[str]) -> None:
-        self.name = name
-        self.params = params
+    originClass: str
+    params: list[Param]
+    platforms: set[Platform]
+    funcName: str
+    returnType: str
+    signature: str
+    
+    def __init__(self, signature: str, originClass: str, params: str, platforms: set[Platform]) -> None:
+        self.signature = signature
+        self.originClass = originClass
         self.platforms = platforms
+        self.params = Param.fromRaws(params.split(","))
+        self.funcName = CPPFunction.getFuncName(signature)
+        self.returnType = CPPFunction.getReturnType(signature)
     
     def isWin(self): return "win" in self.platforms
     def isMac(self): return "imac" in self.platforms or "m1" in self.platforms
@@ -96,34 +228,80 @@ class CPPFunction:
             return "#if " + ret.removesuffix(" || ")
         return ""
     
-    def build(self, hook_macro: str = HOOK_MACRO, init_macro: str = INIT_MACRO):
+    def createReturnOverride(self) -> str:
+        return Param(self.funcName + "_return", self.returnType, False, False).getValueChanger()
+    
+    def createParamsOverride(self) -> str:
+        dynamicValueChanges: list[str] = []
+        
+        for param in self.params:
+            dynamicValueChanges.append(param.getValueChanger(param.name))
+            
+        # TODO: add return statement
+        return "\n".join(dynamicValueChanges)
+    
+    def paramsToStr(self) -> str:
+        return ", ".join(str(param) for param in self.params)
+    
+    # init_macro = INIT_MACRO
+    # TODO: fix that
+    
+    # This is the most unreadable thing ever
+    def build(self, hook_macro: ScrewYou3Macro = ScrewYou3Macro.HOOK):
         ifDefs = self.createIfdefs()
 
-        if self.params == "":
-            initMacroCall = f"{init_macro}({self.name})"
+        if self.params == []:
+            funcHookCall = f"{ScrewYou3Macro.FUNC_HOOK.value}({self.originClass}, {self.funcName}, )"
         else:
-            initMacroCall = f"{init_macro}({self.name}, {removeTypes(self.params)})"
+            funcHookCall = f"{ScrewYou3Macro.FUNC_HOOK.value}({self.originClass}, {self.funcName}, {removeTypes(self.paramsToStr())})"
         
-        includeCall = f"#include <Geode/modify/{self.name}.hpp>"
-        hookCall = f"""{hook_macro}({self.name}, {self.params})
-{initMacroCall}"""
+        funcReturnOverrideName = f"{self.originClass}_{self.funcName}_override()"
+        funcReturnOverride = self.returnType + " " + funcReturnOverrideName + " {" + f"\n{self.createReturnOverride()}" + "\n}"
+        
+        base = f"""{funcReturnOverride}\n\n{ScrewYou3Macro.BEGIN.value}({self.originClass})"""
+        includeCall = f"#include <Geode/modify/{self.originClass}.hpp>"
+        hookCall = f"{hook_macro.value}({self.signature})"
         
         ret: str = ""
         if ifDefs:
             ret = f"""
 {ifDefs}
+{base}
 {includeCall}
 {hookCall}
+{funcHookCall}
+{ScrewYou3Macro.END.value}()
 #endif
 
 """
         else:
             ret = f"""{includeCall}
+{base}
 {hookCall}
+{funcHookCall}
+{ScrewYou3Macro.END.value}()
 
 """
         
         return ret
+    
+    @staticmethod
+    def getReturnType(funcSignature: str) -> str:
+        splitted = funcSignature.split(" ")
+        for i, thing in enumerate(splitted):
+            if "(" in thing:
+                return " ".join(splitted[:i])
+        
+        raise ValueError(f"Was given '{funcSignature}' but it wasn't indentified as a valid function")
+    
+    @staticmethod
+    def getFuncName(funcSignature: str) -> str:
+        splitted = funcSignature.split(" ")
+        for i, thing in enumerate(splitted):
+            if "(" in thing:
+                return thing[:thing.find("(")]
+        
+        raise ValueError(f"Was given '{funcSignature}' but it wasn't indentified as a valid function")
     
 
 def addArgs(string: str):
@@ -178,12 +356,18 @@ def removeTypes(string: str):
     
     ret = ", ".join(newParams)
     return ret
-    
+
+# yeah std::string isn't a primitive type but I don't care
+# so shut up
+PRIMITIVE_TYPES: Final[list[str]] = list(Param.NUMERIC_TYPES) + list(Param.STRING_TYPES) + ["bool"]
+ALLOWED_TYPES: Final[list[str]] = PRIMITIVE_TYPES
 
 if __name__ == "__main__":
+    h = Param.fromRaw("std::string test").getValueChanger("finalVar")
+    
     initFunctions: dict[str, CPPFunction] = {}
     unavailableClasses: int = 0
-    classesFoundByPlatforms: dict[str, int] = {
+    classesFoundByPlatforms: dict[CPPFunction.Platform, int] = {
         "win": 0,
         "android": 0,
         "ios": 0,
@@ -192,8 +376,7 @@ if __name__ == "__main__":
     }
     
     args = parser.parse_args()
-    
-    toIgnore: list[str] = args.ignore.lower().split(";")
+    gdBromaFile = (Path(args.bindings_path) / "GeometryDash.bro").resolve()
     
     def path(file: str):
         return os.path.normpath(args.output + "\\generated\\" + file)
@@ -205,22 +388,17 @@ if __name__ == "__main__":
         print("Creating path", os.path.normpath(f"{args.output}/generated/"))
         os.mkdir(os.path.normpath(f"{args.output}/generated/"))
 
-    print(f"Finding classes from {os.path.normpath(args.geometrydash_broma_file)}")
+    print(f"Finding classes from {gdBromaFile}")
 
     time1 = time.time()
 
-    with open(os.path.normpath(args.geometrydash_broma_file)) as classes:
+
+    with open(gdBromaFile) as classes:
         regex = r"(|.+?link\(android.+?\n)(class (\w)+)|((bool init\(.+\))|(bool init\(\))) =[\w, ]+;" # fire regex
         matches = re.finditer(regex, classes.read(), re.MULTILINE | re.IGNORECASE)
-
-        ignoreNextInitFunc: bool = False
         
         for match in matches:
             if "bool init(" in match.group(): # a init() function:
-                if ignoreNextInitFunc:
-                    ignoreNextInitFunc = False
-                    continue
-                
                 if " = " in match.group():
                     funcSignature, unparsedPlatforms = match.group().strip().split(" = ")
                 else:
@@ -230,12 +408,12 @@ if __name__ == "__main__":
                 params = addArgs(funcSignature.replace("bool init(", "").replace(")", ""))
                 
                 if any(x in unparsedPlatforms for x in ("win", "m1", "imac", "ios")):
-                    platforms = set(re.sub(r" 0x.+?(,|;)", "", unparsedPlatforms).strip().removeprefix("=").strip().split(" "))
+                    platforms: set[CPPFunction.Platform] = cast(set[CPPFunction.Platform], set(re.sub(r" 0x.+?(,|;)", "", unparsedPlatforms).strip().removeprefix("=").strip().split(" ")))
                     if isValidForAndroid: platforms.add("android")
                     for platform in platforms:
                         if classesFoundByPlatforms.get(platform) == None: print(f"  Platform {platform} not found in 'classesFoundByPlatforms'")
                         classesFoundByPlatforms[platform] += 1
-                    initFunctions[currentClass] = CPPFunction(currentClass, params, platforms)
+                    initFunctions[currentClass] = CPPFunction(funcSignature, currentClass, params, platforms)
             else:
                 isValidForAndroid = False
                 if not initFunctions.get(currentClass) and currentClass != "":
@@ -249,10 +427,6 @@ if __name__ == "__main__":
                 else:
                     _class = match.group().replace("class ", "")
                     
-                if any(x in _class.lower() for x in toIgnore) and toIgnore != ['']:
-                    print(f"    Ignoring class {_class}")
-                    ignoreNextInitFunc = True
-                    continue
                 currentClass = f"{_class}"
     
     print(f"Found {len(initFunctions)} classes with {unavailableClasses} unavailable classes (= they don't have bindings for an 'init' function) !")
@@ -275,11 +449,11 @@ constexpr std::vector<std::string> getClasses() {
                 ifDef = func.createIfdefs()
                 if ifDef:
                     text += f"""\t{ifDef}
-\tclasses.push_back(\"{func.name}\");
+\tclasses.push_back(\"{func.originClass}\");
 \t#endif
 """
                 else:
-                    text += f"\tclasses.push_back(\"{func.name}\");\n"
+                    text += f"\tclasses.push_back(\"{func.originClass}\");\n"
         text += "\n\tclasses.shrink_to_fit();\n"
         text += "\treturn classes;\n}"
         f.write(text)
@@ -289,17 +463,17 @@ constexpr std::vector<std::string> getClasses() {
         with open(path("hooks.cpp"), "w") as f:
             print("Creating 'hooks.cpp'")
             text = """// Generated using 'generate.py'
-// Can't wait for someone to destroy `PlayerObject`'s as their first destroyed init :3
 #include <Geode/Geode.hpp>
 #include <Geode/ui/GeodeUI.hpp>
 #include "../ScrewYou3Manager.hpp"
+#include "../utils.hpp"
 
 using namespace geode::prelude;
 
 // Cursed macros but whatever, this isn't supposed to be the most readable thing after all
 
-#define SCREWYOU2_MENULAYER_CUSTOM_INIT(className, ...) { \\
-        if (ScrewYou3Manager::get()->isKilled(CLASS_NAME) && Mod::get()->getSettingValue<bool>("enabled")) return true; \\
+#define SCREWYOU3_MENULAYER_CUSTOM_INIT(className, ...) { \\
+        if (ScrewYou3Manager::get()->isKilled(className::CLASS_NAME) && Mod::get()->getSettingValue<bool>("enabled")) return true; \\
         if (!className::init(__VA_ARGS__)) return false; \\
         if (Mod::get()->getSavedValue<bool>("first-time-loading", true)) { \\
             log::info("Showing popup"); \\
@@ -316,15 +490,24 @@ using namespace geode::prelude;
     } \\
 };
 
-#define SCREWYOU3_HOOK(className, ...) \\
-class $modify(Screwd##className, className) { \\
-    bool init(__VA_ARGS__) // `SCREWYOU3_HOOK_INIT()` macro goes here
-
-#define SCREWYOU3_HOOK_INIT(className, ...) { \\
-        if (ScrewYou3Manager::get()->isKilled(CLASS_NAME) && Mod::get()->getSettingValue<bool>("enabled")) return true;\\
-        if (!className::init(__VA_ARGS__)) return false; \\
-        return true; \\
+#define SCREWYOU3_HOOK_BEGIN(className) class $modify(Screwd##className, className) {
+// I'm putting the min value for an int32 for the hook priority
+// I'm terribly sorry but I had no choice
+// (It's for the funnies :33)
+#define SCREWYOU3_HOOK_END() \\
+    static void onModify(auto& self) { \\
+        if (!self.setHookPriority(-2147483648)) { \\
+            geode::log::warn("hi"); \\
+        } \\
     } \\
+};
+
+#define SCREWYOU3_HOOK(funcSignature) funcSignature {
+#define SCREWYOU3_HOOK_IMPL(className, funcName, ...) \\
+    if (ScrewYou3Manager::get()->isKilled(fmt::format("{}::{}", className::CLASS_NAME, #funcName)) && Mod::get()->getSettingValue<bool>("enabled")) \\
+        return className##_##funcName##_override(); \\
+    else \\
+        return className::funcName(__VA_ARGS__); \\
 };
 
 // Hooking classes
@@ -335,8 +518,10 @@ class $modify(Screwd##className, className) { \\
 """
 
             for className, func in initFunctions.items():
-                init_macro = MENULAYER_CUSTOM_INIT_MACRO if className == "MenuLayer" else INIT_MACRO
-                text += func.build(init_macro=init_macro)
+                # TODO: fix second macro thingy
+                init_macro = ScrewYou3Macro.MENULAYER_INIT if className == "MenuLayer" else ScrewYou3Macro.BEGIN
+                # text += func.build(init_macro=init_macro)
+                text += func.build()
             f.write(text)
             
     time2 = time.time()
