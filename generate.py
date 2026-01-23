@@ -247,13 +247,20 @@ class CPPFunction:
     # TODO: fix that
     
     # This is the most unreadable thing ever
-    def build(self, hook_macro: ScrewYou3Macro = ScrewYou3Macro.HOOK):
+    def codegen(self, hook_macro: ScrewYou3Macro = ScrewYou3Macro.HOOK, func_hook: ScrewYou3Macro = ScrewYou3Macro.FUNC_HOOK):
+        """'Codegen' this function into a geode hook
+
+        Args:
+            hook_macro: The macro used to **hook** the function.
+            func_hook: The macro that will have the content of the hook.
+        """
+        
         ifDefs = self.createIfdefs()
 
         if self.params == []:
-            funcHookCall = f"{ScrewYou3Macro.FUNC_HOOK.value}({self.originClass}, {self.funcName}, )"
+            funcHookCall = f"{func_hook.value}({self.originClass}, {self.funcName}, )"
         else:
-            funcHookCall = f"{ScrewYou3Macro.FUNC_HOOK.value}({self.originClass}, {self.funcName}, {removeTypes(self.paramsToStr())})"
+            funcHookCall = f"{func_hook.value}({self.originClass}, {self.funcName}, {removeTypes(self.paramsToStr())})"
         
         funcReturnOverrideName = f"{self.originClass}_{self.funcName}_override()"
         funcReturnOverride = self.returnType + " " + funcReturnOverrideName + " {" + f"\n{self.createReturnOverride()}" + "\n}"
@@ -363,9 +370,7 @@ PRIMITIVE_TYPES: Final[list[str]] = list(Param.NUMERIC_TYPES) + list(Param.STRIN
 ALLOWED_TYPES: Final[list[str]] = PRIMITIVE_TYPES
 
 if __name__ == "__main__":
-    h = Param.fromRaw("std::string test").getValueChanger("finalVar")
-    
-    initFunctions: dict[str, CPPFunction] = {}
+    functions: dict[str, CPPFunction] = {}
     unavailableClasses: int = 0
     classesFoundByPlatforms: dict[CPPFunction.Platform, int] = {
         "win": 0,
@@ -413,10 +418,10 @@ if __name__ == "__main__":
                     for platform in platforms:
                         if classesFoundByPlatforms.get(platform) == None: print(f"  Platform {platform} not found in 'classesFoundByPlatforms'")
                         classesFoundByPlatforms[platform] += 1
-                    initFunctions[currentClass] = CPPFunction(funcSignature, currentClass, params, platforms)
+                    functions[currentClass] = CPPFunction(funcSignature, currentClass, params, platforms)
             else:
                 isValidForAndroid = False
-                if not initFunctions.get(currentClass) and currentClass != "":
+                if not functions.get(currentClass) and currentClass != "":
                     unavailableClasses += 1
                     #print(f"    {currentClass} is not avalaible on any platforms")
                 
@@ -429,7 +434,7 @@ if __name__ == "__main__":
                     
                 currentClass = f"{_class}"
     
-    print(f"Found {len(initFunctions)} classes with {unavailableClasses} unavailable classes (= they don't have bindings for an 'init' function) !")
+    print(f"Found {len(functions)} classes with {unavailableClasses} unavailable classes (= they don't have bindings for an 'init' function) !")
     print("Now creating files...")
     
     # functions.hpp
@@ -471,7 +476,7 @@ constexpr ScrewYouFuncsT getFuncs() {
     
 """
 
-        for func in initFunctions.values():
+        for func in functions.values():
             if func.isBindingAvalaible():
                 ifDef = func.createIfdefs()
                 if ifDef:
@@ -499,23 +504,24 @@ constexpr ScrewYouFuncsT getFuncs() {
 using namespace geode::prelude;
 
 // Cursed macros but whatever, this isn't supposed to be the most readable thing after all
+// Also haii !!!
+// :3
 
-#define SCREWYOU3_MENULAYER_CUSTOM_INIT(className, ...) { \\
-        if (ScrewYou3Manager::get()->isKilled(className::CLASS_NAME) && Mod::get()->getSettingValue<bool>("enabled")) return true; \\
-        if (!className::init(__VA_ARGS__)) return false; \\
-        if (Mod::get()->getSavedValue<bool>("first-time-loading", true)) { \\
-            log::info("Showing popup"); \\
-            Mod::get()->setSavedValue<bool>("first-time-loading", false); \\
-            auto alert = FLAlertLayer::create( \\
-                "Before you continue", \\
-                "This mod CAN and WILL make your gd crash. Be sure to read this mod's description before continuing", \\
-                "Dismiss" \\
-            ); \\
-            alert->m_scene = this; \\
-            alert->show(); \\
-        } \\
-        return true; \\
-    } \\
+#define SCREWYOU3_MENULAYER_CUSTOM_INIT(className, funcName, ...) \\
+    if (ScrewYou3Manager::get()->isKilled(fmt::format("{}::{}", className::CLASS_NAME, #funcName)) && Mod::get()->getSettingValue<bool>("enabled")) \\
+        return className##_##funcName##_override(); \\
+    else \\
+		if (Mod::get()->getSavedValue<bool>("first-time-loading", true)) { \\
+			Mod::get()->setSavedValue<bool>("first-time-loading", false); \\
+			auto alert = FLAlertLayer::create( \\
+				"Before you continue", \\
+				"This mod CAN and WILL make your gd crash. Be sure to read this mod's description before continuing", \\
+				"Dismiss" \\
+			); \\
+			alert->m_scene = this; \\
+			alert->show(); \\
+		} \\
+        return className::funcName(__VA_ARGS__); \\
 };
 
 #define SCREWYOU3_HOOK_BEGIN(className) class $modify(Screwd##className, className) {
@@ -545,11 +551,11 @@ using namespace geode::prelude;
 
 """
 
-            for className, func in initFunctions.items():
+            for className, func in functions.items():
                 # TODO: fix second macro thingy
-                init_macro = ScrewYou3Macro.MENULAYER_INIT if className == "MenuLayer" else ScrewYou3Macro.BEGIN
+                funcHookMacro = ScrewYou3Macro.MENULAYER_INIT if className == "MenuLayer" and func.funcName == "init" else ScrewYou3Macro.FUNC_HOOK
                 # text += func.build(init_macro=init_macro)
-                text += func.build()
+                text += func.codegen(func_hook=funcHookMacro)
             f.write(text)
             
     time2 = time.time()
@@ -558,7 +564,7 @@ using namespace geode::prelude;
     print("Done !")
     print(f"Finished in {time2 - time1} seconds !")
     print("Stats:")
-    print(f"  Found {len(initFunctions)} init functions/valid classes")
+    print(f"  Found {len(functions)} init functions/valid classes")
     print(f"  Found {unavailableClasses} unavailable classes (They didn't have a 'init()' function)")
     print("  Platforms:")
     print(f"    Windows: {classesFoundByPlatforms['win']}")

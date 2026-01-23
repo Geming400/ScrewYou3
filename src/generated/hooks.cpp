@@ -7,23 +7,24 @@
 using namespace geode::prelude;
 
 // Cursed macros but whatever, this isn't supposed to be the most readable thing after all
+// Also haii !!!
+// :3
 
-#define SCREWYOU3_MENULAYER_CUSTOM_INIT(className, ...) { \
-        if (ScrewYou3Manager::get()->isKilled(className::CLASS_NAME) && Mod::get()->getSettingValue<bool>("enabled")) return true; \
-        if (!className::init(__VA_ARGS__)) return false; \
-        if (Mod::get()->getSavedValue<bool>("first-time-loading", true)) { \
-            log::info("Showing popup"); \
-            Mod::get()->setSavedValue<bool>("first-time-loading", false); \
-            auto alert = FLAlertLayer::create( \
-                "Before you continue", \
-                "This mod CAN and WILL make your gd crash. Be sure to read this mod's description before continuing", \
-                "Dismiss" \
-            ); \
-            alert->m_scene = this; \
-            alert->show(); \
-        } \
-        return true; \
-    } \
+#define SCREWYOU3_MENULAYER_CUSTOM_INIT(className, funcName, ...) \
+    if (ScrewYou3Manager::get()->isKilled(fmt::format("{}::{}", className::CLASS_NAME, #funcName)) && Mod::get()->getSettingValue<bool>("enabled")) \
+        return className##_##funcName##_override(); \
+    else \
+		if (Mod::get()->getSavedValue<bool>("first-time-loading", true)) { \
+			Mod::get()->setSavedValue<bool>("first-time-loading", false); \
+			auto alert = FLAlertLayer::create( \
+				"Before you continue", \
+				"This mod CAN and WILL make your gd crash. Be sure to read this mod's description before continuing", \
+				"Dismiss" \
+			); \
+			alert->m_scene = this; \
+			alert->show(); \
+		} \
+        return className::funcName(__VA_ARGS__); \
 };
 
 #define SCREWYOU3_HOOK_BEGIN(className) class $modify(Screwd##className, className) {
@@ -2220,7 +2221,7 @@ return  bool();
 
 SCREWYOU3_HOOK_BEGIN(MenuLayer)
 SCREWYOU3_HOOK(bool init())
-SCREWYOU3_HOOK_IMPL(MenuLayer, init, )
+SCREWYOU3_MENULAYER_CUSTOM_INIT(MenuLayer, init, )
 SCREWYOU3_HOOK_END("MenuLayer::init")
 
 #include <Geode/modify/MessagesProfilePage.hpp>
