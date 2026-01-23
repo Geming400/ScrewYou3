@@ -31,9 +31,9 @@ using namespace geode::prelude;
 // I'm putting the min value for an int32 for the hook priority
 // I'm terribly sorry but I had no choice
 // (It's for the funnies :33)
-#define SCREWYOU3_HOOK_END() \
+#define SCREWYOU3_HOOK_END(hookedFunction) \
     static void onModify(auto& self) { \
-        if (!self.setHookPriority(-2147483648)) { \
+        if (!self.setHookPriority(hookedFunction, -2147483648)) { \
             geode::log::warn("hi"); \
         } \
     } \
@@ -64,4 +64,4 @@ bool AccountLoginLayer_init_override() {
 SCREWYOU3_HOOK_BEGIN(AccountLoginLayer)
 SCREWYOU3_HOOK(bool init(std::string p0))
 SCREWYOU3_HOOK_IMPL(AccountLoginLayer, init, p0)
-SCREWYOU3_HOOK_END()
+SCREWYOU3_HOOK_END("AccountLoginLayer::init")
