@@ -270,7 +270,7 @@ class CPPFunction:
 {base}
 {hookCall}
 {funcHookCall}
-{ScrewYou3Macro.END.value}()
+{ScrewYou3Macro.END.value}(\"{self.originClass}::{self.funcName}\")
 #endif
 
 """
@@ -279,7 +279,7 @@ class CPPFunction:
 {base}
 {hookCall}
 {funcHookCall}
-{ScrewYou3Macro.END.value}()
+{ScrewYou3Macro.END.value}(\"{self.originClass}::{self.funcName}\")
 
 """
         
@@ -456,10 +456,13 @@ constexpr std::vector<std::string> getClasses() {
 using ScrewYouFuncsT = std::map<std::string, std::vector<std::string>>;
 
 constexpr void addToMap(ScrewYouFuncsT& map, std::string clazz, std::string func) {
-    if (map.contains(clazz))
+    if (map.contains(clazz)) {
         map.at(clazz).push_back(func);
-    else
-        map.insert(clazz, func);
+	} else {
+		std::vector<std::string> toInsert;
+		toInsert.push_back(func);
+        map[clazz] = toInsert;
+	}
 }
 
 constexpr ScrewYouFuncsT getFuncs() {
@@ -518,9 +521,9 @@ using namespace geode::prelude;
 // I'm putting the min value for an int32 for the hook priority
 // I'm terribly sorry but I had no choice
 // (It's for the funnies :33)
-#define SCREWYOU3_HOOK_END() \\
+#define SCREWYOU3_HOOK_END(hookedFunction) \\
     static void onModify(auto& self) { \\
-        if (!self.setHookPriority(-2147483648)) { \\
+        if (!self.setHookPriority(hookedFunction, -2147483648)) { \\
             geode::log::warn("hi"); \\
         } \\
     } \\

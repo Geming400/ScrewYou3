@@ -5,10 +5,13 @@
 using ScrewYouFuncsT = std::map<std::string, std::vector<std::string>>;
 
 constexpr void addToMap(ScrewYouFuncsT& map, std::string clazz, std::string func) {
-    if (map.contains(clazz))
+    if (map.contains(clazz)) {
         map.at(clazz).push_back(func);
-    else
-        map.insert(clazz, func);
+	} else {
+		std::vector<std::string> toInsert;
+		toInsert.push_back(func);
+        map[clazz] = toInsert;
+	}
 }
 
 constexpr ScrewYouFuncsT getFuncs() {
