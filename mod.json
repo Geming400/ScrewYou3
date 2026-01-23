@@ -82,6 +82,15 @@
 			"description": "The lenght of the string (filled with random characters) to send",
 			"type": "int",
 			"default": 5
+		},
+
+		"debug": {
+			"name": "Debug",
+			"type": "title"
+		},
+		"dump-classes": {
+			"name": "Dump surviving classes",
+			"type": "custom:dump-classes"
 		}
 	}
 }
