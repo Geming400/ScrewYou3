@@ -187,7 +187,7 @@ class CPPFunction:
         self.signature = signature
         self.originClass = originClass
         self.platforms = platforms
-        self.params = Param.fromRaws(params.split(","))
+        self.params = Param.fromRaws(params.split(",")) if params else []
         self.funcName = CPPFunction.getFuncName(signature)
         self.returnType = CPPFunction.getReturnType(signature)
     
@@ -266,8 +266,8 @@ class CPPFunction:
         if ifDefs:
             ret = f"""
 {ifDefs}
-{base}
 {includeCall}
+{base}
 {hookCall}
 {funcHookCall}
 {ScrewYou3Macro.END.value}()
@@ -432,16 +432,39 @@ if __name__ == "__main__":
     print(f"Found {len(initFunctions)} classes with {unavailableClasses} unavailable classes (= they don't have bindings for an 'init' function) !")
     print("Now creating files...")
     
-    # classes.hpp
+    # functions.hpp
     
-    with open(path("classes.hpp"), "w") as f:
-        print("Creating 'classes.hpp'")
+    with open(path("functions.hpp"), "w") as f:
+        print("Creating 'functions.hpp'")
+        getClassesFunc = """
+constexpr std::vector<std::string> getClasses() {
+	std::vector<std::string> ret;
+    ret.reserve(getFuncs().size());
+
+    for (auto& [clazz, funcs] : getFuncs()) {
+        ret.push_back(clazz);
+    }
+
+	return ret;
+}
+"""
+        
         text = """// Generated using 'generate.py'
-#include <vector>
+#include <map>
 #include <string>
 
-constexpr std::vector<std::string> getClasses() {
-    std::vector<std::string> classes;
+using ScrewYouFuncsT = std::map<std::string, std::vector<std::string>>;
+
+constexpr void addToMap(ScrewYouFuncsT& map, std::string clazz, std::string func) {
+    if (map.contains(clazz))
+        map.at(clazz).push_back(func);
+    else
+        map.insert(clazz, func);
+}
+
+constexpr ScrewYouFuncsT getFuncs() {
+    ScrewYouFuncsT classes;
+    
 """
 
         for func in initFunctions.values():
@@ -449,14 +472,15 @@ constexpr std::vector<std::string> getClasses() {
                 ifDef = func.createIfdefs()
                 if ifDef:
                     text += f"""\t{ifDef}
-\tclasses.push_back(\"{func.originClass}\");
+\taddToMap(classes, \"{func.originClass}\", \"{func.funcName}\");
 \t#endif
 """
                 else:
-                    text += f"\tclasses.push_back(\"{func.originClass}\");\n"
-        text += "\n\tclasses.shrink_to_fit();\n"
-        text += "\treturn classes;\n}"
-        f.write(text)
+                    text += f"\taddToMap(classes, \"{func.originClass}\", \"{func.funcName}\");\n"
+            else:
+                text += f"\t// Bindings not avalaible for {func.originClass}::{func.funcName};\n"
+        text += "\n\treturn classes;\n}"
+        f.write(text + "\n" + getClassesFunc)
     
         # hooks.cpp
     

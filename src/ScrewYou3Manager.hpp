@@ -1,4 +1,4 @@
-#include "./generated/classes.hpp"
+#include "./generated/functions.hpp"
 
 class ScrewYou3Manager {
     private:
@@ -7,15 +7,19 @@ class ScrewYou3Manager {
         /**
          * A vector determining the classes that didn't get 'killed' yet
          */
-        std::vector<std::string> m_survivingClasses = getClasses();
+        ScrewYouFuncsT m_survivingClasses = getFuncs();
 
     public:
         static ScrewYou3Manager* get();
 
-        std::vector<std::string> getSurvivingClasses();
+        ScrewYouFuncsT getSurvivingFuncs();
 
-        bool isKilled(std::string className);
+        /// Check if a function got killed. Formatted as `Class::func`
+        bool isKilled(std::string funcPath);
+        bool isKilled(std::string clazz, std::string funcName);
 
-        void killClass(std::string className);
+        /// Kills a function formatted as `Class::func`
+        void killClass(std::string funcPath);
+        void killClass(std::string clazz, std::string funcName);
         void killRandomClass();
 };
