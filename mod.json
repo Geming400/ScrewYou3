@@ -12,6 +12,15 @@
 	"developer": "Geming400",
 	"description": "Screw you 2, but better",
 	"early-load": true,
+	"tags": [
+		"bugfix",
+		"content",
+		"customization",
+		"enhancement",
+		"gameplay",
+		"performance",
+		"utility"
+	],
 	"settings": {
 		"behavior-title": {
 			"type": "title",
