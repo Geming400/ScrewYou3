@@ -638,7 +638,7 @@ using namespace geode::prelude;
 			Mod::get()->setSavedValue<bool>("first-time-loading", false); \\
 			auto alert = FLAlertLayer::create( \\
 				"Before you continue", \\
-				"This mod CAN and WILL make your gd crash. Be sure to read this mod's description before continuing", \\
+				"This mod CAN corrupt the game. Be sure to read this mod's description before continuing", \\
 				"Dismiss" \\
 			); \\
 			alert->m_scene = this; \\
