@@ -51,7 +51,7 @@ void ScrewYou3Manager::killClass(std::string funcPath) {
 
 void ScrewYou3Manager::killClass(std::string clazz, std::string funcName) {
     ranges::remove(m_survivingClasses.at(clazz), funcName);
-    log::info("Killed {}", funcName);
+    log::info("Killed {}::{}", clazz, funcName);
 }
 
 void ScrewYou3Manager::killRandomClass() {
