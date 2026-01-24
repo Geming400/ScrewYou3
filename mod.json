@@ -11,6 +11,7 @@
 	"version": "v6.9.0",
 	"developer": "Geming400",
 	"description": "Screw you 2, but better",
+	"early-load": true,
 	"settings": {
 		"behavior-title": {
 			"type": "title",
