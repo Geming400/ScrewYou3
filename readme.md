@@ -1,6 +1,7 @@
 # Screw You 3
 
-This is a mod that will literally destroy random classes' init functions.
+This is a mod that will literally destroy random functions' return value.
+A function gets "killed" on player death
 
 > [!WARNING]
 > This can and **WILL** make your gd crash eventually
