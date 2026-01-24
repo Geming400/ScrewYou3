@@ -3,24 +3,22 @@
 #include <random>
 #include <iterator>
 #include <concepts>
-#include <vector>
+#include <string>
 
 namespace modUtils {
-    constexpr std::vector<char> getChars() {
-        std::vector<char> res;
-
-        constexpr char asciiMin = 32;
-        constexpr char asciiMax = 126;
-
-        for (char i = asciiMin; i < asciiMax; i++) {
-            res.push_back(i);
-        }
-
-        return res;
-    }
+    constexpr char ASCII_MIN = 32;
+    constexpr char ASCII_MAX = 126;
 
     template<typename T>
     concept arithmetic = std::integral<T> or std::floating_point<T>;
+
+    template<typename T>
+    concept uniformCompatible =
+        std::integral<T>
+        && !std::same_as<T, char>
+        && !std::same_as<T, signed char>
+        && !std::same_as<T, unsigned char>
+        && !std::same_as<T, bool>;
 
     // Literally stolen from https://stackoverflow.com/questions/6942273/how-to-get-a-random-element-from-a-c-container
     // because I can use CTRL+C and CTRL+V :trol:
@@ -39,9 +37,22 @@ namespace modUtils {
     }
 
     /// Choses a random num from start to end
-    template<arithmetic T>
+    template<uniformCompatible T>
     T chooseRandomNum(T start, T end) {
-        return start + static_cast<T>(rand()) / (static_cast<T>(RAND_MAX / (end-start)));
+        static std::mt19937 rng(std::random_device{}());
+        std::uniform_int_distribution<T> dist(start, end);
+        return dist(rng);
+    }
+    template<std::floating_point T>
+    T chooseRandomNum(T start, T end) {
+        static std::mt19937 rng(std::random_device{}());
+        std::uniform_real_distribution<T> dist(start, end);
+        return dist(rng);
+    }
+    inline char chooseRandomNum(char start, char end) {
+        static std::mt19937 rng(std::random_device{}());
+        std::uniform_int_distribution<int> dist(start, end);
+        return static_cast<char>(dist(rng));
     }
 
     /// Choses a random num from 0 to end
@@ -56,7 +67,7 @@ namespace modUtils {
         res.reserve(lenght);
 
         for (char i = 0; i < lenght; i++) {
-            res += i;
+            res += chooseRandomNum(ASCII_MIN, ASCII_MAX);
         }
 
         return res;
@@ -66,7 +77,7 @@ namespace modUtils {
         res.reserve(lenght);
 
         for (char i = 0; i < lenght; i++) {
-            res += i;
+            res += chooseRandomNum(ASCII_MIN, ASCII_MAX);
         }
 
         const char* str = res.c_str();
