@@ -100,7 +100,13 @@
 		},
 		"dump-classes": {
 			"name": "Dump surviving classes",
+			"description": "Dumps all of the surviving classes in geode's log",
 			"type": "custom:dump-classes"
+		},
+		"reset-killed-func": {
+			"name": "Reset killed functions",
+			"description": "Resets the mod",
+			"type": "custom:reset-killed-funcs"
 		},
 		"log": {
 			"name": "Log debug stuff",

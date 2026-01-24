@@ -26,4 +26,8 @@ class ScrewYou3Manager {
         void killClass(std::string funcPath);
         void killClass(std::string clazz, std::string funcName);
         void killRandomClass();
+
+        inline void resetKilledFuncs() {
+            m_survivingFuncs = getFuncs();
+        }
 };
