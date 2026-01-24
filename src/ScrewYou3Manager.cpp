@@ -28,7 +28,7 @@ bool ScrewYou3Manager::isKilled(std::string funcPath) {
         }
     }
 
-    log::debug("Checking if {} (func {}) is killed: true", funcPath, getFuncFromPath(funcPath));
+    log::debug("Checking if {} (func '{}') is killed: true", funcPath, getFuncFromPath(funcPath));
     return true;
 }
 bool ScrewYou3Manager::isKilled(std::string clazz, std::string funcName) {
