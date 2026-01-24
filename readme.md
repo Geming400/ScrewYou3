@@ -1,5 +1,9 @@
 # Screw You 3
 
+This is where she makes a mod
+
+<img src="logo.png" width="150" alt="the mod's logo" />
+
 This is a mod that will literally destroy random functions' return value.
 A function gets "killed" on player death
 
