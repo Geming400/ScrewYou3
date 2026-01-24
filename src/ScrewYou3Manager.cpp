@@ -6,6 +6,10 @@
 
 using namespace geode::prelude;
 
+bool canLog() {
+    return Mod::get()->getSettingValue<bool>("log");
+}
+
 std::string getFuncFromPath(std::string funcPath) {
     return utils::string::split(funcPath, "::")[1];
 }
@@ -23,18 +27,18 @@ ScrewYouFuncsT ScrewYou3Manager::getSurvivingFuncs() {
 bool ScrewYou3Manager::isKilled(std::string funcPath) {
     for (auto& [clazz, funcs] : m_survivingClasses) {
         if (ranges::contains(funcs, getFuncFromPath(funcPath))) {
-            log::debug("Checking if {} (func '{}') is killed: false", funcPath, getFuncFromPath(funcPath));
+            if (canLog()) log::debug("Checking if {} (func '{}') is killed: false", funcPath, getFuncFromPath(funcPath));
             return false;
         }
     }
 
-    log::debug("Checking if {} (func '{}') is killed: true", funcPath, getFuncFromPath(funcPath));
+    if (canLog()) log::debug("Checking if {} (func '{}') is killed: true", funcPath, getFuncFromPath(funcPath));
     return true;
 }
 bool ScrewYou3Manager::isKilled(std::string clazz, std::string funcName) {
     bool res = !ranges::contains(m_survivingClasses.at(clazz), funcName);
 
-    log::debug("Checking if {}::{} is killed: {}", clazz, funcName, res);
+    if (canLog()) log::debug("Checking if {}::{} is killed: {}", clazz, funcName, res);
     return res;
 }
 
@@ -42,7 +46,7 @@ void ScrewYou3Manager::killClass(std::string funcPath) {
     for (auto& [clazz, funcs] : m_survivingClasses) {
         if (ranges::contains(funcs, funcPath)) {
             ranges::remove(funcs, getFuncFromPath(funcPath));
-            log::debug("Killed {}", funcPath);
+            log::info("Killed {}", funcPath);
 
             break;
         }

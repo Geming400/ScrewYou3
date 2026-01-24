@@ -92,6 +92,12 @@
 		"dump-classes": {
 			"name": "Dump surviving classes",
 			"type": "custom:dump-classes"
+		},
+		"log": {
+			"name": "Log debug stuff",
+			"description": "If debug logs should be enabled. This will flood your console and possibly make your game slower",
+			"type": "bool",
+			"default": false
 		}
 	}
 }
