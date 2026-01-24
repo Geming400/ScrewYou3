@@ -1,13 +1,14 @@
 """Used to generate everything in the './src/generated' folder
 """
 
+from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
 import re
 import argparse
 import os
 import time
-from typing import Final, Literal, Optional, Self, TypeAlias, cast, overload
+from typing import Final, Iterable, Literal, Optional, Self, TypeAlias, cast, overload
     
 
 parser = argparse.ArgumentParser(
@@ -469,12 +470,19 @@ def removeTypes(string: str):
     ret = ", ".join(newParams)
     return ret
 
-# yeah std::string isn't a primitive type but I don't care
-# so shut up
-PRIMITIVE_TYPES: Final[list[str]] = list(Param.NUMERIC_TYPES) + list(Param.STRING_TYPES) + ["bool"]
-ALLOWED_TYPES: Final[list[str]] = PRIMITIVE_TYPES
+def path(file: str):
+    return os.path.normpath(args.output + "\\generated\\" + file)
 
-if __name__ == "__main__":
+@dataclass
+class BromaReturn:
+    functions: dict[str, list[CPPFunction]]
+    unavailableFuncs: int
+    classesFoundByPlatforms: dict[CPPFunction.Platform, int]
+    
+def parseBromaFile(path: str | Path) -> BromaReturn:
+    currentClass: str = ""
+    isValidForAndroid: bool = False
+    
     functions: dict[str, list[CPPFunction]] = {}
     unavailableFuncs: int = 0
     classesFoundByPlatforms: dict[CPPFunction.Platform, int] = {
@@ -484,32 +492,14 @@ if __name__ == "__main__":
         "imac": 0,
         "m1": 0
     }
-    numOfHookedFuncs: int = 0
     
-    args = parser.parse_args()
-    gdBromaFile = (Path(args.bindings_path) / "GeometryDash.bro").resolve()
-    
-    def path(file: str):
-        return os.path.normpath(args.output + "\\generated\\" + file)
-
-    currentClass: str = ""
-    isValidForAndroid: bool = False
-
-    if not os.path.exists(os.path.normpath(f"{args.output}/generated/")):
-        print("Creating path", os.path.normpath(f"{args.output}/generated/"))
-        os.mkdir(os.path.normpath(f"{args.output}/generated/"))
-
-    print(f"Finding classes from {gdBromaFile}")
-
-    time1 = time.time()
-
-
     # incredible code below
     # WARNING: You have no right to get jealous of my coding skills
-    with open(gdBromaFile) as classes:
+    with open(path) as classes:
         # regex = r"(|.+?link\(android.+?\n)(class (\w)+)|((bool init\(.+\))|(bool init\(\))) =[\w, ]+;" # fire regex
         bromaParserRegex = r"(|.+?link\(android.+?\n)(class (\w)+)|(.+\(.+\)|(.+\(\))) =[\w, ]+;" # it's maybe worse now
-        matches = re.finditer(bromaParserRegex, classes.read(), re.MULTILINE | re.IGNORECASE)
+        classesFormatted = re.sub(r"class \w+(?=::)::", "class ", classes.read())
+        matches = re.finditer(bromaParserRegex, classesFormatted, re.MULTILINE | re.IGNORECASE)
         
         for match in matches:
             if ";" in match.group(): # a function declaration
@@ -553,7 +543,51 @@ if __name__ == "__main__":
                 else:
                     currentClass = match.group().replace("class ", "")
     
-    print(f"Found {len(functions)} classes with {unavailableFuncs} unavailable classes (= they don't have bindings) !")
+    return BromaReturn(functions, unavailableFuncs, classesFoundByPlatforms)
+
+def combineParsedBromaFiles(parsedBromaFiles: Iterable[BromaReturn]) -> BromaReturn:
+    ret = BromaReturn({}, 0, {})
+    for bromaFile in parsedBromaFiles:
+        ret.unavailableFuncs += bromaFile.unavailableFuncs
+        for clazz, funcs in bromaFile.functions.items():
+            if ret.functions.get(clazz) == None:
+                ret.functions[clazz] = funcs
+            else:
+                ret.functions[clazz] += funcs
+        for platform, n in bromaFile.classesFoundByPlatforms.items():
+            if ret.classesFoundByPlatforms.get(platform) == None:
+                ret.classesFoundByPlatforms[platform] = n
+            else:
+                ret.classesFoundByPlatforms[platform] += n
+        
+    return ret
+
+# yeah std::string isn't a primitive type but I don't care
+# so shut up
+PRIMITIVE_TYPES: Final[list[str]] = list(Param.NUMERIC_TYPES) + list(Param.STRING_TYPES) + ["bool"]
+ALLOWED_TYPES: Final[list[str]] = PRIMITIVE_TYPES
+
+    
+if __name__ == "__main__":
+    args = parser.parse_args()
+    gdBromaFile = (Path(args.bindings_path) / "GeometryDash.bro").resolve()
+    # cocosBromaFile = (Path(args.bindings_path) / "Cocos2d.bro").resolve()
+    # cocos = parseBromaFile(cocosBromaFile)
+    # parsedBroFile = combineParsedBromaFiles([parseBromaFile(gdBromaFile), cocos])
+    parsedBroFile = parseBromaFile(gdBromaFile)
+
+    numOfHookedFuncs: int = 0
+    
+
+    if not os.path.exists(os.path.normpath(f"{args.output}/generated/")):
+        print("Creating path", os.path.normpath(f"{args.output}/generated/"))
+        os.mkdir(os.path.normpath(f"{args.output}/generated/"))
+
+    print(f"Finding classes from {gdBromaFile}")
+
+    time1 = time.time()
+    
+    print(f"Found {len(parsedBroFile.functions)} classes with {parsedBroFile.unavailableFuncs} unavailable classes (= they don't have bindings) !")
     print("Now creating files...")
     
     # functions.hpp
@@ -595,7 +629,7 @@ constexpr ScrewYouFuncsT getFuncs() {
     
 """
 
-        for classFuncs in functions.values():
+        for classFuncs in parsedBroFile.functions.values():
             for func in classFuncs:
                 if not func.returnType in ALLOWED_TYPES: continue
                 
@@ -674,7 +708,7 @@ using namespace geode::prelude;
 
 """
 
-            for className, classFuncs in functions.items():
+            for className, classFuncs in parsedBroFile.functions.items():
                 funcsToCodegen: list[CPPFunction] = []
                 for func in classFuncs:
                     if func.returnType in ALLOWED_TYPES: funcsToCodegen.append(func)
@@ -692,7 +726,7 @@ using namespace geode::prelude;
     time2 = time.time()
     
     numOfFuncs = 0
-    for funcs in functions:
+    for funcs in parsedBroFile.functions:
         numOfFuncs += len(funcs)
     
     print("-" * 100)
@@ -700,12 +734,12 @@ using namespace geode::prelude;
     print(f"Finished in {time2 - time1} seconds !")
     print("Stats:")
     print(f"  Found {numOfFuncs} valid functions")
-    print(f"  Found {unavailableFuncs} unavailable functions (They didn't have any binding)")
+    print(f"  Found {parsedBroFile.unavailableFuncs} unavailable functions (They didn't have any binding)")
     print(f"  Hooked {numOfHookedFuncs} functions")
     print("  Platforms:")
-    print(f"    Windows:      {classesFoundByPlatforms['win']}")
-    print(f"    m1 (arm mac): {classesFoundByPlatforms['m1']}")
-    print(f"    Android:      {classesFoundByPlatforms['android']}")
-    print(f"    Imac:         {classesFoundByPlatforms['imac']}")
-    print(f"    Ios:          {classesFoundByPlatforms['ios']}")
+    print(f"    Windows:      {parsedBroFile.classesFoundByPlatforms['win']}")
+    print(f"    m1 (arm mac): {parsedBroFile.classesFoundByPlatforms['m1']}")
+    print(f"    Android:      {parsedBroFile.classesFoundByPlatforms['android']}")
+    print(f"    Imac:         {parsedBroFile.classesFoundByPlatforms['imac']}")
+    print(f"    Ios:          {parsedBroFile.classesFoundByPlatforms['ios']}")
                 
