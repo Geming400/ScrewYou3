@@ -20,12 +20,26 @@ ScrewYou3Manager* ScrewYou3Manager::get() {
 }
 
 ScrewYouFuncsT ScrewYou3Manager::getSurvivingFuncs() {
-    return m_survivingClasses;
+    return m_survivingFuncs;
+}
+std::vector<std::string> ScrewYou3Manager::getAllSurvivingFuncs(bool withNamespace) {
+    std::vector<std::string> ret;
+
+    for (auto& [clazz, funcs] : m_survivingFuncs) {
+        for (auto& func : funcs) {
+            if (withNamespace)
+                ret.push_back(fmt::format("{}::{}", clazz, func));
+            else
+                ret.push_back(func);
+        }
+    }    
+
+    return ret;
 }
 
 
 bool ScrewYou3Manager::isKilled(std::string funcPath) {
-    for (auto& [clazz, funcs] : m_survivingClasses) {
+    for (auto& [clazz, funcs] : m_survivingFuncs) {
         if (ranges::contains(funcs, getFuncFromPath(funcPath))) {
             if (canLog()) log::debug("Checking if {} (func '{}') is killed: false", funcPath, getFuncFromPath(funcPath));
             return false;
@@ -36,15 +50,15 @@ bool ScrewYou3Manager::isKilled(std::string funcPath) {
     return true;
 }
 bool ScrewYou3Manager::isKilled(std::string clazz, std::string funcName) {
-    bool res = !ranges::contains(m_survivingClasses.at(clazz), funcName);
+    bool res = !ranges::contains(m_survivingFuncs.at(clazz), funcName);
 
     if (canLog()) log::debug("Checking if {}::{} is killed: {}", clazz, funcName, res);
     return res;
 }
 
 void ScrewYou3Manager::killClass(std::string funcPath) {
-    for (auto& [clazz, funcs] : m_survivingClasses) {
-        if (ranges::contains(funcs, funcPath)) {
+    for (auto& [clazz, funcs] : m_survivingFuncs) {
+        if (ranges::contains(funcs, getFuncFromPath(funcPath))) {
             ranges::remove(funcs, getFuncFromPath(funcPath));
             log::info("Killed {}", funcPath);
 
@@ -54,14 +68,15 @@ void ScrewYou3Manager::killClass(std::string funcPath) {
 }
 
 void ScrewYou3Manager::killClass(std::string clazz, std::string funcName) {
-    ranges::remove(m_survivingClasses.at(clazz), funcName);
+    ranges::remove(m_survivingFuncs.at(clazz), funcName);
     log::info("Killed {}::{}", clazz, funcName);
 }
 
 void ScrewYou3Manager::killRandomClass() {
-    if (m_survivingClasses.empty()) return;
+    if (m_survivingFuncs.empty()) return;
+
+    std::vector<std::string> survivingFuncs = getAllSurvivingFuncs(true);
     
-    auto killedClass = modUtils::select_randomly(m_survivingClasses.begin(), m_survivingClasses.end());
-    log::info("Killed {}", *killedClass);
-    m_survivingClasses.erase(killedClass);
+    auto killedClass = modUtils::select_randomly(survivingFuncs.begin(), survivingFuncs.end());
+    killClass(*killedClass);
 }

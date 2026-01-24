@@ -8,7 +8,7 @@ This is also the better [Screw You 2](https://github.com/Geming400/ScrewYou2)
 
 This is a mod that will literally destroy random classes' functions (who's return value are of a primitive type and `std::string`).
 
-### <cy>**WARNING**</cy>
+### <cy>WARNING</cy>
 
 This can and **WILL** make your gd crash eventually
 
