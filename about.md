@@ -1,10 +1,10 @@
 # Screw You 3
 
-> Literally the better [Screw You 2](https://github.com/Geming400/ScrewYou2)
+[Screw you](https://geode-sdk.org/mods/jarvisdevil.screwyou) by [jarvisdevil](https://geode-sdk.org/mods?developer=thejarvisdevil) but even more evil.
 
-This is where she makes a mod.
+This is also the better [Screw You 2](https://github.com/Geming400/ScrewYou2)
 
-<img src="logo.png" width="150" alt="the mod's logo"/>
+-----
 
 This is a mod that will literally destroy random classes' functions (who's return value are of a primitive type and `std::string`).
 
