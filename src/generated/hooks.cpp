@@ -55,9 +55,7 @@ using namespace geode::prelude;
 #include <Geode/modify/AccountLoginLayer.hpp>
 
 bool AccountLoginLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -69,15 +67,11 @@ SCREWYOU3_HOOK_END("AccountLoginLayer::init")
 #include <Geode/modify/AccountRegisterLayer.hpp>
 
 bool AccountRegisterLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool AccountRegisterLayer_allowTextInput_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -91,9 +85,7 @@ SCREWYOU3_HOOK_END("AccountRegisterLayer::init")
 #include <Geode/modify/AchievementBar.hpp>
 
 bool AchievementBar_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -105,27 +97,19 @@ SCREWYOU3_HOOK_END("AchievementBar::init")
 #include <Geode/modify/AchievementManager.hpp>
 
 bool AchievementManager_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string AchievementManager_achievementForUnlock_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool AchievementManager_isAchievementEarned_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int AchievementManager_percentForAchievement_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -143,9 +127,7 @@ SCREWYOU3_HOOK_END("AchievementManager::init")
 #include <Geode/modify/AchievementNotifier.hpp>
 
 bool AchievementNotifier_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -157,21 +139,15 @@ SCREWYOU3_HOOK_END("AchievementNotifier::init")
 #include <Geode/modify/AdToolbox.hpp>
 
 bool AdToolbox_hasCachedInterstitial_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool AdToolbox_hasCachedRewardedVideo_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool AdToolbox_isShowingAd_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -193,9 +169,7 @@ SCREWYOU3_HOOK_END("AdToolbox::hasCachedInterstitial")
 #include <Geode/modify/AdvancedFollowEditObject.hpp>
 
 gd::string AdvancedFollowEditObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -207,9 +181,7 @@ SCREWYOU3_HOOK_END("AdvancedFollowEditObject::getSaveString")
 #include <Geode/modify/AdvancedFollowTriggerObject.hpp>
 
 gd::string AdvancedFollowTriggerObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -221,15 +193,11 @@ SCREWYOU3_HOOK_END("AdvancedFollowTriggerObject::getSaveString")
 #include <Geode/modify/AnimatedGameObject.hpp>
 
 gd::string AnimatedGameObject_animationForID_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool AnimatedGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -243,15 +211,11 @@ SCREWYOU3_HOOK_END("AnimatedGameObject::animationForID")
 #include <Geode/modify/AppDelegate.hpp>
 
 bool AppDelegate_applicationDidFinishLaunching_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool AppDelegate_musicTest_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -265,9 +229,7 @@ SCREWYOU3_HOOK_END("AppDelegate::applicationDidFinishLaunching")
 #include <Geode/modify/ArtistCell.hpp>
 
 bool ArtistCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -279,9 +241,7 @@ SCREWYOU3_HOOK_END("ArtistCell::init")
 #include <Geode/modify/ArtTriggerGameObject.hpp>
 
 gd::string ArtTriggerGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -293,9 +253,7 @@ SCREWYOU3_HOOK_END("ArtTriggerGameObject::getSaveString")
 #include <Geode/modify/AudioAssetsBrowser.hpp>
 
 bool AudioAssetsBrowser_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -307,9 +265,7 @@ SCREWYOU3_HOOK_END("AudioAssetsBrowser::init")
 #include <Geode/modify/AudioEffectsLayer.hpp>
 
 bool AudioEffectsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -321,15 +277,11 @@ SCREWYOU3_HOOK_END("AudioEffectsLayer::init")
 #include <Geode/modify/AudioLineGuideGameObject.hpp>
 
 bool AudioLineGuideGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string AudioLineGuideGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -343,9 +295,7 @@ SCREWYOU3_HOOK_END("AudioLineGuideGameObject::init")
 #include <Geode/modify/BonusDropdown.hpp>
 
 bool BonusDropdown_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -359,9 +309,7 @@ SCREWYOU3_HOOK_END("BonusDropdown::init")
 #include <Geode/modify/BoomListLayer.hpp>
 
 bool BoomListLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -375,21 +323,15 @@ SCREWYOU3_HOOK_END("BoomListLayer::init")
 #include <Geode/modify/BoomListView.hpp>
 
 float BoomListView_cellHeightForRowAtIndexPath_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 int BoomListView_numberOfRowsInSection_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool BoomListView_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -405,21 +347,15 @@ SCREWYOU3_HOOK_END("BoomListView::cellHeightForRowAtIndexPath")
 #include <Geode/modify/BoomScrollLayer.hpp>
 
 bool BoomScrollLayer_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool BoomScrollLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int BoomScrollLayer_pageNumberForPosition_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -435,9 +371,7 @@ SCREWYOU3_HOOK_END("BoomScrollLayer::ccTouchBegan")
 #include <Geode/modify/BrowseSmartKeyLayer.hpp>
 
 bool BrowseSmartKeyLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -449,9 +383,7 @@ SCREWYOU3_HOOK_END("BrowseSmartKeyLayer::init")
 #include <Geode/modify/BrowseSmartTemplateLayer.hpp>
 
 bool BrowseSmartTemplateLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -463,9 +395,7 @@ SCREWYOU3_HOOK_END("BrowseSmartTemplateLayer::init")
 #include <Geode/modify/ButtonSprite.hpp>
 
 bool ButtonSprite_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -479,9 +409,7 @@ SCREWYOU3_HOOK_END("ButtonSprite::init")
 #include <Geode/modify/CameraTriggerGameObject.hpp>
 
 gd::string CameraTriggerGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -493,9 +421,7 @@ SCREWYOU3_HOOK_END("CameraTriggerGameObject::getSaveString")
 #include <Geode/modify/CCAlertCircle.hpp>
 
 bool CCAlertCircle_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -509,9 +435,7 @@ SCREWYOU3_HOOK_END("CCAlertCircle::init")
 #include <Geode/modify/CCAnimatedSprite.hpp>
 
 bool CCAnimatedSprite_initWithType_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -523,9 +447,7 @@ SCREWYOU3_HOOK_END("CCAnimatedSprite::initWithType")
 #include <Geode/modify/CCBlockLayer.hpp>
 
 bool CCBlockLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -537,9 +459,7 @@ SCREWYOU3_HOOK_END("CCBlockLayer::init")
 #include <Geode/modify/CCCircleAlert.hpp>
 
 bool CCCircleAlert_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -553,9 +473,7 @@ SCREWYOU3_HOOK_END("CCCircleAlert::init")
 #include <Geode/modify/CCCircleWave.hpp>
 
 bool CCCircleWave_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -567,9 +485,7 @@ SCREWYOU3_HOOK_END("CCCircleWave::init")
 #include <Geode/modify/CCCountdown.hpp>
 
 bool CCCountdown_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -583,9 +499,7 @@ SCREWYOU3_HOOK_END("CCCountdown::init")
 #include <Geode/modify/CCMenuItemSpriteExtra.hpp>
 
 bool CCMenuItemSpriteExtra_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -597,9 +511,7 @@ SCREWYOU3_HOOK_END("CCMenuItemSpriteExtra::init")
 #include <Geode/modify/CCNodeContainer.hpp>
 
 bool CCNodeContainer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -611,15 +523,11 @@ SCREWYOU3_HOOK_END("CCNodeContainer::init")
 #include <Geode/modify/CCPartAnimSprite.hpp>
 
 bool CCPartAnimSprite_isFrameDisplayed_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool CCPartAnimSprite_initWithAnimDesc_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -633,9 +541,7 @@ SCREWYOU3_HOOK_END("CCPartAnimSprite::isFrameDisplayed")
 #include <Geode/modify/CCScrollLayerExt.hpp>
 
 bool CCScrollLayerExt_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -647,18 +553,14 @@ SCREWYOU3_HOOK_END("CCScrollLayerExt::ccTouchBegan")
 #include <Geode/modify/CCSpriteGrayscale.hpp>
 
 gd::string CCSpriteGrayscale_getShaderName_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 const char* CCSpriteGrayscale_shaderBody_override() {
 
 if (Mod::get()->getSettingValue<bool>("can-be-nullptr") && modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("nullptr-chance")))
-    return nullptr;
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+    	return nullptr;
 	return modUtils::getRandomCharSequence_c(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return new  char();
 }
 
 
@@ -672,15 +574,11 @@ SCREWYOU3_HOOK_END("CCSpriteGrayscale::getShaderName")
 #include <Geode/modify/CCSpritePlus.hpp>
 
 bool CCSpritePlus_initWithTexture_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool CCSpritePlus_initWithSpriteFrameName_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -694,30 +592,22 @@ SCREWYOU3_HOOK_END("CCSpritePlus::initWithTexture")
 #include <Geode/modify/CCSpriteWithHue.hpp>
 
 bool CCSpriteWithHue_initWithTexture_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool CCSpriteWithHue_initWithSpriteFrame_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string CCSpriteWithHue_getShaderName_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 const char* CCSpriteWithHue_shaderBody_override() {
 
 if (Mod::get()->getSettingValue<bool>("can-be-nullptr") && modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("nullptr-chance")))
-    return nullptr;
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+    	return nullptr;
 	return modUtils::getRandomCharSequence_c(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return new  char();
 }
 
 
@@ -739,33 +629,23 @@ SCREWYOU3_HOOK_END("CCSpriteWithHue::initWithTexture")
 #include <Geode/modify/CCTextInputNode.hpp>
 
 bool CCTextInputNode_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool CCTextInputNode_onTextFieldInsertText_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool CCTextInputNode_onTextFieldAttachWithIME_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool CCTextInputNode_onTextFieldDetachWithIME_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool CCTextInputNode_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -785,9 +665,7 @@ SCREWYOU3_HOOK_END("CCTextInputNode::ccTouchBegan")
 #include <Geode/modify/ChallengeNode.hpp>
 
 bool ChallengeNode_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -799,9 +677,7 @@ SCREWYOU3_HOOK_END("ChallengeNode::init")
 #include <Geode/modify/ChallengesPage.hpp>
 
 bool ChallengesPage_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -813,21 +689,15 @@ SCREWYOU3_HOOK_END("ChallengesPage::init")
 #include <Geode/modify/CharacterColorPage.hpp>
 
 bool CharacterColorPage_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int CharacterColorPage_activeColorForMode_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int CharacterColorPage_colorForIndex_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -843,15 +713,11 @@ SCREWYOU3_HOOK_END("CharacterColorPage::init")
 #include <Geode/modify/CheckpointGameObject.hpp>
 
 bool CheckpointGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string CheckpointGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -865,9 +731,7 @@ SCREWYOU3_HOOK_END("CheckpointGameObject::init")
 #include <Geode/modify/CheckpointObject.hpp>
 
 bool CheckpointObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -879,9 +743,7 @@ SCREWYOU3_HOOK_END("CheckpointObject::init")
 #include <Geode/modify/CollisionBlockPopup.hpp>
 
 bool CollisionBlockPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -893,9 +755,7 @@ SCREWYOU3_HOOK_END("CollisionBlockPopup::init")
 #include <Geode/modify/ColorActionSprite.hpp>
 
 bool ColorActionSprite_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -907,9 +767,7 @@ SCREWYOU3_HOOK_END("ColorActionSprite::init")
 #include <Geode/modify/ColorChannelSprite.hpp>
 
 bool ColorChannelSprite_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -921,9 +779,7 @@ SCREWYOU3_HOOK_END("ColorChannelSprite::init")
 #include <Geode/modify/ColorSelectLiveOverlay.hpp>
 
 bool ColorSelectLiveOverlay_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -935,15 +791,11 @@ SCREWYOU3_HOOK_END("ColorSelectLiveOverlay::init")
 #include <Geode/modify/ColorSelectPopup.hpp>
 
 gd::string ColorSelectPopup_colorToHex_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool ColorSelectPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -957,9 +809,7 @@ SCREWYOU3_HOOK_END("ColorSelectPopup::colorToHex")
 #include <Geode/modify/CommentCell.hpp>
 
 bool CommentCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -971,9 +821,7 @@ SCREWYOU3_HOOK_END("CommentCell::init")
 #include <Geode/modify/CommunityCreditsPage.hpp>
 
 bool CommunityCreditsPage_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -985,9 +833,7 @@ SCREWYOU3_HOOK_END("CommunityCreditsPage::init")
 #include <Geode/modify/ConfigureHSVWidget.hpp>
 
 bool ConfigureHSVWidget_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -999,9 +845,7 @@ SCREWYOU3_HOOK_END("ConfigureHSVWidget::init")
 #include <Geode/modify/ConfigureValuePopup.hpp>
 
 bool ConfigureValuePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1013,9 +857,7 @@ SCREWYOU3_HOOK_END("ConfigureValuePopup::init")
 #include <Geode/modify/CountTriggerGameObject.hpp>
 
 gd::string CountTriggerGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -1027,21 +869,15 @@ SCREWYOU3_HOOK_END("CountTriggerGameObject::getSaveString")
 #include <Geode/modify/CreateGuidelinesLayer.hpp>
 
 bool CreateGuidelinesLayer_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string CreateGuidelinesLayer_getMergedRecordString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool CreateGuidelinesLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1057,39 +893,27 @@ SCREWYOU3_HOOK_END("CreateGuidelinesLayer::ccTouchBegan")
 #include <Geode/modify/CreateParticlePopup.hpp>
 
 bool CreateParticlePopup_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool CreateParticlePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 float CreateParticlePopup_maxSliderValueForType_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float CreateParticlePopup_minSliderValueForType_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 gd::string CreateParticlePopup_titleForParticleValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 float CreateParticlePopup_valueForParticleValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 
@@ -1111,9 +935,7 @@ SCREWYOU3_HOOK_END("CreateParticlePopup::ccTouchBegan")
 #include <Geode/modify/CreatorLayer.hpp>
 
 bool CreatorLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1125,9 +947,7 @@ SCREWYOU3_HOOK_END("CreatorLayer::init")
 #include <Geode/modify/CurrencyRewardLayer.hpp>
 
 bool CurrencyRewardLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1139,15 +959,11 @@ SCREWYOU3_HOOK_END("CurrencyRewardLayer::init")
 #include <Geode/modify/CurrencySprite.hpp>
 
 gd::string CurrencySprite_spriteTypeToStat_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool CurrencySprite_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1161,15 +977,11 @@ SCREWYOU3_HOOK_END("CurrencySprite::spriteTypeToStat")
 #include <Geode/modify/CustomizeObjectLayer.hpp>
 
 int CustomizeObjectLayer_getActiveMode_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool CustomizeObjectLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1183,9 +995,7 @@ SCREWYOU3_HOOK_END("CustomizeObjectLayer::getActiveMode")
 #include <Geode/modify/CustomizeObjectSettingsPopup.hpp>
 
 bool CustomizeObjectSettingsPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1197,9 +1007,7 @@ SCREWYOU3_HOOK_END("CustomizeObjectSettingsPopup::init")
 #include <Geode/modify/CustomListView.hpp>
 
 float CustomListView_getCellHeight_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 
@@ -1211,15 +1019,11 @@ SCREWYOU3_HOOK_END("CustomListView::getCellHeight")
 #include <Geode/modify/CustomSFXCell.hpp>
 
 bool CustomSFXCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int CustomSFXCell_getActiveSFXID_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -1233,9 +1037,7 @@ SCREWYOU3_HOOK_END("CustomSFXCell::init")
 #include <Geode/modify/CustomSFXWidget.hpp>
 
 bool CustomSFXWidget_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1247,21 +1049,15 @@ SCREWYOU3_HOOK_END("CustomSFXWidget::init")
 #include <Geode/modify/CustomSongCell.hpp>
 
 bool CustomSongCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int CustomSongCell_getActiveSongID_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string CustomSongCell_getSongFileName_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -1277,9 +1073,7 @@ SCREWYOU3_HOOK_END("CustomSongCell::init")
 #include <Geode/modify/CustomSongLayer.hpp>
 
 bool CustomSongLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1291,9 +1085,7 @@ SCREWYOU3_HOOK_END("CustomSongLayer::init")
 #include <Geode/modify/CustomSongWidget.hpp>
 
 bool CustomSongWidget_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1305,9 +1097,7 @@ SCREWYOU3_HOOK_END("CustomSongWidget::init")
 #include <Geode/modify/DailyLevelNode.hpp>
 
 bool DailyLevelNode_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1319,15 +1109,11 @@ SCREWYOU3_HOOK_END("DailyLevelNode::init")
 #include <Geode/modify/DailyLevelPage.hpp>
 
 gd::string DailyLevelPage_getDailyTimeString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool DailyLevelPage_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1341,9 +1127,7 @@ SCREWYOU3_HOOK_END("DailyLevelPage::getDailyTimeString")
 #include <Geode/modify/DashRingObject.hpp>
 
 gd::string DashRingObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -1355,9 +1139,7 @@ SCREWYOU3_HOOK_END("DashRingObject::getSaveString")
 #include <Geode/modify/DemonFilterSelectLayer.hpp>
 
 bool DemonFilterSelectLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1369,9 +1151,7 @@ SCREWYOU3_HOOK_END("DemonFilterSelectLayer::init")
 #include <Geode/modify/DemonInfoPopup.hpp>
 
 bool DemonInfoPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1383,15 +1163,11 @@ SCREWYOU3_HOOK_END("DemonInfoPopup::init")
 #include <Geode/modify/DialogLayer.hpp>
 
 bool DialogLayer_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool DialogLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1405,9 +1181,7 @@ SCREWYOU3_HOOK_END("DialogLayer::ccTouchBegan")
 #include <Geode/modify/DungeonBarsSprite.hpp>
 
 bool DungeonBarsSprite_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1419,9 +1193,7 @@ SCREWYOU3_HOOK_END("DungeonBarsSprite::init")
 #include <Geode/modify/EditGameObjectPopup.hpp>
 
 bool EditGameObjectPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1433,9 +1205,7 @@ SCREWYOU3_HOOK_END("EditGameObjectPopup::init")
 #include <Geode/modify/EditLevelLayer.hpp>
 
 bool EditLevelLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1447,9 +1217,7 @@ SCREWYOU3_HOOK_END("EditLevelLayer::init")
 #include <Geode/modify/EditorOptionsLayer.hpp>
 
 bool EditorOptionsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1461,9 +1229,7 @@ SCREWYOU3_HOOK_END("EditorOptionsLayer::init")
 #include <Geode/modify/EditorPauseLayer.hpp>
 
 bool EditorPauseLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1475,93 +1241,63 @@ SCREWYOU3_HOOK_END("EditorPauseLayer::init")
 #include <Geode/modify/EditorUI.hpp>
 
 bool EditorUI_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool EditorUI_canSelectObject_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int EditorUI_convertKeyBasedOnNeighbors_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int EditorUI_convertToBaseKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string EditorUI_copyObjects_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool EditorUI_editButton2Usable_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool EditorUI_editButtonUsable_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int EditorUI_getRandomStartKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int EditorUI_getSmartObjectKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 float EditorUI_getXMin_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool EditorUI_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool EditorUI_isSpecialSnapObject_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool EditorUI_onCreate_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool EditorUI_shouldDeleteObject_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int EditorUI_smartTypeForKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -1601,9 +1337,7 @@ SCREWYOU3_HOOK_END("EditorUI::ccTouchBegan")
 #include <Geode/modify/EditTriggersPopup.hpp>
 
 bool EditTriggersPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1615,27 +1349,19 @@ SCREWYOU3_HOOK_END("EditTriggersPopup::init")
 #include <Geode/modify/EffectGameObject.hpp>
 
 gd::string EffectGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 float EffectGameObject_spawnXPosition_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool EffectGameObject_canReverse_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool EffectGameObject_canBeOrdered_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1653,18 +1379,14 @@ SCREWYOU3_HOOK_END("EffectGameObject::getSaveString")
 #include <Geode/modify/EndLevelLayer.hpp>
 
 gd::string EndLevelLayer_getCoinString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 const char* EndLevelLayer_getEndText_override() {
 
 if (Mod::get()->getSettingValue<bool>("can-be-nullptr") && modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("nullptr-chance")))
-    return nullptr;
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+    	return nullptr;
 	return modUtils::getRandomCharSequence_c(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return new  char();
 }
 
 
@@ -1678,9 +1400,7 @@ SCREWYOU3_HOOK_END("EndLevelLayer::getCoinString")
 #include <Geode/modify/EndPortalObject.hpp>
 
 bool EndPortalObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1692,15 +1412,11 @@ SCREWYOU3_HOOK_END("EndPortalObject::init")
 #include <Geode/modify/EndTriggerGameObject.hpp>
 
 bool EndTriggerGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string EndTriggerGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -1714,51 +1430,35 @@ SCREWYOU3_HOOK_END("EndTriggerGameObject::init")
 #include <Geode/modify/EnhancedGameObject.hpp>
 
 gd::string EnhancedGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool EnhancedGameObject_hasBeenActivatedByPlayer_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool EnhancedGameObject_hasBeenActivated_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool EnhancedGameObject_canAllowMultiActivate_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool EnhancedGameObject_getHasSyncedAnimation_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool EnhancedGameObject_getHasRotateAction_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool EnhancedGameObject_canMultiActivate_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool EnhancedGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1784,9 +1484,7 @@ SCREWYOU3_HOOK_END("EnhancedGameObject::getSaveString")
 #include <Geode/modify/EnhancedTriggerObject.hpp>
 
 gd::string EnhancedTriggerObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -1798,9 +1496,7 @@ SCREWYOU3_HOOK_END("EnhancedTriggerObject::getSaveString")
 #include <Geode/modify/EnterEffectObject.hpp>
 
 gd::string EnterEffectObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -1812,15 +1508,11 @@ SCREWYOU3_HOOK_END("EnterEffectObject::getSaveString")
 #include <Geode/modify/EventLinkTrigger.hpp>
 
 bool EventLinkTrigger_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string EventLinkTrigger_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -1834,9 +1526,7 @@ SCREWYOU3_HOOK_END("EventLinkTrigger::init")
 #include <Geode/modify/ExplodeItemSprite.hpp>
 
 bool ExplodeItemSprite_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1848,9 +1538,7 @@ SCREWYOU3_HOOK_END("ExplodeItemSprite::init")
 #include <Geode/modify/ExtendedLayer.hpp>
 
 bool ExtendedLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1862,9 +1550,7 @@ SCREWYOU3_HOOK_END("ExtendedLayer::init")
 #include <Geode/modify/FileOperation.hpp>
 
 gd::string FileOperation_getFilePath_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -1878,9 +1564,7 @@ SCREWYOU3_HOOK_END("FileOperation::getFilePath")
 #include <Geode/modify/FileSaveManager.hpp>
 
 bool FileSaveManager_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1894,9 +1578,7 @@ SCREWYOU3_HOOK_END("FileSaveManager::init")
 #include <Geode/modify/FindObjectPopup.hpp>
 
 bool FindObjectPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1908,15 +1590,11 @@ SCREWYOU3_HOOK_END("FindObjectPopup::init")
 #include <Geode/modify/FLAlertLayer.hpp>
 
 bool FLAlertLayer_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool FLAlertLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -1932,87 +1610,59 @@ SCREWYOU3_HOOK_END("FLAlertLayer::ccTouchBegan")
 #include <Geode/modify/FMODAudioEngine.hpp>
 
 int FMODAudioEngine_channelIDForUniqueID_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string FMODAudioEngine_getFMODStatus_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 unsigned int FMODAudioEngine_getMusicLengthMS_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return   int();
 }
 
 unsigned int FMODAudioEngine_getMusicTimeMS_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return   int();
 }
 
 bool FMODAudioEngine_isMusicPlaying_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool FMODAudioEngine_isPersistentMatchPlaying_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int FMODAudioEngine_lengthForSound_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 float FMODAudioEngine_pitchForIdx_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 int FMODAudioEngine_playEffect_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int FMODAudioEngine_playEffectAdvanced_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int FMODAudioEngine_queuePlayEffect_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int FMODAudioEngine_registerChannel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string FMODAudioEngine_reverbToString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 float FMODAudioEngine_stopAndGetFade_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 
@@ -2054,9 +1704,7 @@ SCREWYOU3_HOOK_END("FMODAudioEngine::channelIDForUniqueID")
 #include <Geode/modify/FMODLevelVisualizer.hpp>
 
 bool FMODLevelVisualizer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -2068,9 +1716,7 @@ SCREWYOU3_HOOK_END("FMODLevelVisualizer::init")
 #include <Geode/modify/FollowRewardPage.hpp>
 
 bool FollowRewardPage_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -2082,9 +1728,7 @@ SCREWYOU3_HOOK_END("FollowRewardPage::init")
 #include <Geode/modify/ForceBlockGameObject.hpp>
 
 gd::string ForceBlockGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -2096,15 +1740,11 @@ SCREWYOU3_HOOK_END("ForceBlockGameObject::getSaveString")
 #include <Geode/modify/FRequestProfilePage.hpp>
 
 bool FRequestProfilePage_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool FRequestProfilePage_isCorrect_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -2118,9 +1758,7 @@ SCREWYOU3_HOOK_END("FRequestProfilePage::init")
 #include <Geode/modify/FriendRequestPopup.hpp>
 
 bool FriendRequestPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -2132,9 +1770,7 @@ SCREWYOU3_HOOK_END("FriendRequestPopup::init")
 #include <Geode/modify/FriendsProfilePage.hpp>
 
 bool FriendsProfilePage_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -2146,9 +1782,7 @@ SCREWYOU3_HOOK_END("FriendsProfilePage::init")
 #include <Geode/modify/GameCell.hpp>
 
 bool GameCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -2160,9 +1794,7 @@ SCREWYOU3_HOOK_END("GameCell::init")
 #include <Geode/modify/GameEffectsManager.hpp>
 
 bool GameEffectsManager_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -2176,276 +1808,186 @@ SCREWYOU3_HOOK_END("GameEffectsManager::init")
 #include <Geode/modify/GameLevelManager.hpp>
 
 bool GameLevelManager_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_acceptFriendRequest_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int GameLevelManager_accountIDForUserID_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool GameLevelManager_blockUser_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_deleteFriendRequests_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_deleteUserMessages_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GameLevelManager_getBasePostString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int GameLevelManager_getCompletedDailyLevels_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int GameLevelManager_getCompletedEventLevels_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int GameLevelManager_getCompletedWeeklyLevels_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string GameLevelManager_getDemonLevelsString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameLevelManager_getDifficultyStr_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameLevelManager_getFolderName_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GameLevelManager_getGJChallenges_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_getGJDailyLevelState_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_getGJRewards_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_getGJSecretReward_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GameLevelManager_getLengthStr_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameLevelManager_getNextLevelName_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 const char* GameLevelManager_getPageInfo_override() {
 
 if (Mod::get()->getSettingValue<bool>("can-be-nullptr") && modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("nullptr-chance")))
-    return nullptr;
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+    	return nullptr;
 	return modUtils::getRandomCharSequence_c(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return new  char();
 }
 
 int GameLevelManager_getSplitIntFromKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string GameLevelManager_getStarLevelsString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int GameLevelManager_getTimeLeft_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool GameLevelManager_hasDownloadedLevel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_hasLikedAccountItem_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_hasLikedItem_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_hasLikedItemFullCheck_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_hasRatedDemon_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_hasRatedLevelStars_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_hasReportedLevel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_isDLActive_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_isFollowingUser_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_isTimeValid_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_keyHasTimer_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int GameLevelManager_levelIDFromCommentKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool GameLevelManager_rateDemon_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_removeFriend_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_requestUserAccess_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GameLevelManager_tryGetUsername_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GameLevelManager_unblockUser_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_updateDescription_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameLevelManager_uploadFriendRequest_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GameLevelManager_userNameForUserID_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GameLevelManager_verifyContainerOnlyHasLevels_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GameLevelManager_writeSpecialFilters_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -2545,123 +2087,83 @@ SCREWYOU3_HOOK_END("GameLevelManager::init")
 #include <Geode/modify/GameManager.hpp>
 
 bool GameManager_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int GameManager_activeIconForType_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool GameManager_canShowRewardedVideo_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GameManager_colorKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int GameManager_countForType_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string GameManager_dpadConfigToString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int GameManager_generateSecretNumber_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool GameManager_getGameVariable_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int GameManager_getIntGameVariable_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string GameManager_getMenuMusicFile_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GameManager_getUGV_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GameManager_iconKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GameManager_isColorUnlocked_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameManager_isIconUnlocked_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int GameManager_playSFXTrigger_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int GameManager_reorderKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool GameManager_safePopScene_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GameManager_sheetNameForIcon_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameManager_stringForCustomObject_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GameManager_toggleGameVariable_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -2713,165 +2215,111 @@ SCREWYOU3_HOOK_END("GameManager::init")
 #include <Geode/modify/GameObject.hpp>
 
 bool GameObject_initWithTexture_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GameObject_isFlipX_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameObject_isFlipY_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 float GameObject_getRScaleX_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float GameObject_getRScaleY_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float GameObject_getObjectRotation_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 int GameObject_addToGroup_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 float GameObject_spawnXPosition_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 gd::string GameObject_getColorFrame_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameObject_getColorKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameObject_getGlowFrame_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int GameObject_getObjectDirection_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int GameObject_getParentMode_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 float GameObject_groupOpacityMod_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool GameObject_ignoreEditorDuration_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameObject_isBasicTrigger_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameObject_isFacingDown_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameObject_isFacingLeft_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameObject_isSpawnableTrigger_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameObject_isSpecialObject_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameObject_isTrigger_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GameObject_perspectiveColorFrame_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameObject_perspectiveFrame_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GameObject_shouldBlendColor_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameObject_shouldLockX_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 double GameObject_slopeYPos_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  double();
 }
 
 
@@ -2935,9 +2383,7 @@ SCREWYOU3_HOOK_END("GameObject::initWithTexture")
 #include <Geode/modify/GameOptionsTrigger.hpp>
 
 gd::string GameOptionsTrigger_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -2949,225 +2395,151 @@ SCREWYOU3_HOOK_END("GameOptionsTrigger::getSaveString")
 #include <Geode/modify/GameStatsManager.hpp>
 
 bool GameStatsManager_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_awardSecretKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int GameStatsManager_getAwardedCurrencyForLevel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int GameStatsManager_getAwardedDiamondsForLevel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int GameStatsManager_getBaseCurrencyForLevel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int GameStatsManager_getCollectedCoinsForLevel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string GameStatsManager_getGauntletRewardKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameStatsManager_getItemKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int GameStatsManager_getItemUnlockState_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int GameStatsManager_getItemUnlockStateLite_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string GameStatsManager_getLevelKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameStatsManager_getNextVideoAdReward_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameStatsManager_getPathRewardKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameStatsManager_getRewardKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameStatsManager_getSpecialUnlockDescription_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int GameStatsManager_getStat_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int GameStatsManager_getTotalCollectedCurrency_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int GameStatsManager_getTotalCollectedDiamonds_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool GameStatsManager_hasClaimedListReward_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_hasCompletedChallenge_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_hasCompletedDailyLevel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_hasCompletedGauntletLevel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_hasCompletedLevel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_hasCompletedMainLevel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_hasCompletedMapPack_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_hasCompletedOnlineLevel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_hasCompletedStarLevel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_hasPendingUserCoin_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_hasRewardBeenCollected_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_hasSecretCoin_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_hasUserCoin_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_isItemUnlocked_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_isSecretChestUnlocked_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_isSecretCoinValid_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_isSpecialChestUnlocked_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_isStoreItemUnlocked_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GameStatsManager_purchaseItem_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3255,81 +2627,55 @@ SCREWYOU3_HOOK_END("GameStatsManager::init")
 #include <Geode/modify/GameToolbox.hpp>
 
 float GameToolbox_bounceTime_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 gd::string GameToolbox_easeToText_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameToolbox_gen_random_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 float GameToolbox_getEasedValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 gd::string GameToolbox_getResponse_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameToolbox_getTimeString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameToolbox_intToShortString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameToolbox_intToString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameToolbox_msToTimeString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameToolbox_pointsToString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameToolbox_saveParticleToString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameToolbox_stringFromHSV_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GameToolbox_timestampToHumanReadable_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -3365,9 +2711,7 @@ SCREWYOU3_HOOK_END("GameToolbox::bounceTime")
 #include <Geode/modify/GauntletLayer.hpp>
 
 bool GauntletLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3379,21 +2723,15 @@ SCREWYOU3_HOOK_END("GauntletLayer::init")
 #include <Geode/modify/GauntletNode.hpp>
 
 gd::string GauntletNode_frameForType_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GauntletNode_nameForType_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GauntletNode_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3409,9 +2747,7 @@ SCREWYOU3_HOOK_END("GauntletNode::frameForType")
 #include <Geode/modify/GauntletSelectLayer.hpp>
 
 bool GauntletSelectLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3423,9 +2759,7 @@ SCREWYOU3_HOOK_END("GauntletSelectLayer::init")
 #include <Geode/modify/GhostTrailEffect.hpp>
 
 bool GhostTrailEffect_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3437,39 +2771,27 @@ SCREWYOU3_HOOK_END("GhostTrailEffect::init")
 #include <Geode/modify/GJAccountManager.hpp>
 
 bool GJAccountManager_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJAccountManager_backupAccount_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJAccountManager_getAccountBackupURL_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJAccountManager_getAccountSyncURL_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GJAccountManager_getShaPassword_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GJAccountManager_syncAccount_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3491,9 +2813,7 @@ SCREWYOU3_HOOK_END("GJAccountManager::init")
 #include <Geode/modify/GJAccountSettingsLayer.hpp>
 
 bool GJAccountSettingsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3505,9 +2825,7 @@ SCREWYOU3_HOOK_END("GJAccountSettingsLayer::init")
 #include <Geode/modify/GJActionManager.hpp>
 
 bool GJActionManager_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3519,153 +2837,103 @@ SCREWYOU3_HOOK_END("GJActionManager::init")
 #include <Geode/modify/GJBaseGameLayer.hpp>
 
 bool GJBaseGameLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 float GJBaseGameLayer_opacityForObject_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool GJBaseGameLayer_addGuideArt_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJBaseGameLayer_canBeActivatedByPlayer_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJBaseGameLayer_canProcessSFX_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJBaseGameLayer_checkCollision_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int GJBaseGameLayer_checkCollisions_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 float GJBaseGameLayer_convertToClosestDirection_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 gd::string GJBaseGameLayer_gameEventToString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int GJBaseGameLayer_generateEnterEasingBuffer_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 double GJBaseGameLayer_getItemValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  double();
 }
 
 float GJBaseGameLayer_getMaxPortalY_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float GJBaseGameLayer_getMinDistance_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float GJBaseGameLayer_getMinPortalY_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float GJBaseGameLayer_getModifiedDelta_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 gd::string GJBaseGameLayer_getParticleKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GJBaseGameLayer_getParticleKey2_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GJBaseGameLayer_getRecordString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GJBaseGameLayer_hasUniqueCoin_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int GJBaseGameLayer_maxZOrderForShaderZ_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int GJBaseGameLayer_minZOrderForShaderZ_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool GJBaseGameLayer_playerCircleCollision_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJBaseGameLayer_processSongState_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJBaseGameLayer_shouldExitHackedLevel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 float GJBaseGameLayer_volumeForProximityEffect_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 
@@ -3727,9 +2995,7 @@ SCREWYOU3_HOOK_END("GJBaseGameLayer::init")
 #include <Geode/modify/GJBigSprite.hpp>
 
 bool GJBigSprite_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3743,9 +3009,7 @@ SCREWYOU3_HOOK_END("GJBigSprite::init")
 #include <Geode/modify/GJBigSpriteNode.hpp>
 
 bool GJBigSpriteNode_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3759,9 +3023,7 @@ SCREWYOU3_HOOK_END("GJBigSpriteNode::init")
 #include <Geode/modify/GJColorSetupLayer.hpp>
 
 bool GJColorSetupLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3773,9 +3035,7 @@ SCREWYOU3_HOOK_END("GJColorSetupLayer::init")
 #include <Geode/modify/GJComment.hpp>
 
 bool GJComment_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3787,9 +3047,7 @@ SCREWYOU3_HOOK_END("GJComment::init")
 #include <Geode/modify/GJCommentListLayer.hpp>
 
 bool GJCommentListLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3801,9 +3059,7 @@ SCREWYOU3_HOOK_END("GJCommentListLayer::init")
 #include <Geode/modify/GJDifficultySprite.hpp>
 
 gd::string GJDifficultySprite_getDifficultyFrame_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -3815,9 +3071,7 @@ SCREWYOU3_HOOK_END("GJDifficultySprite::getDifficultyFrame")
 #include <Geode/modify/GJDropDownLayer.hpp>
 
 bool GJDropDownLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3829,33 +3083,23 @@ SCREWYOU3_HOOK_END("GJDropDownLayer::init")
 #include <Geode/modify/GJEffectManager.hpp>
 
 bool GJEffectManager_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int GJEffectManager_countForItem_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 float GJEffectManager_opacityModForGroup_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 double GJEffectManager_timeForItem_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  double();
 }
 
 bool GJEffectManager_timerExists_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3875,9 +3119,7 @@ SCREWYOU3_HOOK_END("GJEffectManager::init")
 #include <Geode/modify/GJFlyGroundLayer.hpp>
 
 bool GJFlyGroundLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3891,9 +3133,7 @@ SCREWYOU3_HOOK_END("GJFlyGroundLayer::init")
 #include <Geode/modify/GJFollowCommandLayer.hpp>
 
 bool GJFollowCommandLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3905,9 +3145,7 @@ SCREWYOU3_HOOK_END("GJFollowCommandLayer::init")
 #include <Geode/modify/GJFriendRequest.hpp>
 
 bool GJFriendRequest_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -3919,51 +3157,35 @@ SCREWYOU3_HOOK_END("GJFriendRequest::init")
 #include <Geode/modify/GJGameLevel.hpp>
 
 gd::string GJGameLevel_lengthKeyToString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GJGameLevel_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJGameLevel_areCoinsVerified_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GJGameLevel_getAudioFileName_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int GJGameLevel_getAverageDifficulty_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int GJGameLevel_getLastBuildPageForTab_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string GJGameLevel_getSongName_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GJGameLevel_getUnpackedLevelDescription_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -3989,15 +3211,11 @@ SCREWYOU3_HOOK_END("GJGameLevel::lengthKeyToString")
 #include <Geode/modify/GJGarageLayer.hpp>
 
 bool GJGarageLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GJGarageLayer_descriptionForUnlock_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -4011,9 +3229,7 @@ SCREWYOU3_HOOK_END("GJGarageLayer::init")
 #include <Geode/modify/GJGradientLayer.hpp>
 
 bool GJGradientLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4025,15 +3241,11 @@ SCREWYOU3_HOOK_END("GJGradientLayer::init")
 #include <Geode/modify/GJGroundLayer.hpp>
 
 bool GJGroundLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 float GJGroundLayer_scaleGround_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 
@@ -4047,15 +3259,11 @@ SCREWYOU3_HOOK_END("GJGroundLayer::init")
 #include <Geode/modify/GJItemIcon.hpp>
 
 float GJItemIcon_scaleForType_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool GJItemIcon_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4069,27 +3277,19 @@ SCREWYOU3_HOOK_END("GJItemIcon::scaleForType")
 #include <Geode/modify/GJLevelList.hpp>
 
 bool GJLevelList_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int GJLevelList_completedLevels_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string GJLevelList_getUnpackedDescription_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GJLevelList_hasMatchingLevels_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4107,9 +3307,7 @@ SCREWYOU3_HOOK_END("GJLevelList::init")
 #include <Geode/modify/GJLevelScoreCell.hpp>
 
 bool GJLevelScoreCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4121,9 +3319,7 @@ SCREWYOU3_HOOK_END("GJLevelScoreCell::init")
 #include <Geode/modify/GJListLayer.hpp>
 
 bool GJListLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4135,9 +3331,7 @@ SCREWYOU3_HOOK_END("GJListLayer::init")
 #include <Geode/modify/GJLocalLevelScoreCell.hpp>
 
 bool GJLocalLevelScoreCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4149,9 +3343,7 @@ SCREWYOU3_HOOK_END("GJLocalLevelScoreCell::init")
 #include <Geode/modify/GJMapObject.hpp>
 
 bool GJMapObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4165,15 +3357,11 @@ SCREWYOU3_HOOK_END("GJMapObject::init")
 #include <Geode/modify/GJMapPack.hpp>
 
 bool GJMapPack_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int GJMapPack_completedMaps_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -4187,9 +3375,7 @@ SCREWYOU3_HOOK_END("GJMapPack::init")
 #include <Geode/modify/GJMessageCell.hpp>
 
 bool GJMessageCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4201,9 +3387,7 @@ SCREWYOU3_HOOK_END("GJMessageCell::init")
 #include <Geode/modify/GJMessagePopup.hpp>
 
 bool GJMessagePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4215,9 +3399,7 @@ SCREWYOU3_HOOK_END("GJMessagePopup::init")
 #include <Geode/modify/GJMGLayer.hpp>
 
 bool GJMGLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4229,33 +3411,23 @@ SCREWYOU3_HOOK_END("GJMGLayer::init")
 #include <Geode/modify/GJMultiplayerManager.hpp>
 
 bool GJMultiplayerManager_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJMultiplayerManager_exitLobby_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GJMultiplayerManager_getBasePostString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GJMultiplayerManager_joinLobby_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJMultiplayerManager_uploadComment_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4279,9 +3451,7 @@ SCREWYOU3_HOOK_END("GJMultiplayerManager::init")
 #include <Geode/modify/GJObjectDecoder.hpp>
 
 bool GJObjectDecoder_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4293,15 +3463,11 @@ SCREWYOU3_HOOK_END("GJObjectDecoder::init")
 #include <Geode/modify/GJOptionsLayer.hpp>
 
 int GJOptionsLayer_countForPage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool GJOptionsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4315,9 +3481,7 @@ SCREWYOU3_HOOK_END("GJOptionsLayer::countForPage")
 #include <Geode/modify/GJPathPage.hpp>
 
 bool GJPathPage_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4329,9 +3493,7 @@ SCREWYOU3_HOOK_END("GJPathPage::init")
 #include <Geode/modify/GJPathRewardPopup.hpp>
 
 bool GJPathRewardPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4343,15 +3505,11 @@ SCREWYOU3_HOOK_END("GJPathRewardPopup::init")
 #include <Geode/modify/GJPathsLayer.hpp>
 
 gd::string GJPathsLayer_nameForPath_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GJPathsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4365,9 +3523,7 @@ SCREWYOU3_HOOK_END("GJPathsLayer::nameForPath")
 #include <Geode/modify/GJPFollowCommandLayer.hpp>
 
 bool GJPFollowCommandLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4379,9 +3535,7 @@ SCREWYOU3_HOOK_END("GJPFollowCommandLayer::init")
 #include <Geode/modify/GJPromoPopup.hpp>
 
 bool GJPromoPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4393,9 +3547,7 @@ SCREWYOU3_HOOK_END("GJPromoPopup::init")
 #include <Geode/modify/GJRequestCell.hpp>
 
 bool GJRequestCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4407,15 +3559,11 @@ SCREWYOU3_HOOK_END("GJRequestCell::init")
 #include <Geode/modify/GJRewardItem.hpp>
 
 gd::string GJRewardItem_rewardItemToStat_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GJRewardItem_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4429,9 +3577,7 @@ SCREWYOU3_HOOK_END("GJRewardItem::rewardItemToStat")
 #include <Geode/modify/GJRobotSprite.hpp>
 
 bool GJRobotSprite_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4443,9 +3589,7 @@ SCREWYOU3_HOOK_END("GJRobotSprite::init")
 #include <Geode/modify/GJRotateCommandLayer.hpp>
 
 bool GJRotateCommandLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4459,15 +3603,11 @@ SCREWYOU3_HOOK_END("GJRotateCommandLayer::init")
 #include <Geode/modify/GJRotationControl.hpp>
 
 bool GJRotationControl_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJRotationControl_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4481,15 +3621,11 @@ SCREWYOU3_HOOK_END("GJRotationControl::init")
 #include <Geode/modify/GJScaleControl.hpp>
 
 bool GJScaleControl_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJScaleControl_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4503,9 +3639,7 @@ SCREWYOU3_HOOK_END("GJScaleControl::init")
 #include <Geode/modify/GJScoreCell.hpp>
 
 bool GJScoreCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4517,9 +3651,7 @@ SCREWYOU3_HOOK_END("GJScoreCell::init")
 #include <Geode/modify/GJSearchObject.hpp>
 
 bool GJSearchObject_isLevelSearchObject_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4531,15 +3663,11 @@ SCREWYOU3_HOOK_END("GJSearchObject::isLevelSearchObject")
 #include <Geode/modify/GJShopLayer.hpp>
 
 bool GJShopLayer_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJShopLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4553,9 +3681,7 @@ SCREWYOU3_HOOK_END("GJShopLayer::ccTouchBegan")
 #include <Geode/modify/GJSmartBlockPreviewSprite.hpp>
 
 bool GJSmartBlockPreviewSprite_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4567,57 +3693,39 @@ SCREWYOU3_HOOK_END("GJSmartBlockPreviewSprite::init")
 #include <Geode/modify/GJSmartTemplate.hpp>
 
 gd::string GJSmartTemplate_flipKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GJSmartTemplate_getNoCornerKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GJSmartTemplate_getSimplifiedKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int GJSmartTemplate_getTotalChanceForPrefab_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string GJSmartTemplate_getVerySimplifiedKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool GJSmartTemplate_isUnrequired_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GJSmartTemplate_keyFromNeighbors_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GJSmartTemplate_logTemplateStatus_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string GJSmartTemplate_rotateKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -4645,21 +3753,15 @@ SCREWYOU3_HOOK_END("GJSmartTemplate::flipKey")
 #include <Geode/modify/GJSongBrowser.hpp>
 
 bool GJSongBrowser_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJSongBrowser_cellPerformedAction_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int GJSongBrowser_getSelectedCellIdx_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -4677,16 +3779,12 @@ SCREWYOU3_HOOK_END("GJSongBrowser::init")
 const char* GJSpecialColorSelect_textForColorIdx_override() {
 
 if (Mod::get()->getSettingValue<bool>("can-be-nullptr") && modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("nullptr-chance")))
-    return nullptr;
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+    	return nullptr;
 	return modUtils::getRandomCharSequence_c(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return new  char();
 }
 
 bool GJSpecialColorSelect_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4700,15 +3798,11 @@ SCREWYOU3_HOOK_END("GJSpecialColorSelect::textForColorIdx")
 #include <Geode/modify/GJTransformControl.hpp>
 
 bool GJTransformControl_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJTransformControl_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4722,21 +3816,15 @@ SCREWYOU3_HOOK_END("GJTransformControl::init")
 #include <Geode/modify/GJUINode.hpp>
 
 int GJUINode_activeTouchTest_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool GJUINode_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int GJUINode_touchTest_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -4752,9 +3840,7 @@ SCREWYOU3_HOOK_END("GJUINode::activeTouchTest")
 #include <Geode/modify/GJUserCell.hpp>
 
 bool GJUserCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4766,9 +3852,7 @@ SCREWYOU3_HOOK_END("GJUserCell::init")
 #include <Geode/modify/GJUserMessage.hpp>
 
 bool GJUserMessage_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4780,15 +3864,11 @@ SCREWYOU3_HOOK_END("GJUserMessage::init")
 #include <Geode/modify/GJUserScore.hpp>
 
 bool GJUserScore_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool GJUserScore_isCurrentUser_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4802,15 +3882,11 @@ SCREWYOU3_HOOK_END("GJUserScore::init")
 #include <Geode/modify/GJWorldNode.hpp>
 
 float GJWorldNode_addDotsToLevel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool GJWorldNode_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4828,9 +3904,7 @@ SCREWYOU3_HOOK_END("GJWorldNode::addDotsToLevel")
 #include <Geode/modify/GJWriteMessagePopup.hpp>
 
 bool GJWriteMessagePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4842,15 +3916,11 @@ SCREWYOU3_HOOK_END("GJWriteMessagePopup::init")
 #include <Geode/modify/GManager.hpp>
 
 bool GManager_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GManager_getCompressedSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -4864,15 +3934,11 @@ SCREWYOU3_HOOK_END("GManager::init")
 #include <Geode/modify/GradientTriggerObject.hpp>
 
 bool GradientTriggerObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string GradientTriggerObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -4886,9 +3952,7 @@ SCREWYOU3_HOOK_END("GradientTriggerObject::init")
 #include <Geode/modify/GravityEffectSprite.hpp>
 
 bool GravityEffectSprite_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4900,9 +3964,7 @@ SCREWYOU3_HOOK_END("GravityEffectSprite::init")
 #include <Geode/modify/HardStreak.hpp>
 
 bool HardStreak_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4914,9 +3976,7 @@ SCREWYOU3_HOOK_END("HardStreak::init")
 #include <Geode/modify/HSVLiveOverlay.hpp>
 
 bool HSVLiveOverlay_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4928,9 +3988,7 @@ SCREWYOU3_HOOK_END("HSVLiveOverlay::init")
 #include <Geode/modify/HSVWidgetPopup.hpp>
 
 bool HSVWidgetPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4942,15 +4000,11 @@ SCREWYOU3_HOOK_END("HSVWidgetPopup::init")
 #include <Geode/modify/InfoLayer.hpp>
 
 bool InfoLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool InfoLayer_isCorrect_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4964,15 +4018,11 @@ SCREWYOU3_HOOK_END("InfoLayer::init")
 #include <Geode/modify/ItemInfoPopup.hpp>
 
 gd::string ItemInfoPopup_nameForUnlockType_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool ItemInfoPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -4986,9 +4036,7 @@ SCREWYOU3_HOOK_END("ItemInfoPopup::nameForUnlockType")
 #include <Geode/modify/ItemTriggerGameObject.hpp>
 
 gd::string ItemTriggerGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -5000,15 +4048,11 @@ SCREWYOU3_HOOK_END("ItemTriggerGameObject::getSaveString")
 #include <Geode/modify/KeybindingsLayer.hpp>
 
 bool KeybindingsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int KeybindingsLayer_countForPage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -5026,21 +4070,15 @@ SCREWYOU3_HOOK_END("KeybindingsLayer::init")
 #include <Geode/modify/KeybindingsManager.hpp>
 
 bool KeybindingsManager_commandForKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool KeybindingsManager_commandForKeyMods_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool KeybindingsManager_commandForKeyNoMods_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5062,15 +4100,11 @@ SCREWYOU3_HOOK_END("KeybindingsManager::commandForKey")
 #include <Geode/modify/KeyframeAnimTriggerObject.hpp>
 
 bool KeyframeAnimTriggerObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string KeyframeAnimTriggerObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -5084,15 +4118,11 @@ SCREWYOU3_HOOK_END("KeyframeAnimTriggerObject::init")
 #include <Geode/modify/KeyframeGameObject.hpp>
 
 bool KeyframeGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string KeyframeGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -5106,21 +4136,15 @@ SCREWYOU3_HOOK_END("KeyframeGameObject::init")
 #include <Geode/modify/LabelGameObject.hpp>
 
 bool LabelGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string LabelGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int LabelGameObject_getTextKerning_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -5136,15 +4160,11 @@ SCREWYOU3_HOOK_END("LabelGameObject::init")
 #include <Geode/modify/LeaderboardsLayer.hpp>
 
 bool LeaderboardsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool LeaderboardsLayer_isCorrect_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5158,15 +4178,11 @@ SCREWYOU3_HOOK_END("LeaderboardsLayer::init")
 #include <Geode/modify/LevelAreaInnerLayer.hpp>
 
 bool LevelAreaInnerLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool LevelAreaInnerLayer_playStep1_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5180,15 +4196,11 @@ SCREWYOU3_HOOK_END("LevelAreaInnerLayer::init")
 #include <Geode/modify/LevelAreaLayer.hpp>
 
 bool LevelAreaLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool LevelAreaLayer_onEnterTower_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5202,27 +4214,19 @@ SCREWYOU3_HOOK_END("LevelAreaLayer::init")
 #include <Geode/modify/LevelBrowserLayer.hpp>
 
 bool LevelBrowserLayer_cellPerformedAction_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string LevelBrowserLayer_getSearchTitle_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool LevelBrowserLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool LevelBrowserLayer_isCorrect_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5240,9 +4244,7 @@ SCREWYOU3_HOOK_END("LevelBrowserLayer::cellPerformedAction")
 #include <Geode/modify/LevelCell.hpp>
 
 bool LevelCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5254,117 +4256,79 @@ SCREWYOU3_HOOK_END("LevelCell::init")
 #include <Geode/modify/LevelEditorLayer.hpp>
 
 float LevelEditorLayer_timeForPos_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool LevelEditorLayer_activateTriggerEffect_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 float LevelEditorLayer_getLastObjectX_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 gd::string LevelEditorLayer_getLevelString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int LevelEditorLayer_getNextColorChannel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int LevelEditorLayer_getNextFreeAreaEffectID_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int LevelEditorLayer_getNextFreeEditorLayer_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int LevelEditorLayer_getNextFreeEnterChannel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int LevelEditorLayer_getNextFreeGradientID_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int LevelEditorLayer_getNextFreeGroupID_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int LevelEditorLayer_getNextFreeItemID_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int LevelEditorLayer_getNextFreeOrderChannel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string LevelEditorLayer_getSFXIDs_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string LevelEditorLayer_getSongIDs_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool LevelEditorLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 float LevelEditorLayer_rotationForSlopeNearObject_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool LevelEditorLayer_shouldBlend_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool LevelEditorLayer_tryUpdateSpeedObject_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool LevelEditorLayer_typeExistsAtPosition_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5412,9 +4376,7 @@ SCREWYOU3_HOOK_END("LevelEditorLayer::timeForPos")
 #include <Geode/modify/LevelFeatureLayer.hpp>
 
 bool LevelFeatureLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5428,21 +4390,15 @@ SCREWYOU3_HOOK_END("LevelFeatureLayer::init")
 #include <Geode/modify/LevelInfoLayer.hpp>
 
 bool LevelInfoLayer_cellPerformedAction_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool LevelInfoLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool LevelInfoLayer_shouldDownloadLevel_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5458,15 +4414,11 @@ SCREWYOU3_HOOK_END("LevelInfoLayer::cellPerformedAction")
 #include <Geode/modify/LevelLeaderboard.hpp>
 
 bool LevelLeaderboard_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool LevelLeaderboard_isCorrect_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5480,15 +4432,11 @@ SCREWYOU3_HOOK_END("LevelLeaderboard::init")
 #include <Geode/modify/LevelListLayer.hpp>
 
 bool LevelListLayer_cellPerformedAction_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool LevelListLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5502,15 +4450,11 @@ SCREWYOU3_HOOK_END("LevelListLayer::cellPerformedAction")
 #include <Geode/modify/LevelOptionsLayer.hpp>
 
 float LevelOptionsLayer_getValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool LevelOptionsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5524,15 +4468,11 @@ SCREWYOU3_HOOK_END("LevelOptionsLayer::getValue")
 #include <Geode/modify/LevelPage.hpp>
 
 bool LevelPage_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool LevelPage_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5546,21 +4486,15 @@ SCREWYOU3_HOOK_END("LevelPage::ccTouchBegan")
 #include <Geode/modify/LevelSearchLayer.hpp>
 
 bool LevelSearchLayer_checkDiff_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool LevelSearchLayer_checkTime_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool LevelSearchLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5576,9 +4510,7 @@ SCREWYOU3_HOOK_END("LevelSearchLayer::checkDiff")
 #include <Geode/modify/LevelSelectLayer.hpp>
 
 bool LevelSelectLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5590,9 +4522,7 @@ SCREWYOU3_HOOK_END("LevelSelectLayer::init")
 #include <Geode/modify/LevelSettingsLayer.hpp>
 
 bool LevelSettingsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5604,15 +4534,11 @@ SCREWYOU3_HOOK_END("LevelSettingsLayer::init")
 #include <Geode/modify/LevelSettingsObject.hpp>
 
 bool LevelSettingsObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string LevelSettingsObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -5626,69 +4552,47 @@ SCREWYOU3_HOOK_END("LevelSettingsObject::init")
 #include <Geode/modify/LevelTools.hpp>
 
 int LevelTools_artistForAudio_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string LevelTools_fbURLForArtist_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string LevelTools_getAudioFileName_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string LevelTools_getAudioString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string LevelTools_getAudioTitle_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string LevelTools_nameForArtist_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string LevelTools_ngURLForArtist_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 float LevelTools_timeForPos_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 gd::string LevelTools_urlForAudio_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool LevelTools_verifyLevelIntegrity_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string LevelTools_ytURLForArtist_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -5720,9 +4624,7 @@ SCREWYOU3_HOOK_END("LevelTools::artistForAudio")
 #include <Geode/modify/LikeItemLayer.hpp>
 
 bool LikeItemLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5734,9 +4636,7 @@ SCREWYOU3_HOOK_END("LikeItemLayer::init")
 #include <Geode/modify/ListButtonBar.hpp>
 
 bool ListButtonBar_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5748,9 +4648,7 @@ SCREWYOU3_HOOK_END("ListButtonBar::init")
 #include <Geode/modify/LoadingCircle.hpp>
 
 bool LoadingCircle_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5764,16 +4662,12 @@ SCREWYOU3_HOOK_END("LoadingCircle::init")
 const char* LoadingLayer_getLoadingString_override() {
 
 if (Mod::get()->getSettingValue<bool>("can-be-nullptr") && modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("nullptr-chance")))
-    return nullptr;
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+    	return nullptr;
 	return modUtils::getRandomCharSequence_c(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return new  char();
 }
 
 bool LoadingLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5787,21 +4681,15 @@ SCREWYOU3_HOOK_END("LoadingLayer::getLoadingString")
 #include <Geode/modify/LocalLevelManager.hpp>
 
 bool LocalLevelManager_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string LocalLevelManager_getMainLevelString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int LocalLevelManager_updateLevelOrder_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -5817,9 +4705,7 @@ SCREWYOU3_HOOK_END("LocalLevelManager::init")
 #include <Geode/modify/MapPackCell.hpp>
 
 bool MapPackCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5831,21 +4717,15 @@ SCREWYOU3_HOOK_END("MapPackCell::init")
 #include <Geode/modify/MapSelectLayer.hpp>
 
 bool MapSelectLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool MapSelectLayer_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool MapSelectLayer_checkTouchMonster_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5867,15 +4747,11 @@ SCREWYOU3_HOOK_END("MapSelectLayer::init")
 #include <Geode/modify/MenuGameLayer.hpp>
 
 bool MenuGameLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool MenuGameLayer_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5889,9 +4765,7 @@ SCREWYOU3_HOOK_END("MenuGameLayer::init")
 #include <Geode/modify/MenuLayer.hpp>
 
 bool MenuLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5903,15 +4777,11 @@ SCREWYOU3_HOOK_END("MenuLayer::init")
 #include <Geode/modify/MessagesProfilePage.hpp>
 
 bool MessagesProfilePage_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool MessagesProfilePage_isCorrect_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5925,15 +4795,11 @@ SCREWYOU3_HOOK_END("MessagesProfilePage::init")
 #include <Geode/modify/MoreOptionsLayer.hpp>
 
 bool MoreOptionsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int MoreOptionsLayer_countForPage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -5947,9 +4813,7 @@ SCREWYOU3_HOOK_END("MoreOptionsLayer::init")
 #include <Geode/modify/MoreSearchLayer.hpp>
 
 bool MoreSearchLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5961,15 +4825,11 @@ SCREWYOU3_HOOK_END("MoreSearchLayer::init")
 #include <Geode/modify/MoreVideoOptionsLayer.hpp>
 
 bool MoreVideoOptionsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int MoreVideoOptionsLayer_countForPage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -5983,9 +4843,7 @@ SCREWYOU3_HOOK_END("MoreVideoOptionsLayer::init")
 #include <Geode/modify/MPLobbyLayer.hpp>
 
 bool MPLobbyLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -5999,21 +4857,15 @@ SCREWYOU3_HOOK_END("MPLobbyLayer::init")
 #include <Geode/modify/MultilineBitmapFont.hpp>
 
 bool MultilineBitmapFont_initWithFont_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string MultilineBitmapFont_readColorInfo_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string MultilineBitmapFont_stringWithMaxWidth_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -6029,9 +4881,7 @@ SCREWYOU3_HOOK_END("MultilineBitmapFont::initWithFont")
 #include <Geode/modify/MultiplayerLayer.hpp>
 
 bool MultiplayerLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6045,9 +4895,7 @@ SCREWYOU3_HOOK_END("MultiplayerLayer::init")
 #include <Geode/modify/MultiTriggerPopup.hpp>
 
 bool MultiTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6059,21 +4907,15 @@ SCREWYOU3_HOOK_END("MultiTriggerPopup::init")
 #include <Geode/modify/MusicBrowser.hpp>
 
 bool MusicBrowser_cellPerformedAction_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int MusicBrowser_getSelectedCellIdx_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool MusicBrowser_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6089,63 +4931,43 @@ SCREWYOU3_HOOK_END("MusicBrowser::cellPerformedAction")
 #include <Geode/modify/MusicDownloadManager.hpp>
 
 bool MusicDownloadManager_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string MusicDownloadManager_generateCustomContentURL_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string MusicDownloadManager_getSFXFolderPathForID_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool MusicDownloadManager_isRunningActionForSongID_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool MusicDownloadManager_isSFXDownloaded_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool MusicDownloadManager_isSongDownloaded_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string MusicDownloadManager_pathForSFX_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string MusicDownloadManager_pathForSFXFolder_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string MusicDownloadManager_pathForSong_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string MusicDownloadManager_pathForSongFolder_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -6175,9 +4997,7 @@ SCREWYOU3_HOOK_END("MusicDownloadManager::init")
 #include <Geode/modify/NCSInfoLayer.hpp>
 
 bool NCSInfoLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6189,9 +5009,7 @@ SCREWYOU3_HOOK_END("NCSInfoLayer::init")
 #include <Geode/modify/NewgroundsInfoLayer.hpp>
 
 bool NewgroundsInfoLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6203,9 +5021,7 @@ SCREWYOU3_HOOK_END("NewgroundsInfoLayer::init")
 #include <Geode/modify/NumberInputLayer.hpp>
 
 bool NumberInputLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6217,9 +5033,7 @@ SCREWYOU3_HOOK_END("NumberInputLayer::init")
 #include <Geode/modify/OBB2D.hpp>
 
 bool OBB2D_overlaps1Way_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6231,15 +5045,11 @@ SCREWYOU3_HOOK_END("OBB2D::overlaps1Way")
 #include <Geode/modify/ObjectControlGameObject.hpp>
 
 bool ObjectControlGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string ObjectControlGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -6253,9 +5063,7 @@ SCREWYOU3_HOOK_END("ObjectControlGameObject::init")
 #include <Geode/modify/ObjectManager.hpp>
 
 bool ObjectManager_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6267,33 +5075,25 @@ SCREWYOU3_HOOK_END("ObjectManager::init")
 #include <Geode/modify/ObjectToolbox.hpp>
 
 bool ObjectToolbox_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 float ObjectToolbox_gridNodeSizeForKey_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 const char* ObjectToolbox_intKeyToFrame_override() {
 
 if (Mod::get()->getSettingValue<bool>("can-be-nullptr") && modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("nullptr-chance")))
-    return nullptr;
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+    	return nullptr;
 	return modUtils::getRandomCharSequence_c(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return new  char();
 }
 
 const char* ObjectToolbox_perspectiveBlockFrame_override() {
 
 if (Mod::get()->getSettingValue<bool>("can-be-nullptr") && modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("nullptr-chance")))
-    return nullptr;
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+    	return nullptr;
 	return modUtils::getRandomCharSequence_c(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return new  char();
 }
 
 
@@ -6311,9 +5111,7 @@ SCREWYOU3_HOOK_END("ObjectToolbox::init")
 #include <Geode/modify/OptionsScrollLayer.hpp>
 
 bool OptionsScrollLayer_cellPerformedAction_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6325,15 +5123,11 @@ SCREWYOU3_HOOK_END("OptionsScrollLayer::cellPerformedAction")
 #include <Geode/modify/ParentalOptionsLayer.hpp>
 
 bool ParentalOptionsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int ParentalOptionsLayer_countForPage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -6347,15 +5141,11 @@ SCREWYOU3_HOOK_END("ParentalOptionsLayer::init")
 #include <Geode/modify/ParticleGameObject.hpp>
 
 bool ParticleGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string ParticleGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -6369,15 +5159,11 @@ SCREWYOU3_HOOK_END("ParticleGameObject::init")
 #include <Geode/modify/PlatformToolbox.hpp>
 
 bool PlatformToolbox_copyToClipboard_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string PlatformToolbox_getUniqueUserID_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -6391,9 +5177,7 @@ SCREWYOU3_HOOK_END("PlatformToolbox::copyToClipboard")
 #include <Geode/modify/PlayerCheckpoint.hpp>
 
 bool PlayerCheckpoint_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6405,15 +5189,11 @@ SCREWYOU3_HOOK_END("PlayerCheckpoint::init")
 #include <Geode/modify/PlayerControlGameObject.hpp>
 
 bool PlayerControlGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string PlayerControlGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -6427,9 +5207,7 @@ SCREWYOU3_HOOK_END("PlayerControlGameObject::init")
 #include <Geode/modify/PlayerFireBoostSprite.hpp>
 
 bool PlayerFireBoostSprite_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6441,75 +5219,51 @@ SCREWYOU3_HOOK_END("PlayerFireBoostSprite::init")
 #include <Geode/modify/PlayerObject.hpp>
 
 float PlayerObject_getObjectRotation_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool PlayerObject_collidedWithObject_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool PlayerObject_collidedWithObjectInternal_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 float PlayerObject_convertToClosestRotation_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool PlayerObject_handleRotatedCollisionInternal_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool PlayerObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool PlayerObject_levelFlipping_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool PlayerObject_playerIsFallingBugged_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool PlayerObject_preSlopeCollision_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool PlayerObject_pushButton_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool PlayerObject_releaseButton_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool PlayerObject_switchedDirTo_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6543,27 +5297,19 @@ SCREWYOU3_HOOK_END("PlayerObject::getObjectRotation")
 #include <Geode/modify/PlayLayer.hpp>
 
 float PlayLayer_opacityForObject_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float PlayLayer_timeForPos_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float PlayLayer_getCurrentPercent_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool PlayLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6581,9 +5327,7 @@ SCREWYOU3_HOOK_END("PlayLayer::opacityForObject")
 #include <Geode/modify/PriceLabel.hpp>
 
 bool PriceLabel_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6597,15 +5341,11 @@ SCREWYOU3_HOOK_END("PriceLabel::init")
 #include <Geode/modify/ProfilePage.hpp>
 
 bool ProfilePage_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool ProfilePage_isCorrect_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6619,15 +5359,11 @@ SCREWYOU3_HOOK_END("ProfilePage::init")
 #include <Geode/modify/PromoInterstitial.hpp>
 
 bool PromoInterstitial_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool PromoInterstitial_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6645,9 +5381,7 @@ SCREWYOU3_HOOK_END("PromoInterstitial::ccTouchBegan")
 #include <Geode/modify/PurchaseItemPopup.hpp>
 
 bool PurchaseItemPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6659,15 +5393,11 @@ SCREWYOU3_HOOK_END("PurchaseItemPopup::init")
 #include <Geode/modify/RandTriggerGameObject.hpp>
 
 bool RandTriggerGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string RandTriggerGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -6681,9 +5411,7 @@ SCREWYOU3_HOOK_END("RandTriggerGameObject::init")
 #include <Geode/modify/RateDemonLayer.hpp>
 
 bool RateDemonLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6695,9 +5423,7 @@ SCREWYOU3_HOOK_END("RateDemonLayer::init")
 #include <Geode/modify/RateLevelLayer.hpp>
 
 bool RateLevelLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6709,9 +5435,7 @@ SCREWYOU3_HOOK_END("RateLevelLayer::init")
 #include <Geode/modify/RateStarsLayer.hpp>
 
 bool RateStarsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6723,9 +5447,7 @@ SCREWYOU3_HOOK_END("RateStarsLayer::init")
 #include <Geode/modify/RewardsPage.hpp>
 
 bool RewardsPage_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6737,15 +5459,11 @@ SCREWYOU3_HOOK_END("RewardsPage::init")
 #include <Geode/modify/RewardUnlockLayer.hpp>
 
 bool RewardUnlockLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool RewardUnlockLayer_showCollectReward_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6759,15 +5477,11 @@ SCREWYOU3_HOOK_END("RewardUnlockLayer::init")
 #include <Geode/modify/RingObject.hpp>
 
 gd::string RingObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool RingObject_shouldDrawEditorHitbox_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6781,15 +5495,11 @@ SCREWYOU3_HOOK_END("RingObject::getSaveString")
 #include <Geode/modify/RotateGameplayGameObject.hpp>
 
 bool RotateGameplayGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string RotateGameplayGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -6803,9 +5513,7 @@ SCREWYOU3_HOOK_END("RotateGameplayGameObject::init")
 #include <Geode/modify/ScrollingLayer.hpp>
 
 bool ScrollingLayer_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6817,9 +5525,7 @@ SCREWYOU3_HOOK_END("ScrollingLayer::ccTouchBegan")
 #include <Geode/modify/SearchButton.hpp>
 
 bool SearchButton_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6831,9 +5537,7 @@ SCREWYOU3_HOOK_END("SearchButton::init")
 #include <Geode/modify/SearchSFXPopup.hpp>
 
 bool SearchSFXPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6845,33 +5549,23 @@ SCREWYOU3_HOOK_END("SearchSFXPopup::init")
 #include <Geode/modify/SecretGame01Layer.hpp>
 
 bool SecretGame01Layer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int SecretGame01Layer_getCountForDifficulty_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string SecretGame01Layer_getFrameForDifficulty_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int SecretGame01Layer_getRowsForDifficulty_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 int SecretGame01Layer_getTimeForDifficulty_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -6901,27 +5595,19 @@ SCREWYOU3_HOOK_END("SecretGame01Layer::init")
 #include <Geode/modify/SecretLayer.hpp>
 
 bool SecretLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string SecretLayer_getBasicMessage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string SecretLayer_getMessage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string SecretLayer_getThreadMessage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -6939,33 +5625,23 @@ SCREWYOU3_HOOK_END("SecretLayer::init")
 #include <Geode/modify/SecretLayer2.hpp>
 
 bool SecretLayer2_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string SecretLayer2_getBasicMessage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string SecretLayer2_getErrorMessage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string SecretLayer2_getMessage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string SecretLayer2_getThreadMessage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -6985,9 +5661,7 @@ SCREWYOU3_HOOK_END("SecretLayer2::init")
 #include <Geode/modify/SecretLayer3.hpp>
 
 bool SecretLayer3_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -6999,33 +5673,23 @@ SCREWYOU3_HOOK_END("SecretLayer3::init")
 #include <Geode/modify/SecretLayer4.hpp>
 
 bool SecretLayer4_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string SecretLayer4_getBasicMessage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string SecretLayer4_getErrorMessage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string SecretLayer4_getMessage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string SecretLayer4_getThreadMessage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -7045,9 +5709,7 @@ SCREWYOU3_HOOK_END("SecretLayer4::init")
 #include <Geode/modify/SecretLayer5.hpp>
 
 bool SecretLayer5_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7059,9 +5721,7 @@ SCREWYOU3_HOOK_END("SecretLayer5::init")
 #include <Geode/modify/SecretLayer6.hpp>
 
 bool SecretLayer6_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7075,9 +5735,7 @@ SCREWYOU3_HOOK_END("SecretLayer6::init")
 #include <Geode/modify/SecretNumberLayer.hpp>
 
 bool SecretNumberLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7089,9 +5747,7 @@ SCREWYOU3_HOOK_END("SecretNumberLayer::init")
 #include <Geode/modify/SecretRewardsLayer.hpp>
 
 bool SecretRewardsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7103,9 +5759,7 @@ SCREWYOU3_HOOK_END("SecretRewardsLayer::init")
 #include <Geode/modify/SelectArtLayer.hpp>
 
 bool SelectArtLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7117,9 +5771,7 @@ SCREWYOU3_HOOK_END("SelectArtLayer::init")
 #include <Geode/modify/SelectEventLayer.hpp>
 
 bool SelectEventLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7131,9 +5783,7 @@ SCREWYOU3_HOOK_END("SelectEventLayer::init")
 #include <Geode/modify/SelectFontLayer.hpp>
 
 bool SelectFontLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7145,9 +5795,7 @@ SCREWYOU3_HOOK_END("SelectFontLayer::init")
 #include <Geode/modify/SelectListIconLayer.hpp>
 
 bool SelectListIconLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7159,9 +5807,7 @@ SCREWYOU3_HOOK_END("SelectListIconLayer::init")
 #include <Geode/modify/SelectPremadeLayer.hpp>
 
 bool SelectPremadeLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7173,15 +5819,11 @@ SCREWYOU3_HOOK_END("SelectPremadeLayer::init")
 #include <Geode/modify/SelectSettingLayer.hpp>
 
 gd::string SelectSettingLayer_frameForItem_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool SelectSettingLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7195,9 +5837,7 @@ SCREWYOU3_HOOK_END("SelectSettingLayer::frameForItem")
 #include <Geode/modify/SelectSFXSortLayer.hpp>
 
 bool SelectSFXSortLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7209,15 +5849,11 @@ SCREWYOU3_HOOK_END("SelectSFXSortLayer::init")
 #include <Geode/modify/SequenceTriggerGameObject.hpp>
 
 bool SequenceTriggerGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string SequenceTriggerGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -7231,9 +5867,7 @@ SCREWYOU3_HOOK_END("SequenceTriggerGameObject::init")
 #include <Geode/modify/SetColorIDPopup.hpp>
 
 bool SetColorIDPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7245,9 +5879,7 @@ SCREWYOU3_HOOK_END("SetColorIDPopup::init")
 #include <Geode/modify/SetFolderPopup.hpp>
 
 bool SetFolderPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7259,9 +5891,7 @@ SCREWYOU3_HOOK_END("SetFolderPopup::init")
 #include <Geode/modify/SetGroupIDLayer.hpp>
 
 bool SetGroupIDLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7273,9 +5903,7 @@ SCREWYOU3_HOOK_END("SetGroupIDLayer::init")
 #include <Geode/modify/SetIDPopup.hpp>
 
 bool SetIDPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7287,9 +5915,7 @@ SCREWYOU3_HOOK_END("SetIDPopup::init")
 #include <Geode/modify/SetItemIDLayer.hpp>
 
 bool SetItemIDLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7301,9 +5927,7 @@ SCREWYOU3_HOOK_END("SetItemIDLayer::init")
 #include <Geode/modify/SetLevelOrderPopup.hpp>
 
 bool SetLevelOrderPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7315,9 +5939,7 @@ SCREWYOU3_HOOK_END("SetLevelOrderPopup::init")
 #include <Geode/modify/SetTargetIDLayer.hpp>
 
 bool SetTargetIDLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7329,9 +5951,7 @@ SCREWYOU3_HOOK_END("SetTargetIDLayer::init")
 #include <Geode/modify/SetTextPopup.hpp>
 
 bool SetTextPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7343,9 +5963,7 @@ SCREWYOU3_HOOK_END("SetTextPopup::init")
 #include <Geode/modify/SetupAdvFollowEditPhysicsPopup.hpp>
 
 bool SetupAdvFollowEditPhysicsPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7357,9 +5975,7 @@ SCREWYOU3_HOOK_END("SetupAdvFollowEditPhysicsPopup::init")
 #include <Geode/modify/SetupAdvFollowPopup.hpp>
 
 bool SetupAdvFollowPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7371,9 +5987,7 @@ SCREWYOU3_HOOK_END("SetupAdvFollowPopup::init")
 #include <Geode/modify/SetupAdvFollowRetargetPopup.hpp>
 
 bool SetupAdvFollowRetargetPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7385,9 +5999,7 @@ SCREWYOU3_HOOK_END("SetupAdvFollowRetargetPopup::init")
 #include <Geode/modify/SetupAnimationPopup.hpp>
 
 bool SetupAnimationPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7399,9 +6011,7 @@ SCREWYOU3_HOOK_END("SetupAnimationPopup::init")
 #include <Geode/modify/SetupAnimSettingsPopup.hpp>
 
 bool SetupAnimSettingsPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7413,9 +6023,7 @@ SCREWYOU3_HOOK_END("SetupAnimSettingsPopup::init")
 #include <Geode/modify/SetupAreaAnimTriggerPopup.hpp>
 
 bool SetupAreaAnimTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7427,9 +6035,7 @@ SCREWYOU3_HOOK_END("SetupAreaAnimTriggerPopup::init")
 #include <Geode/modify/SetupAreaFadeTriggerPopup.hpp>
 
 bool SetupAreaFadeTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7441,21 +6047,15 @@ SCREWYOU3_HOOK_END("SetupAreaFadeTriggerPopup::init")
 #include <Geode/modify/SetupAreaMoveTriggerPopup.hpp>
 
 float SetupAreaMoveTriggerPopup_triggerValueFromSliderValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float SetupAreaMoveTriggerPopup_triggerSliderValueFromValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool SetupAreaMoveTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7471,9 +6071,7 @@ SCREWYOU3_HOOK_END("SetupAreaMoveTriggerPopup::triggerValueFromSliderValue")
 #include <Geode/modify/SetupAreaRotateTriggerPopup.hpp>
 
 bool SetupAreaRotateTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7485,9 +6083,7 @@ SCREWYOU3_HOOK_END("SetupAreaRotateTriggerPopup::init")
 #include <Geode/modify/SetupAreaTintTriggerPopup.hpp>
 
 bool SetupAreaTintTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7499,9 +6095,7 @@ SCREWYOU3_HOOK_END("SetupAreaTintTriggerPopup::init")
 #include <Geode/modify/SetupAreaTransformTriggerPopup.hpp>
 
 bool SetupAreaTransformTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7513,9 +6107,7 @@ SCREWYOU3_HOOK_END("SetupAreaTransformTriggerPopup::init")
 #include <Geode/modify/SetupAreaTriggerPopup.hpp>
 
 bool SetupAreaTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7527,9 +6119,7 @@ SCREWYOU3_HOOK_END("SetupAreaTriggerPopup::init")
 #include <Geode/modify/SetupArtSwitchPopup.hpp>
 
 bool SetupArtSwitchPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7541,9 +6131,7 @@ SCREWYOU3_HOOK_END("SetupArtSwitchPopup::init")
 #include <Geode/modify/SetupAudioLineGuidePopup.hpp>
 
 bool SetupAudioLineGuidePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7555,9 +6143,7 @@ SCREWYOU3_HOOK_END("SetupAudioLineGuidePopup::init")
 #include <Geode/modify/SetupBGSpeedTrigger.hpp>
 
 bool SetupBGSpeedTrigger_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7569,9 +6155,7 @@ SCREWYOU3_HOOK_END("SetupBGSpeedTrigger::init")
 #include <Geode/modify/SetupCameraEdgePopup.hpp>
 
 bool SetupCameraEdgePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7583,9 +6167,7 @@ SCREWYOU3_HOOK_END("SetupCameraEdgePopup::init")
 #include <Geode/modify/SetupCameraGuidePopup.hpp>
 
 bool SetupCameraGuidePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7597,9 +6179,7 @@ SCREWYOU3_HOOK_END("SetupCameraGuidePopup::init")
 #include <Geode/modify/SetupCameraModePopup.hpp>
 
 bool SetupCameraModePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7611,9 +6191,7 @@ SCREWYOU3_HOOK_END("SetupCameraModePopup::init")
 #include <Geode/modify/SetupCameraOffsetTrigger.hpp>
 
 bool SetupCameraOffsetTrigger_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7625,9 +6203,7 @@ SCREWYOU3_HOOK_END("SetupCameraOffsetTrigger::init")
 #include <Geode/modify/SetupCameraRotatePopup.hpp>
 
 bool SetupCameraRotatePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7641,9 +6217,7 @@ SCREWYOU3_HOOK_END("SetupCameraRotatePopup::init")
 #include <Geode/modify/SetupCameraRotatePopup2.hpp>
 
 bool SetupCameraRotatePopup2_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7655,9 +6229,7 @@ SCREWYOU3_HOOK_END("SetupCameraRotatePopup2::init")
 #include <Geode/modify/SetupCheckpointPopup.hpp>
 
 bool SetupCheckpointPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7669,9 +6241,7 @@ SCREWYOU3_HOOK_END("SetupCheckpointPopup::init")
 #include <Geode/modify/SetupCoinLayer.hpp>
 
 bool SetupCoinLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7683,9 +6253,7 @@ SCREWYOU3_HOOK_END("SetupCoinLayer::init")
 #include <Geode/modify/SetupCollisionStateTriggerPopup.hpp>
 
 bool SetupCollisionStateTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7697,9 +6265,7 @@ SCREWYOU3_HOOK_END("SetupCollisionStateTriggerPopup::init")
 #include <Geode/modify/SetupCollisionTriggerPopup.hpp>
 
 bool SetupCollisionTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7711,9 +6277,7 @@ SCREWYOU3_HOOK_END("SetupCollisionTriggerPopup::init")
 #include <Geode/modify/SetupCountTriggerPopup.hpp>
 
 bool SetupCountTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7725,9 +6289,7 @@ SCREWYOU3_HOOK_END("SetupCountTriggerPopup::init")
 #include <Geode/modify/SetupDashRingPopup.hpp>
 
 bool SetupDashRingPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7739,9 +6301,7 @@ SCREWYOU3_HOOK_END("SetupDashRingPopup::init")
 #include <Geode/modify/SetupEndPopup.hpp>
 
 bool SetupEndPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7753,21 +6313,15 @@ SCREWYOU3_HOOK_END("SetupEndPopup::init")
 #include <Geode/modify/SetupEnterEffectPopup.hpp>
 
 float SetupEnterEffectPopup_triggerValueFromSliderValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float SetupEnterEffectPopup_triggerSliderValueFromValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool SetupEnterEffectPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7783,9 +6337,7 @@ SCREWYOU3_HOOK_END("SetupEnterEffectPopup::triggerValueFromSliderValue")
 #include <Geode/modify/SetupEnterTriggerPopup.hpp>
 
 bool SetupEnterTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7797,9 +6349,7 @@ SCREWYOU3_HOOK_END("SetupEnterTriggerPopup::init")
 #include <Geode/modify/SetupEventLinkPopup.hpp>
 
 bool SetupEventLinkPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7811,9 +6361,7 @@ SCREWYOU3_HOOK_END("SetupEventLinkPopup::init")
 #include <Geode/modify/SetupForceBlockPopup.hpp>
 
 bool SetupForceBlockPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7825,21 +6373,15 @@ SCREWYOU3_HOOK_END("SetupForceBlockPopup::init")
 #include <Geode/modify/SetupGameplayOffsetPopup.hpp>
 
 float SetupGameplayOffsetPopup_triggerValueFromSliderValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float SetupGameplayOffsetPopup_triggerSliderValueFromValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool SetupGameplayOffsetPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7855,9 +6397,7 @@ SCREWYOU3_HOOK_END("SetupGameplayOffsetPopup::triggerValueFromSliderValue")
 #include <Geode/modify/SetupGradientPopup.hpp>
 
 bool SetupGradientPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7869,9 +6409,7 @@ SCREWYOU3_HOOK_END("SetupGradientPopup::init")
 #include <Geode/modify/SetupGravityModPopup.hpp>
 
 bool SetupGravityModPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7885,9 +6423,7 @@ SCREWYOU3_HOOK_END("SetupGravityModPopup::init")
 #include <Geode/modify/SetupGravityTriggerPopup.hpp>
 
 bool SetupGravityTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7899,9 +6435,7 @@ SCREWYOU3_HOOK_END("SetupGravityTriggerPopup::init")
 #include <Geode/modify/SetupInstantCollisionTriggerPopup.hpp>
 
 bool SetupInstantCollisionTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7913,9 +6447,7 @@ SCREWYOU3_HOOK_END("SetupInstantCollisionTriggerPopup::init")
 #include <Geode/modify/SetupInstantCountPopup.hpp>
 
 bool SetupInstantCountPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7927,9 +6459,7 @@ SCREWYOU3_HOOK_END("SetupInstantCountPopup::init")
 #include <Geode/modify/SetupInteractObjectPopup.hpp>
 
 bool SetupInteractObjectPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7941,9 +6471,7 @@ SCREWYOU3_HOOK_END("SetupInteractObjectPopup::init")
 #include <Geode/modify/SetupItemCompareTriggerPopup.hpp>
 
 bool SetupItemCompareTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7955,9 +6483,7 @@ SCREWYOU3_HOOK_END("SetupItemCompareTriggerPopup::init")
 #include <Geode/modify/SetupItemEditTriggerPopup.hpp>
 
 bool SetupItemEditTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7969,9 +6495,7 @@ SCREWYOU3_HOOK_END("SetupItemEditTriggerPopup::init")
 #include <Geode/modify/SetupKeyframeAnimPopup.hpp>
 
 bool SetupKeyframeAnimPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7983,9 +6507,7 @@ SCREWYOU3_HOOK_END("SetupKeyframeAnimPopup::init")
 #include <Geode/modify/SetupKeyframePopup.hpp>
 
 bool SetupKeyframePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -7997,9 +6519,7 @@ SCREWYOU3_HOOK_END("SetupKeyframePopup::init")
 #include <Geode/modify/SetupMGTrigger.hpp>
 
 bool SetupMGTrigger_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8011,21 +6531,15 @@ SCREWYOU3_HOOK_END("SetupMGTrigger::init")
 #include <Geode/modify/SetupMoveCommandPopup.hpp>
 
 float SetupMoveCommandPopup_triggerValueFromSliderValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float SetupMoveCommandPopup_triggerSliderValueFromValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool SetupMoveCommandPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8041,9 +6555,7 @@ SCREWYOU3_HOOK_END("SetupMoveCommandPopup::triggerValueFromSliderValue")
 #include <Geode/modify/SetupObjectControlPopup.hpp>
 
 bool SetupObjectControlPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8055,9 +6567,7 @@ SCREWYOU3_HOOK_END("SetupObjectControlPopup::init")
 #include <Geode/modify/SetupObjectOptions2Popup.hpp>
 
 bool SetupObjectOptions2Popup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8069,9 +6579,7 @@ SCREWYOU3_HOOK_END("SetupObjectOptions2Popup::init")
 #include <Geode/modify/SetupObjectOptionsPopup.hpp>
 
 bool SetupObjectOptionsPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8083,9 +6591,7 @@ SCREWYOU3_HOOK_END("SetupObjectOptionsPopup::init")
 #include <Geode/modify/SetupObjectTogglePopup.hpp>
 
 bool SetupObjectTogglePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8097,9 +6603,7 @@ SCREWYOU3_HOOK_END("SetupObjectTogglePopup::init")
 #include <Geode/modify/SetupOpacityPopup.hpp>
 
 bool SetupOpacityPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8111,9 +6615,7 @@ SCREWYOU3_HOOK_END("SetupOpacityPopup::init")
 #include <Geode/modify/SetupOptionsTriggerPopup.hpp>
 
 bool SetupOptionsTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8125,9 +6627,7 @@ SCREWYOU3_HOOK_END("SetupOptionsTriggerPopup::init")
 #include <Geode/modify/SetupPersistentItemTriggerPopup.hpp>
 
 bool SetupPersistentItemTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8139,9 +6639,7 @@ SCREWYOU3_HOOK_END("SetupPersistentItemTriggerPopup::init")
 #include <Geode/modify/SetupPickupTriggerPopup.hpp>
 
 bool SetupPickupTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8153,9 +6651,7 @@ SCREWYOU3_HOOK_END("SetupPickupTriggerPopup::init")
 #include <Geode/modify/SetupPlatformerEndPopup.hpp>
 
 bool SetupPlatformerEndPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8167,9 +6663,7 @@ SCREWYOU3_HOOK_END("SetupPlatformerEndPopup::init")
 #include <Geode/modify/SetupPlayerControlPopup.hpp>
 
 bool SetupPlayerControlPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8181,9 +6675,7 @@ SCREWYOU3_HOOK_END("SetupPlayerControlPopup::init")
 #include <Geode/modify/SetupPortalPopup.hpp>
 
 bool SetupPortalPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8197,9 +6689,7 @@ SCREWYOU3_HOOK_END("SetupPortalPopup::init")
 #include <Geode/modify/SetupPulsePopup.hpp>
 
 bool SetupPulsePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8211,9 +6701,7 @@ SCREWYOU3_HOOK_END("SetupPulsePopup::init")
 #include <Geode/modify/SetupRandAdvTriggerPopup.hpp>
 
 bool SetupRandAdvTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8225,9 +6713,7 @@ SCREWYOU3_HOOK_END("SetupRandAdvTriggerPopup::init")
 #include <Geode/modify/SetupRandTriggerPopup.hpp>
 
 bool SetupRandTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8239,9 +6725,7 @@ SCREWYOU3_HOOK_END("SetupRandTriggerPopup::init")
 #include <Geode/modify/SetupResetTriggerPopup.hpp>
 
 bool SetupResetTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8253,9 +6737,7 @@ SCREWYOU3_HOOK_END("SetupResetTriggerPopup::init")
 #include <Geode/modify/SetupReverbPopup.hpp>
 
 bool SetupReverbPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8267,21 +6749,15 @@ SCREWYOU3_HOOK_END("SetupReverbPopup::init")
 #include <Geode/modify/SetupRotateCommandPopup.hpp>
 
 float SetupRotateCommandPopup_triggerValueFromSliderValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float SetupRotateCommandPopup_triggerSliderValueFromValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool SetupRotateCommandPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8297,9 +6773,7 @@ SCREWYOU3_HOOK_END("SetupRotateCommandPopup::triggerValueFromSliderValue")
 #include <Geode/modify/SetupRotateGameplayPopup.hpp>
 
 bool SetupRotateGameplayPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8311,9 +6785,7 @@ SCREWYOU3_HOOK_END("SetupRotateGameplayPopup::init")
 #include <Geode/modify/SetupRotatePopup.hpp>
 
 bool SetupRotatePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8325,9 +6797,7 @@ SCREWYOU3_HOOK_END("SetupRotatePopup::init")
 #include <Geode/modify/SetupSequenceTriggerPopup.hpp>
 
 bool SetupSequenceTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8339,9 +6809,7 @@ SCREWYOU3_HOOK_END("SetupSequenceTriggerPopup::init")
 #include <Geode/modify/SetupSFXEditPopup.hpp>
 
 bool SetupSFXEditPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8353,21 +6821,15 @@ SCREWYOU3_HOOK_END("SetupSFXEditPopup::init")
 #include <Geode/modify/SetupSFXPopup.hpp>
 
 int SetupSFXPopup_getActiveSFXID_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool SetupSFXPopup_overridePlaySFX_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool SetupSFXPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8383,15 +6845,11 @@ SCREWYOU3_HOOK_END("SetupSFXPopup::getActiveSFXID")
 #include <Geode/modify/SetupShaderEffectPopup.hpp>
 
 bool SetupShaderEffectPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string SetupShaderEffectPopup_zLayerToString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -8405,9 +6863,7 @@ SCREWYOU3_HOOK_END("SetupShaderEffectPopup::init")
 #include <Geode/modify/SetupShakePopup.hpp>
 
 bool SetupShakePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8419,9 +6875,7 @@ SCREWYOU3_HOOK_END("SetupShakePopup::init")
 #include <Geode/modify/SetupSmartBlockLayer.hpp>
 
 bool SetupSmartBlockLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8433,9 +6887,7 @@ SCREWYOU3_HOOK_END("SetupSmartBlockLayer::init")
 #include <Geode/modify/SetupSmartTemplateLayer.hpp>
 
 bool SetupSmartTemplateLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8447,9 +6899,7 @@ SCREWYOU3_HOOK_END("SetupSmartTemplateLayer::init")
 #include <Geode/modify/SetupSongTriggerPopup.hpp>
 
 bool SetupSongTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8461,9 +6911,7 @@ SCREWYOU3_HOOK_END("SetupSongTriggerPopup::init")
 #include <Geode/modify/SetupSpawnParticlePopup.hpp>
 
 bool SetupSpawnParticlePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8475,9 +6923,7 @@ SCREWYOU3_HOOK_END("SetupSpawnParticlePopup::init")
 #include <Geode/modify/SetupSpawnPopup.hpp>
 
 bool SetupSpawnPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8489,9 +6935,7 @@ SCREWYOU3_HOOK_END("SetupSpawnPopup::init")
 #include <Geode/modify/SetupStaticCameraPopup.hpp>
 
 bool SetupStaticCameraPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8503,9 +6947,7 @@ SCREWYOU3_HOOK_END("SetupStaticCameraPopup::init")
 #include <Geode/modify/SetupStopTriggerPopup.hpp>
 
 bool SetupStopTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8517,9 +6959,7 @@ SCREWYOU3_HOOK_END("SetupStopTriggerPopup::init")
 #include <Geode/modify/SetupTeleportPopup.hpp>
 
 bool SetupTeleportPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8531,9 +6971,7 @@ SCREWYOU3_HOOK_END("SetupTeleportPopup::init")
 #include <Geode/modify/SetupTimerControlTriggerPopup.hpp>
 
 bool SetupTimerControlTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8545,9 +6983,7 @@ SCREWYOU3_HOOK_END("SetupTimerControlTriggerPopup::init")
 #include <Geode/modify/SetupTimerEventTriggerPopup.hpp>
 
 bool SetupTimerEventTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8559,9 +6995,7 @@ SCREWYOU3_HOOK_END("SetupTimerEventTriggerPopup::init")
 #include <Geode/modify/SetupTimerTriggerPopup.hpp>
 
 bool SetupTimerTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8573,9 +7007,7 @@ SCREWYOU3_HOOK_END("SetupTimerTriggerPopup::init")
 #include <Geode/modify/SetupTimeWarpPopup.hpp>
 
 bool SetupTimeWarpPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8587,9 +7019,7 @@ SCREWYOU3_HOOK_END("SetupTimeWarpPopup::init")
 #include <Geode/modify/SetupTouchTogglePopup.hpp>
 
 bool SetupTouchTogglePopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8601,9 +7031,7 @@ SCREWYOU3_HOOK_END("SetupTouchTogglePopup::init")
 #include <Geode/modify/SetupTransformPopup.hpp>
 
 bool SetupTransformPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8615,39 +7043,27 @@ SCREWYOU3_HOOK_END("SetupTransformPopup::init")
 #include <Geode/modify/SetupTriggerPopup.hpp>
 
 bool SetupTriggerPopup_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 float SetupTriggerPopup_getValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float SetupTriggerPopup_triggerValueFromSliderValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float SetupTriggerPopup_triggerSliderValueFromValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 float SetupTriggerPopup_getTriggerValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool SetupTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8669,9 +7085,7 @@ SCREWYOU3_HOOK_END("SetupTriggerPopup::ccTouchBegan")
 #include <Geode/modify/SetupZoomTriggerPopup.hpp>
 
 bool SetupZoomTriggerPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8683,27 +7097,19 @@ SCREWYOU3_HOOK_END("SetupZoomTriggerPopup::init")
 #include <Geode/modify/SFXBrowser.hpp>
 
 bool SFXBrowser_cellPerformedAction_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int SFXBrowser_getSelectedCellIdx_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool SFXBrowser_shouldSnapToSelected_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool SFXBrowser_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8721,9 +7127,7 @@ SCREWYOU3_HOOK_END("SFXBrowser::cellPerformedAction")
 #include <Geode/modify/SFXSearchResult.hpp>
 
 int SFXSearchResult_getSelectedPage_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -8735,9 +7139,7 @@ SCREWYOU3_HOOK_END("SFXSearchResult::getSelectedPage")
 #include <Geode/modify/SFXTriggerGameObject.hpp>
 
 gd::string SFXTriggerGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -8749,9 +7151,7 @@ SCREWYOU3_HOOK_END("SFXTriggerGameObject::getSaveString")
 #include <Geode/modify/ShaderGameObject.hpp>
 
 gd::string ShaderGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -8763,21 +7163,15 @@ SCREWYOU3_HOOK_END("ShaderGameObject::getSaveString")
 #include <Geode/modify/ShaderLayer.hpp>
 
 bool ShaderLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool ShaderLayer_resetAllShaders_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool ShaderLayer_updateZLayer_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8793,9 +7187,7 @@ SCREWYOU3_HOOK_END("ShaderLayer::init")
 #include <Geode/modify/ShardsPage.hpp>
 
 bool ShardsPage_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8807,9 +7199,7 @@ SCREWYOU3_HOOK_END("ShardsPage::init")
 #include <Geode/modify/ShareCommentLayer.hpp>
 
 bool ShareCommentLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8821,9 +7211,7 @@ SCREWYOU3_HOOK_END("ShareCommentLayer::init")
 #include <Geode/modify/ShareLevelLayer.hpp>
 
 bool ShareLevelLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8835,9 +7223,7 @@ SCREWYOU3_HOOK_END("ShareLevelLayer::init")
 #include <Geode/modify/ShareLevelSettingsLayer.hpp>
 
 bool ShareLevelSettingsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8849,9 +7235,7 @@ SCREWYOU3_HOOK_END("ShareLevelSettingsLayer::init")
 #include <Geode/modify/ShareListLayer.hpp>
 
 bool ShareListLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8863,9 +7247,7 @@ SCREWYOU3_HOOK_END("ShareListLayer::init")
 #include <Geode/modify/SimplePlayer.hpp>
 
 bool SimplePlayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8877,15 +7259,11 @@ SCREWYOU3_HOOK_END("SimplePlayer::init")
 #include <Geode/modify/SlideInLayer.hpp>
 
 bool SlideInLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool SlideInLayer_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8903,15 +7281,11 @@ SCREWYOU3_HOOK_END("SlideInLayer::init")
 #include <Geode/modify/Slider.hpp>
 
 bool Slider_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool Slider_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8925,9 +7299,7 @@ SCREWYOU3_HOOK_END("Slider::ccTouchBegan")
 #include <Geode/modify/SliderThumb.hpp>
 
 float SliderThumb_getValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 
@@ -8939,9 +7311,7 @@ SCREWYOU3_HOOK_END("SliderThumb::getValue")
 #include <Geode/modify/SliderTouchLogic.hpp>
 
 bool SliderTouchLogic_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8953,9 +7323,7 @@ SCREWYOU3_HOOK_END("SliderTouchLogic::ccTouchBegan")
 #include <Geode/modify/SmartGameObject.hpp>
 
 gd::string SmartGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -8967,9 +7335,7 @@ SCREWYOU3_HOOK_END("SmartGameObject::getSaveString")
 #include <Geode/modify/SmartTemplateCell.hpp>
 
 bool SmartTemplateCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8981,9 +7347,7 @@ SCREWYOU3_HOOK_END("SmartTemplateCell::init")
 #include <Geode/modify/SongCell.hpp>
 
 bool SongCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -8995,9 +7359,7 @@ SCREWYOU3_HOOK_END("SongCell::init")
 #include <Geode/modify/SongInfoLayer.hpp>
 
 bool SongInfoLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9009,21 +7371,15 @@ SCREWYOU3_HOOK_END("SongInfoLayer::init")
 #include <Geode/modify/SongInfoObject.hpp>
 
 gd::string SongInfoObject_getArtistNames_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 gd::string SongInfoObject_getTagsString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool SongInfoObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9039,9 +7395,7 @@ SCREWYOU3_HOOK_END("SongInfoObject::getArtistNames")
 #include <Geode/modify/SongOptionsLayer.hpp>
 
 bool SongOptionsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9053,21 +7407,15 @@ SCREWYOU3_HOOK_END("SongOptionsLayer::init")
 #include <Geode/modify/SongSelectNode.hpp>
 
 int SongSelectNode_getActiveSongID_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 gd::string SongSelectNode_getSongFileName_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 bool SongSelectNode_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9083,9 +7431,7 @@ SCREWYOU3_HOOK_END("SongSelectNode::getActiveSongID")
 #include <Geode/modify/SongTriggerGameObject.hpp>
 
 gd::string SongTriggerGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -9097,15 +7443,11 @@ SCREWYOU3_HOOK_END("SongTriggerGameObject::getSaveString")
 #include <Geode/modify/SpawnParticleGameObject.hpp>
 
 bool SpawnParticleGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string SpawnParticleGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -9119,15 +7461,11 @@ SCREWYOU3_HOOK_END("SpawnParticleGameObject::init")
 #include <Geode/modify/SpawnTriggerGameObject.hpp>
 
 bool SpawnTriggerGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string SpawnTriggerGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -9141,9 +7479,7 @@ SCREWYOU3_HOOK_END("SpawnTriggerGameObject::init")
 #include <Geode/modify/SpecialAnimGameObject.hpp>
 
 gd::string SpecialAnimGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -9155,15 +7491,11 @@ SCREWYOU3_HOOK_END("SpecialAnimGameObject::getSaveString")
 #include <Geode/modify/SpriteAnimationManager.hpp>
 
 int SpriteAnimationManager_getPrio_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool SpriteAnimationManager_initWithOwner_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9177,9 +7509,7 @@ SCREWYOU3_HOOK_END("SpriteAnimationManager::getPrio")
 #include <Geode/modify/SpriteDescription.hpp>
 
 bool SpriteDescription_initDescription_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9193,9 +7523,7 @@ SCREWYOU3_HOOK_END("SpriteDescription::initDescription")
 #include <Geode/modify/StarInfoPopup.hpp>
 
 bool StarInfoPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9207,15 +7535,11 @@ SCREWYOU3_HOOK_END("StarInfoPopup::init")
 #include <Geode/modify/StartPosObject.hpp>
 
 bool StartPosObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string StartPosObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -9231,10 +7555,8 @@ SCREWYOU3_HOOK_END("StartPosObject::init")
 const char* StatsCell_getTitleFromKey_override() {
 
 if (Mod::get()->getSettingValue<bool>("can-be-nullptr") && modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("nullptr-chance")))
-    return nullptr;
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
+    	return nullptr;
 	return modUtils::getRandomCharSequence_c(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return new  char();
 }
 
 
@@ -9246,27 +7568,19 @@ SCREWYOU3_HOOK_END("StatsCell::getTitleFromKey")
 #include <Geode/modify/TableView.hpp>
 
 bool TableView_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 int TableView_checkBoundaryOfCell_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 bool TableView_isDuplicateIndexPath_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool TableView_isDuplicateInVisibleCellArray_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9286,21 +7600,15 @@ SCREWYOU3_HOOK_END("TableView::ccTouchBegan")
 #include <Geode/modify/TeleportPortalObject.hpp>
 
 gd::string TeleportPortalObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int TeleportPortalObject_addToGroup_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 float TeleportPortalObject_getTeleportXOff_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 
@@ -9316,9 +7624,7 @@ SCREWYOU3_HOOK_END("TeleportPortalObject::getSaveString")
 #include <Geode/modify/TextAlertPopup.hpp>
 
 bool TextAlertPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9330,9 +7636,7 @@ SCREWYOU3_HOOK_END("TextAlertPopup::init")
 #include <Geode/modify/TextArea.hpp>
 
 float TextArea_fadeInCharacters_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 
@@ -9344,15 +7648,11 @@ SCREWYOU3_HOOK_END("TextArea::fadeInCharacters")
 #include <Geode/modify/TextGameObject.hpp>
 
 gd::string TextGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 int TextGameObject_getTextKerning_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  int();
 }
 
 
@@ -9366,9 +7666,7 @@ SCREWYOU3_HOOK_END("TextGameObject::getSaveString")
 #include <Geode/modify/TimerTriggerGameObject.hpp>
 
 gd::string TimerTriggerGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -9380,9 +7678,7 @@ SCREWYOU3_HOOK_END("TimerTriggerGameObject::getSaveString")
 #include <Geode/modify/TopArtistsLayer.hpp>
 
 bool TopArtistsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9394,9 +7690,7 @@ SCREWYOU3_HOOK_END("TopArtistsLayer::init")
 #include <Geode/modify/TOSPopup.hpp>
 
 bool TOSPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9408,9 +7702,7 @@ SCREWYOU3_HOOK_END("TOSPopup::init")
 #include <Geode/modify/TransformTriggerGameObject.hpp>
 
 gd::string TransformTriggerGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -9422,9 +7714,7 @@ SCREWYOU3_HOOK_END("TransformTriggerGameObject::getSaveString")
 #include <Geode/modify/TriggerControlGameObject.hpp>
 
 gd::string TriggerControlGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -9436,9 +7726,7 @@ SCREWYOU3_HOOK_END("TriggerControlGameObject::getSaveString")
 #include <Geode/modify/TutorialLayer.hpp>
 
 bool TutorialLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9450,9 +7738,7 @@ SCREWYOU3_HOOK_END("TutorialLayer::init")
 #include <Geode/modify/TutorialPopup.hpp>
 
 bool TutorialPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9466,27 +7752,19 @@ SCREWYOU3_HOOK_END("TutorialPopup::init")
 #include <Geode/modify/UILayer.hpp>
 
 bool UILayer_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool UILayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool UILayer_processUINodesTouch_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool UILayer_processUINodeTouch_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9504,9 +7782,7 @@ SCREWYOU3_HOOK_END("UILayer::ccTouchBegan")
 #include <Geode/modify/UIObjectSettingsPopup.hpp>
 
 bool UIObjectSettingsPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9518,21 +7794,15 @@ SCREWYOU3_HOOK_END("UIObjectSettingsPopup::init")
 #include <Geode/modify/UIOptionsLayer.hpp>
 
 bool UIOptionsLayer_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 float UIOptionsLayer_getValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 bool UIOptionsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9548,21 +7818,15 @@ SCREWYOU3_HOOK_END("UIOptionsLayer::ccTouchBegan")
 #include <Geode/modify/UIPOptionsLayer.hpp>
 
 bool UIPOptionsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 bool UIPOptionsLayer_ccTouchBegan_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 float UIPOptionsLayer_getValue_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(Mod::get()->getSettingValue<double>("gibberish-data-numerical-min"), Mod::get()->getSettingValue<double>("gibberish-data-numerical-max"));
-return  float();
 }
 
 
@@ -9578,9 +7842,7 @@ SCREWYOU3_HOOK_END("UIPOptionsLayer::init")
 #include <Geode/modify/UISaveLoadLayer.hpp>
 
 bool UISaveLoadLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9592,15 +7854,11 @@ SCREWYOU3_HOOK_END("UISaveLoadLayer::init")
 #include <Geode/modify/UISettingsGameObject.hpp>
 
 bool UISettingsGameObject_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 gd::string UISettingsGameObject_getSaveString_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::getRandomCharSequence(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));
-return  gd::string();
 }
 
 
@@ -9614,9 +7872,7 @@ SCREWYOU3_HOOK_END("UISettingsGameObject::init")
 #include <Geode/modify/UpdateAccountSettingsPopup.hpp>
 
 bool UpdateAccountSettingsPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9628,9 +7884,7 @@ SCREWYOU3_HOOK_END("UpdateAccountSettingsPopup::init")
 #include <Geode/modify/UploadActionPopup.hpp>
 
 bool UploadActionPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9642,9 +7896,7 @@ SCREWYOU3_HOOK_END("UploadActionPopup::init")
 #include <Geode/modify/UploadListPopup.hpp>
 
 bool UploadListPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9656,9 +7908,7 @@ SCREWYOU3_HOOK_END("UploadListPopup::init")
 #include <Geode/modify/UploadPopup.hpp>
 
 bool UploadPopup_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9670,9 +7920,7 @@ SCREWYOU3_HOOK_END("UploadPopup::init")
 #include <Geode/modify/URLCell.hpp>
 
 bool URLCell_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9684,9 +7932,7 @@ SCREWYOU3_HOOK_END("URLCell::init")
 #include <Geode/modify/VideoOptionsLayer.hpp>
 
 bool VideoOptionsLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9698,9 +7944,7 @@ SCREWYOU3_HOOK_END("VideoOptionsLayer::init")
 #include <Geode/modify/WorldLevelPage.hpp>
 
 bool WorldLevelPage_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 
@@ -9714,9 +7958,7 @@ SCREWYOU3_HOOK_END("WorldLevelPage::init")
 #include <Geode/modify/WorldSelectLayer.hpp>
 
 bool WorldSelectLayer_init_override() {
-if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))
 	return modUtils::chooseRandomNum(0, 1);
-return  bool();
 }
 
 

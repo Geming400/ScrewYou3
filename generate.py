@@ -121,7 +121,7 @@ class Param:
             a snippet of code to dynamically change the value
         """
         
-        prefix = "return" if finalVarName == None else finalVarName + " ="
+        prefix = "\treturn" if finalVarName == None else finalVarName + " ="
         res = ""
         
         if self.typeName == "void":
@@ -138,17 +138,16 @@ if (Mod::get()->getSettingValue<bool>("can-be-nullptr") && modUtils::chooseRando
         
         if finalVarName: res += f"{self.typeName.replace("const", "").replace("static", "")} {finalVarName};\n"
         if self.isTypeValid():
-            res += 'if (modUtils::chooseRandomNum(100) >= (100 - Mod::get()->getSettingValue<int64_t>("gibberish-data-chance")))\n\t'
             if self.isString():
-                # bad assumption but we'll assume that pointer strings are always 'const char*'s
+                # bad assumption but we'll assume that pointer strings are always c strings (aka const char*)
                 randomCharsFunc = "getRandomCharSequence_c" if self.isPointer else "getRandomCharSequence"
                 res += f'{prefix} modUtils::{randomCharsFunc}(Mod::get()->getSettingValue<int64_t>("gibberish-data-string-lenght"));'
             elif self.isNumerical() or self.isBoolean():
                 min = "0" if self.isBoolean() else 'Mod::get()->getSettingValue<double>("gibberish-data-numerical-min")'
                 max = "1" if self.isBoolean() else 'Mod::get()->getSettingValue<double>("gibberish-data-numerical-max")'
                 res += f'{prefix} modUtils::chooseRandomNum({min}, {max});'
-                
-            # kinda hacky to replace 'const' like that but shh
+        else:
+            # kinda hacky to replace 'const' and 'unsigned' like that but shh
             #
             # let's just pray it has a default ctor
             # we'll see when the mod is building anyway

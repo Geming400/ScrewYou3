@@ -66,15 +66,6 @@
 			"type": "title",
 			"name": "Mod's behavior (gibberish data)"
 		},
-		"gibberish-data-chance": {
-			"name": "Gibberish data chance",
-			"description": "The chance for gibberish data to be sent instead. If this doesn't execute the base function will not get executed",
-			"type": "int",
-			"default": 50,
-			"enable-if": "enabled",
-			"min": 0,
-			"max": 100
-		},
 		"gibberish-data-numerical-min": {
 			"name": "Gibberish data min (numerical)",
 			"description": "The minimum value when a numerical value is encountered to send",
