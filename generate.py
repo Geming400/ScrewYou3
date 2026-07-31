@@ -259,19 +259,22 @@ class CPPFunction:
             
             win = "GEODE_IS_WINDOWS" if self.isWin() else ""
             android = "GEODE_IS_ANDROID" if self.isAndroid() else ""
-            mac = "GEODE_IS_INTEL_MAC" if self.isIntelMac() else ""
-            mac = "GEODE_IS_ARM_MAC" if self.isArmMac() else mac
+            intel_mac = "GEODE_IS_INTEL_MAC" if self.isIntelMac() else ""
+            arm_mac = "GEODE_IS_ARM_MAC" if self.isArmMac() else ""
             ios = "GEODE_IS_IOS" if self.isIos() else ""
             
             if win:
                 ret += DEFINED_TEXT + win + " || "
             if android:
                 ret += DEFINED_TEXT + android + " || "
-            if mac:
-                ret += DEFINED_TEXT + mac + " || "
+            if intel_mac:
+                ret += DEFINED_TEXT + intel_mac + " || "
+            if arm_mac:
+                ret += DEFINED_TEXT + arm_mac + " || "
             if ios:
                 ret += DEFINED_TEXT + ios + " || "
             return "#if " + ret.removesuffix(" || ")
+        
         return ""
     
     def createReturnOverride(self) -> str:
@@ -368,7 +371,7 @@ class CPPFunction:
             
             if ifDefs:
                 ret += f"""
-{ifDef}
+{ifDefs}
 {hookCall}
 {funcHookCall}
 #endif"""
