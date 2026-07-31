@@ -59,6 +59,7 @@ class Param:
         "intptr_t", "uintptr_t"
     )
     STRING_TYPES: Final[tuple[str, ...]] = ("std::string", "gd::string", "const char*")
+    BOOL_TYPES: Final[tuple[str, ...]] = ("bool", )
     
     name: str
     typeName: str
@@ -82,7 +83,7 @@ class Param:
         return any(x in self.typeName for x in Param.STRING_TYPES)
     
     def isBoolean(self):
-        return self.typeName == "bool"
+        return self.typeName in Param.BOOL_TYPES
     
     def isTypeValid(self):
         return self.isNumerical() or self.isString() or self.isBoolean()
@@ -163,7 +164,7 @@ if (Mod::get()->getSettingValue<bool>("can-be-nullptr") && modUtils::chooseRando
         return f"Param({str(self)}, isPointer = {self.isPointer}, isReference = {self.isReference})"
     
     @classmethod
-    def fromRaw(cls, rawStr: str) -> Self:
+    def fromRaw(cls, rawStr: str, templateReconstructor: Optional[str] = None) -> Self:
         # removing everything after the equal sign
         # (if there's one)
         if "=" in rawStr:
@@ -174,18 +175,37 @@ if (Mod::get()->getSettingValue<bool>("can-be-nullptr") && modUtils::chooseRando
         # getting everything except the last word
         typeName = " ".join(rawStr.split(" ")[:-1]).strip()
         
+        if templateReconstructor:
+            typeName = typeName.replace("[TEMPLATE]", templateReconstructor)
+        
         inst = cls.__new__(cls)
         inst.__init__(name, typeName)
         return inst
     
     @classmethod
-    def fromRaws(cls, raws: list[str]) -> list[Self]:
+    def fromRaws(cls, raws: list[str], templateReconstructor: list[str]) -> list[Self]:
         res: list[Self] = []
         
+        templateReconstructorI = 0
         for raw in raws:
-            res.append(cls.fromRaw(raw))
+            reconstructor: Optional[str] = None
+            if "[TEMPLATE]" in raw:
+                reconstructor = templateReconstructor[templateReconstructorI]
+                templateReconstructorI += 1
+                
+            res.append(cls.fromRaw(raw, reconstructor))
         
         return res
+    
+    @staticmethod
+    def getParamName(fullParamSig: str) -> Optional[str]:
+        name = fullParamSig.split(" ")[-1]
+        if name in Param.NUMERIC_TYPES or name in Param.STRING_TYPES or name in Param.BOOL_TYPES:
+            return None
+        
+        if name != "ID" and name[0].isupper() or "::" in name: # hardcoded case :3
+            return None # we will assume names that start with a uppercase are classes, so not actual param names
+        return name
 
 class CPPFunction:
     Platform: TypeAlias = Literal["win", "imac", "m1", "ios", "android"]
@@ -195,11 +215,11 @@ class CPPFunction:
     platforms: set[Platform]
     signature: str
     
-    def __init__(self, signature: str, originClass: str, params: str, platforms: set[Platform]) -> None:
-        self.signature = signature
+    def __init__(self, signature: str, originClass: str, params: str, platforms: set[Platform], templateReconstructor: list[str]) -> None:
+        self.signature = reconstructTemplates(signature, templateReconstructor)
         self.originClass = originClass
         self.platforms = platforms
-        self.params = Param.fromRaws(params.split(",")) if params else []
+        self.params = Param.fromRaws(params.split(","), templateReconstructor) if params else []
     
     @property
     def funcName(self) -> str:
@@ -270,11 +290,11 @@ class CPPFunction:
     
     # This is the most unreadable thing ever
     def codegen(self, hook_macro: ScrewYou3Macro = ScrewYou3Macro.HOOK, func_hook: ScrewYou3Macro = ScrewYou3Macro.FUNC_HOOK) -> str:
-        """'Codegen' this function into a geode hook
+        """'Codegen' the given function into a geode hook
 
         Args:
             hook_macro: The macro used to **hook** the function.
-            func_hook: The macro that will have the content of the hook.
+            func_hook: The macro that will have the **content** of the hook.
         """
         
         return CPPFunction.codegenHooks([self], hook_macro, func_hook)
@@ -286,9 +306,9 @@ class CPPFunction:
         return hash(frozenset(self.params)) + hash(self.returnType) + hash(self.funcName)
     
     def __eq__(self, value: object) -> bool:
-        if isinstance(value, CPPFunction):
+        if isinstance(value, CPPFunction): # func == anotherFunc
             return self.params == value.params and self.returnType == value.returnType and self.funcName == value.funcName and self.platforms == value.platforms
-        elif isinstance(value, str):
+        elif isinstance(value, str): # func == "myClass::func"
             return self.originClass + "::" + self.funcName == value
         else:
             return False
@@ -328,23 +348,23 @@ class CPPFunction:
         for func in functions:
             # applying custom hook macro for MenuLayer::init
             _funcHook: ScrewYou3Macro
-            # if func.originClass == "MenuLayer" and func.funcName == "init":
             if func == "MenuLayer::init":
                 _funcHook = ScrewYou3Macro.MENULAYER_FUNC_HOOK
             else:
                 _funcHook = func_hook
         
-            if func.isVirtual and SKIP_VIRTUAL_FUNCS: # we're not hooking virtual functions
+            if func.isVirtual and SKIP_VIRTUAL_FUNCS:
                 continue
             
             ifDefs = func.createIfdefs()
             
             hookCall = f"{hook_macro.value}({func.signature.replace("virtual", "", 1).strip()})"
             
+            platformsStr = '"' + " ".join(func.platforms) + '"'
             if func.params == []:
-                funcHookCall = f"{_funcHook.value}({originClass}, {func.funcName}, )"
+                funcHookCall = f"{_funcHook.value}({originClass}, {func.funcName}, {platformsStr}, )"
             else:
-                funcHookCall = f"{_funcHook.value}({originClass}, {func.funcName}, {removeTypes(func.paramsToStr())})"
+                funcHookCall = f"{_funcHook.value}({originClass}, {func.funcName}, {platformsStr}, {removeTypes(func.paramsToStr())})"
             
             if ifDefs:
                 ret += f"""
@@ -399,7 +419,7 @@ class CPPFunction:
     def getParamsAsStr(funcSignature: str) -> str:
         return funcSignature[funcSignature.find("(") + 1:funcSignature.find(")")]
         
-def removeTemplateFormatting(params: str) -> str:
+def removeTemplateFormatting(params: str, replaceWith = "[TEMPLATE]") -> str:
     if not "<" in params: return params
     
     # ret = ""
@@ -414,13 +434,26 @@ def removeTemplateFormatting(params: str) -> str:
     
     # return ret
     
-    return re.sub(r"<(\w+,( |)).+?>", "", params)
+    return re.sub(r"<\w+(|.+?)>", replaceWith, params)
 
-def addArgs(string: str):
-    # :trol:
-    def removeTotallyNotNeededCPPfeaturesThatNobodyWillEverNeed(string: str):
-        return string.replace("const", "").replace("*", "").replace("&", "").strip()
+def getTemplates(params: str) -> list[str]:
+    if not "<" in params: return []
+    
+    res: list[str] = list()
+    
+    for match in re.finditer(r"<\w+(|.+?)>", params):
+        res.append(match.group())
+    
+    return res
+
+def reconstructTemplates(params: str, templateReconstructor: list[str]) -> str:
+    ret = params # strings are probably copied
+    for i in range(params.count("[TEMPLATE]")):
+        ret = ret.replace("[TEMPLATE]", templateReconstructor[i], count=1)
         
+    return ret
+
+def addArgs(string: str) -> tuple[str, list[str]]:
     """Adds arguments to a c++ function
 
     Args:
@@ -430,21 +463,29 @@ def addArgs(string: str):
         The arguments
     """
     
-    if string == "": return ""
+    # :trol:
+    def removeTotallyNotNeededCPPfeaturesThatNobodyWillEverNeed(string: str):
+        return string.replace("const", "").replace("*", "").replace("&", "").strip()
+    
+    if string == "": return ("", [])
+    
+    templates = getTemplates(string)
     
     params = removeTemplateFormatting(string).replace(", ", ",").strip().split(",")
     newParams: list[str] = list()
     for i, param in enumerate(params):
-        _param = removeTotallyNotNeededCPPfeaturesThatNobodyWillEverNeed(param).replace("[THIS IS A SOMETHING BTW]", ",") # TODO: test this
-        if (" " in _param or _param == ""):
+        _param = removeTotallyNotNeededCPPfeaturesThatNobodyWillEverNeed(param).replace("[THIS IS A SOMETHING BTW]", ",")
+        
+        if Param.getParamName(_param) == None:
+            newParams.append(f"{param} p{i}")
+        else:
             newParams.append(param)
-            continue
-        newParams.append(f"{param} p{i}")
+        
     if len(newParams) == 0:
-        return string.strip()
+        return (string.strip(), templates)
     
     ret = ", ".join(newParams)
-    return ret
+    return (ret, templates)
 
 def removeTypes(string: str):
     """Removes the arguments from a c++ function
@@ -458,7 +499,7 @@ def removeTypes(string: str):
     
     if string == "": return ""
     
-    params = string.replace(", ", ",").strip().split(",")
+    params = removeTemplateFormatting(string.replace(", ", ",").strip(), replaceWith="").split(",")
     newParams: list[str] = []
     for param in params:
         splittedParams = param.split(" ")
@@ -477,6 +518,7 @@ class BromaReturn:
     functions: dict[str, list[CPPFunction]]
     unavailableFuncs: int
     classesFoundByPlatforms: dict[CPPFunction.Platform, int]
+    totalInlinedPlatforms: int
     
 def parseBromaFile(path: str | Path) -> BromaReturn:
     currentClass: str = ""
@@ -491,13 +533,15 @@ def parseBromaFile(path: str | Path) -> BromaReturn:
         "imac": 0,
         "m1": 0
     }
+    totalInlinedPlatforms = 0
     
     # incredible code below
     # WARNING: You have no right to get jealous of my coding skills
-    with open(path) as classes:
+    with open(path) as bromaFile:
         # regex = r"(|.+?link\(android.+?\n)(class (\w)+)|((bool init\(.+\))|(bool init\(\))) =[\w, ]+;" # fire regex
         bromaParserRegex = r"(|.+?link\(android.+?\n)(class (\w)+)|(.+\(.+\)|(.+\(\))) =[\w, ]+;" # it's maybe worse now
-        classesFormatted = re.sub(r"class \w+(?=::)::", "class ", classes.read())
+        
+        classesFormatted = re.sub(r"class \w+(?=::)::", "class ", bromaFile.read())
         matches = re.finditer(bromaParserRegex, classesFormatted, re.MULTILINE | re.IGNORECASE)
         
         for match in matches:
@@ -514,22 +558,57 @@ def parseBromaFile(path: str | Path) -> BromaReturn:
                     print(f"Skipping function '{funcSignature.removeprefix("//").strip()}' because it's commented")
                     continue
                 
-                params = addArgs(CPPFunction.getParamsAsStr(funcSignature))
-                
+                paramsAsStr = CPPFunction.getParamsAsStr(funcSignature)
+                params, templatesReconstructor = addArgs(paramsAsStr)
+                # we replace the old params with the new formatted ones
+                # ex:
+                # bool init(gd::string)
+                # Turns into
+                # bool init(gd::string p0)
+                funcSignature = funcSignature.replace(paramsAsStr, params)
+            
                 if any(x in unparsedPlatforms for x in ("win", "m1", "imac", "ios")):
                     # this regex is used to remove the adresses of the platform's functions
                     # it starts from the first adress up until the semicolon
                     removePlatformsRegex = r" 0x.+?(,|;)|inline(,|;)"
-                    platforms: set[CPPFunction.Platform] = cast(set[CPPFunction.Platform], set(re.sub(removePlatformsRegex, "", unparsedPlatforms).strip().removeprefix("=").strip().split(" ")))
+                    findInlinePlatformsRegex = r"\w+ inline(,|;)"
+                    inlinedPlatforms: set[CPPFunction.Platform] = set()
+                    
+                    for inlinePlatMatch in re.finditer(findInlinePlatformsRegex, unparsedPlatforms):
+                        totalInlinedPlatforms += 1
+                        inlinedPlatforms.add(
+                            cast(
+                                CPPFunction.Platform,
+                                re.sub(removePlatformsRegex, "", inlinePlatMatch.group()).strip()
+                            )
+                        )
+                    
+                    platforms: set[CPPFunction.Platform] = cast(
+                        set[CPPFunction.Platform],
+                        set(
+                            re.sub(removePlatformsRegex, "", unparsedPlatforms)
+                                .strip()
+                                .removeprefix("=")
+                                .strip()
+                                .split(" ")
+                        )
+                    )
+                    
+                    for inlinePlat in inlinedPlatforms:
+                        platforms.remove(inlinePlat)
+                    
                     if isValidForAndroid: platforms.add("android")
                     for platform in platforms:
-                        if classesFoundByPlatforms.get(platform) == None: print(f"  Platform '{platform}' not found in 'classesFoundByPlatforms'")
-                        else: classesFoundByPlatforms[platform] += 1
+                        if classesFoundByPlatforms.get(platform) == None:
+                            if platform != "": # We don't need to print it when empty because it spams the console
+                                print(f"  Platform '{platform}' not found in 'classesFoundByPlatforms'")
+                        else:
+                            classesFoundByPlatforms[platform] += 1
                     
                     if functions.get(currentClass) == None:
-                        functions[currentClass] = [CPPFunction(funcSignature, currentClass, params, platforms)]
+                        functions[currentClass] = [CPPFunction(funcSignature, currentClass, params, platforms, templatesReconstructor)]
                     else:
-                        functions[currentClass].append(CPPFunction(funcSignature, currentClass, params, platforms))
+                        functions[currentClass].append(CPPFunction(funcSignature, currentClass, params, platforms, templatesReconstructor))
             else:
                 isValidForAndroid = False
                 if not functions.get(currentClass) and currentClass != "":
@@ -542,17 +621,20 @@ def parseBromaFile(path: str | Path) -> BromaReturn:
                 else:
                     currentClass = match.group().replace("class ", "")
     
-    return BromaReturn(functions, unavailableFuncs, classesFoundByPlatforms)
+    return BromaReturn(functions, unavailableFuncs, classesFoundByPlatforms, totalInlinedPlatforms)
 
 def combineParsedBromaFiles(parsedBromaFiles: Iterable[BromaReturn]) -> BromaReturn:
-    ret = BromaReturn({}, 0, {})
+    ret = BromaReturn({}, 0, {}, 0)
     for bromaFile in parsedBromaFiles:
         ret.unavailableFuncs += bromaFile.unavailableFuncs
+        ret.totalInlinedPlatforms += bromaFile.totalInlinedPlatforms
+        
         for clazz, funcs in bromaFile.functions.items():
             if ret.functions.get(clazz) == None:
                 ret.functions[clazz] = funcs
             else:
                 ret.functions[clazz] += funcs
+                
         for platform, n in bromaFile.classesFoundByPlatforms.items():
             if ret.classesFoundByPlatforms.get(platform) == None:
                 ret.classesFoundByPlatforms[platform] = n
@@ -663,7 +745,7 @@ using namespace geode::prelude;
 // Also haii !!!
 // :3
 
-#define SCREWYOU3_MENULAYER_CUSTOM_INIT(className, funcName, ...) \\
+#define SCREWYOU3_MENULAYER_CUSTOM_INIT(className, funcName, platforms, ...) \\
     if (ScrewYou3Manager::get()->isKilled(fmt::format("{}::{}", className::CLASS_NAME, #funcName)) && Mod::get()->getSettingValue<bool>("enabled")) \\
         return className##_##funcName##_override(); \\
     else \\
@@ -693,12 +775,14 @@ using namespace geode::prelude;
 };
 
 #define SCREWYOU3_HOOK(funcSignature) funcSignature {
-#define SCREWYOU3_HOOK_IMPL(className, funcName, ...) \\
+#define SCREWYOU3_HOOK_IMPL(className, funcName, platforms, ...) \\
+    if (Mod::get()->getSettingValue<bool>("log-more")) \\
+        log::info("{}::{}({}) got called :3 (platforms = {})", className::CLASS_NAME, #funcName, #__VA_ARGS__, platforms); \\
     if (ScrewYou3Manager::get()->isKilled(fmt::format("{}::{}", className::CLASS_NAME, #funcName)) && Mod::get()->getSettingValue<bool>("enabled")) \\
         return className##_##funcName##_override(); \\
     else \\
         return className::funcName(__VA_ARGS__); \\
-};
+    };
 
 // Hooking classes
 // You might notice that the 'GEODE_IS_DEKSTOP' and 'GEODE_IS_MOBILE' macros aren't used, this is just because
@@ -741,4 +825,5 @@ using namespace geode::prelude;
     print(f"    Android:      {parsedBroFile.classesFoundByPlatforms['android']}")
     print(f"    Imac:         {parsedBroFile.classesFoundByPlatforms['imac']}")
     print(f"    Ios:          {parsedBroFile.classesFoundByPlatforms['ios']}")
+    print(f"    A total of {parsedBroFile.totalInlinedPlatforms} functions were not able to be generated on specific platforms because they were inlined")
                 

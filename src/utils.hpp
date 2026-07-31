@@ -20,6 +20,9 @@ namespace modUtils {
         && !std::same_as<T, unsigned char>
         && !std::same_as<T, bool>;
 
+    // Honestly why use geode utils
+    // where you can make them yourself !
+
     // Literally stolen from https://stackoverflow.com/questions/6942273/how-to-get-a-random-element-from-a-c-container
     // because I can use CTRL+C and CTRL+V :trol:
     template<typename Iter, typename RandomGenerator>

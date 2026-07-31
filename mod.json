@@ -1,14 +1,14 @@
 {
-	"geode": "4.10.2",
+	"geode": "5.7.1",
 	"gd": {
-		"win": "2.2074",
-		"android": "2.2074",
-		"mac": "2.2074",
-		"ios": "2.2074"
+		"win": "2.2081",
+		"android": "2.2081",
+		"mac": "2.2081",
+		"ios": "2.2081"
 	},
 	"id": "geming400.screwyou3",
 	"name": "Screw You 3",
-	"version": "v5.5.5",
+	"version": "v6.6.9",
 	"developer": "Geming400",
 	"description": "Screw you 2, but better",
 	"early-load": true,
@@ -102,6 +102,12 @@
 		"log": {
 			"name": "Log debug stuff",
 			"description": "If debug logs should be enabled. This will flood your console and possibly make your game slower",
+			"type": "bool",
+			"default": false
+		},
+		"log-more": {
+			"name": "Log more debug stuff",
+			"description": "If more useless stuff should get logged",
 			"type": "bool",
 			"default": false
 		}

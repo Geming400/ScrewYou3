@@ -40,7 +40,9 @@ using namespace geode::prelude;
 };
 
 #define SCREWYOU3_HOOK(funcSignature) funcSignature {
-#define SCREWYOU3_HOOK_IMPL(className, funcName, ...) \
+#define SCREWYOU3_HOOK_IMPL(className, platforms, funcName, ...) \
+    if (Mod::get()->getSettingValue<bool>("log-more")) \
+        log::info("{}::{}({}) got called :3", className::CLASS_NAME, #funcName, #__VA_ARGS__); \
     if (ScrewYou3Manager::get()->isKilled(fmt::format("{}::{}", className::CLASS_NAME, #funcName)) && Mod::get()->getSettingValue<bool>("enabled")) \
         return className##_##funcName##_override(); \
     else \
@@ -63,5 +65,5 @@ bool AccountLoginLayer_init_override() {
 }
 SCREWYOU3_HOOK_BEGIN(AccountLoginLayer)
 SCREWYOU3_HOOK(bool init(std::string p0))
-SCREWYOU3_HOOK_IMPL(AccountLoginLayer, init, p0)
+SCREWYOU3_HOOK_IMPL(AccountLoginLayer, "", init, p0)
 SCREWYOU3_HOOK_END("AccountLoginLayer::init")
